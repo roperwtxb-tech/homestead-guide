@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homestead Kitchen &amp; Field Guide</title>
+<style>
+:root{
+  --cream:#faf6ee;
+  --paper:#fffdf9;
+  --tan:#e8ddc7;
+  --tan-dark:#d9c9a3;
+  --brown:#5b4636;
+  --brown-dark:#3a2c22;
+  --green:#4a6741;
+  --green-dark:#33472d;
+  --barn:#a13d2e;
+  --barn-dark:#7e2e22;
+  --ink:#2b2620;
+  --muted:#6f6456;
+  --ok:#3d7a3d;
+  --warn:#a13d2e;
+  --shadow: 0 2px 8px rgba(59,44,34,0.12);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family: 'Georgia', 'Iowan Old Style', serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height:1.5;
+}
+.sticky-top{
+  position: sticky;
+  top:0;
+  z-index:50;
+}
+header.top{
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: var(--cream);
+  padding: 18px 16px 14px;
+  box-shadow: var(--shadow);
+}
+header.top h1{
+  margin:0 0 2px;
+  font-size: 1.5rem;
+  letter-spacing:0.5px;
+}
+header.top p.tagline{
+  margin:0;
+  font-size:0.85rem;
+  opacity:0.85;
+  font-family: Arial, sans-serif;
+}
+.search-wrap{
+  margin-top:12px;
+  position:relative;
+}
+#globalSearch{
+  width:100%;
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  font-size:0.95rem;
+  font-family: Arial, sans-serif;
+  background: rgba(255,255,255,0.95);
+  color: var(--ink);
+}
+#searchResults{
+  position:absolute;
+  top:calc(100% + 4px);
+  left:0;
+  right:0;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius:8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  max-height: 480px;
+  overflow-y:auto;
+  display:none;
+  z-index:60;
+}
+#searchResults.show{display:block;}
+#searchResults div.result{
+  padding:10px 14px;
+  border-bottom:1px solid var(--tan);
+  cursor:pointer;
+  font-family: Arial, sans-serif;
+  font-size:0.9rem;
+}
+#searchResults div.result:hover{background: var(--tan);}
+#searchResults div.result .rtitle{font-weight:bold; color:var(--brown-dark);}
+#searchResults div.result .rpath{font-size:0.75rem; color:var(--muted);}
+#searchResults .result-divider{
+  padding:6px 14px;
+  font-family:Arial,sans-serif;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  color:var(--muted);
+  background:var(--cream);
+  border-bottom:1px solid var(--tan);
+}
+.ing-block{
+  padding:12px 14px;
+  border-bottom:2px solid var(--tan-dark);
+  font-family:Arial,sans-serif;
+}
+.ing-name{
+  font-family:Georgia,serif;
+  font-weight:bold;
+  font-size:1.05rem;
+  color:var(--brown-dark);
+  margin-bottom:8px;
+}
+.ing-note-callout{
+  background:#fdf1ee;
+  border-left:3px solid var(--barn);
+  padding:6px 10px;
+  font-size:0.82rem;
+  border-radius:0 4px 4px 0;
+  margin-bottom:8px;
+}
+.ing-chips{display:flex; flex-wrap:wrap; gap:6px;}
+.ing-chip{
+  padding:6px 12px;
+  border-radius:16px;
+  border:1px solid var(--tan-dark);
+  background:var(--cream);
+  color:var(--brown-dark);
+  font-family:Arial,sans-serif;
+  font-size:0.8rem;
+  cursor:pointer;
+}
+.ing-chip:hover{background:var(--tan);}
+.ing-chip.active{background:var(--green); color:#fff; border-color:var(--green-dark);}
+.ing-detail{
+  margin-top:10px;
+  padding:10px 12px;
+  background:var(--cream);
+  border-radius:8px;
+  font-size:0.88rem;
+}
+.ing-detail p{margin:0 0 8px;}
+.ing-recipe{
+  background:var(--paper);
+  border:1px dashed var(--tan-dark);
+  border-radius:6px;
+  padding:8px 10px;
+  margin-bottom:8px;
+  font-size:0.85rem;
+}
+.ing-recipe ul{margin:6px 0 0; padding-left:18px;}
+.ing-flags{margin-bottom:6px;}
+.ing-note{font-size:0.8rem; margin:4px 0; padding:6px 8px; border-radius:4px;}
+.ing-note.histamine-text{background:#fbf0f7; color:#6b1d55;}
+.ing-note.gluten-text{background:#eef6fb; color:#1f4e6b;}
+.ing-jump{display:inline-block; margin-top:4px; font-size:0.85rem;}
+
+nav.maintabs{
+  display:flex;
+  overflow-x:auto;
+  background: var(--brown-dark);
+}
+nav.maintabs button{
+  flex:1 0 auto;
+  padding:12px 14px;
+  background:none;
+  border:none;
+  color: var(--tan);
+  font-family: Arial, sans-serif;
+  font-size:0.9rem;
+  font-weight:bold;
+  cursor:pointer;
+  white-space:nowrap;
+  border-bottom: 3px solid transparent;
+}
+nav.maintabs button.active{
+  color: #fff;
+  border-bottom: 3px solid var(--barn);
+  background: rgba(255,255,255,0.06);
+}
+nav.subtabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  padding:12px 16px;
+  background: var(--tan);
+}
+nav.subtabs button{
+  padding:7px 13px;
+  border-radius:20px;
+  border:1px solid var(--tan-dark);
+  background: var(--paper);
+  color: var(--brown-dark);
+  font-family: Arial, sans-serif;
+  font-size:0.82rem;
+  cursor:pointer;
+}
+nav.subtabs button.active{
+  background: var(--green);
+  color:#fff;
+  border-color: var(--green-dark);
+}
+main{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px 16px 60px;
+}
+.pane{display:none;}
+.pane.active{display:block;}
+.subpane{display:none;}
+.subpane.active{display:block;}
+
+h2.section-title{
+  color: var(--green-dark);
+  border-bottom: 2px solid var(--tan-dark);
+  padding-bottom:6px;
+  margin-top:6px;
+}
+h3{color: var(--brown-dark); margin-bottom:6px;}
+
+.card{
+  background: var(--paper);
+  border:1px solid var(--tan-dark);
+  border-radius:10px;
+  padding:16px 18px;
+  margin-bottom:16px;
+  box-shadow: var(--shadow);
+}
+.card h3{margin-top:0;}
+.tag{
+  display:inline-block;
+  font-family: Arial, sans-serif;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  background: var(--tan);
+  color: var(--brown-dark);
+  padding:2px 8px;
+  border-radius:10px;
+  margin-right:6px;
+  margin-bottom:4px;
+}
+.tag.risk{background:#f4d8d2; color: var(--barn-dark);}
+.tag.safe{background:#dcebd8; color: var(--green-dark);}
+.tag.histamine{background:#f0d4e8; color:#6b1d55;}
+.tag.histamine-mod{background:#faeacb; color:#7a5714;}
+.tag.gluten{background:#dbe8f2; color:#1f4e6b;}
+
+.callout.histamine{border-left-color:#9c2d78; background:#fbf0f7;}
+.callout.histamine strong{color:#6b1d55;}
+.callout.histamine-mod{border-left-color:#b8860b; background:#fdf7e8;}
+.callout.histamine-mod strong{color:#7a5714;}
+.callout.gluten{border-left-color:#2670a3; background:#eef6fb;}
+.callout.gluten strong{color:#1f4e6b;}
+
+.callout{
+  border-left:4px solid var(--barn);
+  background:#fdf1ee;
+  padding:10px 14px;
+  border-radius:0 6px 6px 0;
+  margin:12px 0;
+  font-family: Arial, sans-serif;
+  font-size:0.92rem;
+}
+.callout.tip{border-left-color: var(--green); background:#eef4ec;}
+.callout strong{color: var(--barn-dark);}
+.callout.tip strong{color: var(--green-dark);}
+
+table{
+  width:100%;
+  border-collapse: collapse;
+  margin:10px 0 16px;
+  font-family: Arial, sans-serif;
+  font-size:0.85rem;
+}
+table caption{
+  text-align:left;
+  font-weight:bold;
+  color: var(--brown-dark);
+  margin-bottom:6px;
+  font-family: Georgia, serif;
+}
+th, td{
+  border:1px solid var(--tan-dark);
+  padding:6px 8px;
+  text-align:left;
+  vertical-align:top;
+}
+th{background: var(--tan); color: var(--brown-dark);}
+tr:nth-child(even) td{background: #fbf8f1;}
+
+.tool-box{
+  background: #f2ede0;
+  border:1px dashed var(--brown);
+  border-radius:10px;
+  padding:14px 16px;
+  margin: 14px 0 20px;
+  font-family: Arial, sans-serif;
+}
+.tool-box h4{margin:0 0 8px; color: var(--green-dark); font-family: Georgia, serif;}
+.tool-box label{display:block; font-size:0.85rem; margin:8px 0 3px; font-weight:bold;}
+.tool-box input, .tool-box select{
+  padding:7px 10px;
+  border-radius:6px;
+  border:1px solid var(--tan-dark);
+  font-size:0.9rem;
+  width:100%;
+  max-width:260px;
+}
+.tool-box button.go{
+  margin-top:10px;
+  padding:8px 16px;
+  background: var(--green);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.tool-box button.go:hover{background: var(--green-dark);}
+.tool-output{
+  margin-top:12px;
+  padding:10px 12px;
+  background: var(--paper);
+  border-radius:6px;
+  border:1px solid var(--tan-dark);
+  font-size:0.88rem;
+}
+.row2{display:flex; gap:16px; flex-wrap:wrap;}
+.row2 > div{flex:1 1 220px;}
+
+.filter-input{
+  width:100%;
+  padding:8px 12px;
+  margin-bottom:10px;
+  border-radius:6px;
+  border:1px solid var(--tan-dark);
+  font-family: Arial, sans-serif;
+}
+.species-card{
+  border:1px solid var(--tan-dark);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  background: var(--paper);
+}
+.species-card h3{margin-top:0;}
+.grid2{display:grid; grid-template-columns: 1fr 1fr; gap:10px 20px;}
+@media (max-width:600px){.grid2{grid-template-columns:1fr;}}
+.grid2 h5{margin:0 0 2px; font-family:Arial,sans-serif; font-size:0.78rem; text-transform:uppercase; color:var(--muted); letter-spacing:0.5px;}
+.grid2 p{margin:0 0 8px; font-size:0.92rem;}
+
+footer{
+  text-align:center;
+  padding:24px 16px;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+  font-size:0.78rem;
+}
+.home-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+@media (max-width:600px){.home-grid{grid-template-columns:1fr;}}
+.home-card{
+  background: var(--paper);
+  border:1px solid var(--tan-dark);
+  border-radius:10px;
+  padding:16px;
+  cursor:pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.1s;
+}
+.home-card:hover{transform: translateY(-2px); border-color: var(--green);}
+.home-card .emoji{font-size:1.6rem;}
+.home-card h3{margin:6px 0 4px;}
+.home-card p{margin:0; font-size:0.85rem; color: var(--muted); font-family:Arial,sans-serif;}
+a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
+.searchable{scroll-margin-top: 170px;}
+</style>
+</head>
+<body>
+
+<div class="sticky-top">
+<header class="top">
+  <h1>🌾 Homestead Kitchen &amp; Field Guide</h1>
+  <p class="tagline">A companion reference to Roped In Ranch — preserving, gardening &amp; livestock know-how</p>
+  <div class="search-wrap">
+    <input type="text" id="globalSearch" placeholder="Search everything (e.g. &quot;jerky&quot;, &quot;tomatoes&quot;, &quot;goat kidding&quot;, &quot;altitude&quot;)...">
+    <div id="searchResults"></div>
+  </div>
+</header>
+
+<nav class="maintabs" id="mainTabs">
+  <button data-pane="home" class="active">🏡 Home</button>
+  <button data-pane="preserve">🫙 Preserving</button>
+  <button data-pane="garden">🌱 Garden</button>
+  <button data-pane="livestock">🐐 Livestock</button>
+  <button data-pane="reference">📋 Reference</button>
+</nav>
+</div>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="pane active" id="pane-home">
+  <h2 class="section-title">Welcome</h2>
+  <p>This guide is built to sit alongside the Roped In Ranch app. Ranch is where you log what happened — animal
+  records, milk totals, harvest counts, the butcher log. This guide is where you look up <em>how</em> to do
+  something before you do it: how long to pressure-can green beans, what temperature kills bacteria in jerky,
+  when to start tomato seeds, or what a healthy goat's temperature should be.</p>
+  <div class="callout">
+    <strong>A note on safety:</strong> the food preservation sections (canning, curing, fermenting) involve real
+    risks like botulism and foodborne illness if steps are skipped. Times, temperatures, and ratios here are drawn
+    from USDA, the National Center for Home Food Preservation, and university extension sources — but always
+    defer to the instructions on your specific equipment and any current official guidance. When in doubt, throw it out.
+  </div>
+  <div class="card searchable" data-keywords="homestead location cisco texas zone elevation altitude frost dates">
+    <h3>📍 Your Homestead</h3>
+    <div class="grid2">
+      <div><h5>Location</h5><p>32°23'12"N 99°09'05"W — Callahan County, TX, near Putnam</p></div>
+      <div><h5>USDA Hardiness Zone</h5><p>8a (10–15°F minimum)</p></div>
+      <div><h5>Approx. elevation</h5><p>~1,600 ft</p></div>
+      <div><h5>Avg. last spring frost</h5><p>~April 5</p></div>
+      <div><h5>Avg. first fall frost</h5><p>~November 1</p></div>
+      <div><h5>Growing season</h5><p>~230 days</p></div>
+    </div>
+    <p style="font-size:0.85rem;color:var(--muted);margin:8px 0 0;">Zone and elevation are confirmed for Callahan
+    County; frost dates are averaged from the nearest weather stations (Baird: Apr 2 / Nov 2, Clyde: Apr 7 / Nov 1)
+    since there's no station right at your coordinates. They're already pre-filled below in the altitude calculator
+    (Preserving → Canning) and the planting calendar (Garden → Planting Calendar) — adjust either one any time your
+    own records say otherwise.</p>
+  </div>
+  <div class="callout histamine" style="border-left-color: var(--green); background:#eef4ec;">
+    <strong style="color:var(--green-dark);">Family dietary flags:</strong> since some of you eat gluten-free and low-histamine,
+    look-alike tags mark relevant spots throughout Preserving: <span class="tag histamine">🔴 histamine</span>
+    <span class="tag histamine-mod">🟡 moderate histamine</span> <span class="tag gluten">🌾 gluten swap</span>.
+    See <a class="jumplink" data-goto="reference|dietary">Reference → Dietary Notes</a> for the full explanation and swap list.
+  </div>
+  <div class="home-grid">
+    <div class="home-card" data-goto="preserve|canning"><span class="emoji">🫙</span><h3>Canning</h3><p>Water bath vs. pressure, altitude adjustments, safety rules</p></div>
+    <div class="home-card" data-goto="preserve|dehydrating"><span class="emoji">☀️</span><h3>Dehydrating</h3><p>Temps &amp; times for fruit, veg, herbs, jerky</p></div>
+    <div class="home-card" data-goto="preserve|freezing"><span class="emoji">❄️</span><h3>Freezing</h3><p>Blanching times &amp; freezer storage life</p></div>
+    <div class="home-card" data-goto="preserve|fermenting"><span class="emoji">🥬</span><h3>Fermenting</h3><p>Sauerkraut, kimchi, pickles &amp; safety signs</p></div>
+    <div class="home-card" data-goto="preserve|curing"><span class="emoji">🥓</span><h3>Curing &amp; Smoking</h3><p>Cure salts, hot vs. cold smoke, bacon &amp; jerky</p></div>
+    <div class="home-card" data-goto="preserve|cellar"><span class="emoji">🥔</span><h3>Root Cellar &amp; Storage</h3><p>Best conditions by crop, shelf life</p></div>
+    <div class="home-card" data-goto="preserve|dairy"><span class="emoji">🧀</span><h3>Dairy &amp; Cheese</h3><p>Butter, chevre, and basic dairy safety</p></div>
+    <div class="home-card" data-goto="garden|calendar"><span class="emoji">📅</span><h3>Planting Calendar</h3><p>Enter your frost date, get a custom schedule</p></div>
+    <div class="home-card" data-goto="garden|pests"><span class="emoji">🐛</span><h3>Pest &amp; Disease ID</h3><p>Quick identification &amp; organic-first fixes</p></div>
+    <div class="home-card" data-goto="livestock|poultry"><span class="emoji">🐓</span><h3>Livestock Care Sheets</h3><p>Poultry, goats, sheep, cattle, pigs, rabbits</p></div>
+    <div class="home-card" data-goto="livestock|breeding"><span class="emoji">🐣</span><h3>Breeding &amp; Incubation</h3><p>Gestation lengths, incubation temps &amp; days</p></div>
+    <div class="home-card" data-goto="reference|safety"><span class="emoji">⚠️</span><h3>Food Safety Reference</h3><p>Spoilage signs, botulism risk, shelf-life chart</p></div>
+  </div>
+</section>
+
+<!-- ============ PRESERVE ============ -->
+<section class="pane" id="pane-preserve">
+  <h2 class="section-title">Preserving the Harvest</h2>
+  <nav class="subtabs" id="preserveTabs">
+    <button data-sub="canning" class="active">Canning</button>
+    <button data-sub="dehydrating">Dehydrating</button>
+    <button data-sub="freezing">Freezing</button>
+    <button data-sub="fermenting">Fermenting</button>
+    <button data-sub="curing">Curing &amp; Smoking</button>
+    <button data-sub="cellar">Root Cellar</button>
+    <button data-sub="dairy">Dairy &amp; Cheese</button>
+  </nav>
+
+  <!-- CANNING -->
+  <div class="subpane active" id="preserve-canning">
+    <div class="card searchable" data-keywords="canning basics high acid low acid botulism pressure water bath">
+      <h3>The one rule that matters most</h3>
+      <p><span class="tag risk">Low-acid foods</span> — vegetables, meat, poultry, seafood, and any mixture of these
+      (soups, stews) — <strong>must be processed in a pressure canner</strong>. A boiling water bath never gets hot
+      enough to kill <em>Clostridium botulinum</em> spores, the bacteria that causes botulism. Botulism toxin can be
+      fatal and often can't be detected by smell, taste, or appearance.</p>
+      <p><span class="tag safe">High-acid foods</span> — fruit, jam/jelly, and properly acidified pickles/salsa/tomatoes —
+      can be safely processed in a boiling water bath because the acid prevents botulism spores from growing.</p>
+      <div class="callout"><strong>Tomatoes are borderline.</strong> Modern tomato varieties are often lower-acid
+      than older ones. Always add bottled lemon juice (2 tbsp/quart or 1 tbsp/pint) or citric acid (¼ tsp/quart)
+      to canned tomatoes and tomato products, even if the recipe doesn't call for it.
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="card searchable" data-keywords="water bath canning steps jars jam jelly fruit">
+        <h3>Water Bath Canning — the basics</h3>
+        <ol>
+          <li>Inspect jars for chips/cracks; wash jars, lids, and bands in hot soapy water.</li>
+          <li>Prepare food and pack into jars (raw pack or hot pack), leaving the headspace the recipe specifies (usually ¼"–1").</li>
+          <li>Remove air bubbles, wipe rims clean, center lid, screw band to "fingertip tight."</li>
+          <li>Lower jars into a canner of simmering water; water should cover jars by 1–2 inches.</li>
+          <li>Bring to a rolling boil, start timing, and process for the full time in a tested recipe.</li>
+          <li>Turn off heat, remove lid, let jars sit 5 minutes, then remove to a towel-lined counter.</li>
+          <li>Don't touch lids for 12–24 hrs. Check seals (lid should not flex when pressed), label, and store.</li>
+        </ol>
+      </div>
+      <div class="card searchable" data-keywords="pressure canning steps vegetables meat poultry weighted gauge dial gauge">
+        <h3>Pressure Canning — the basics</h3>
+        <ol>
+          <li>Add the amount of water the canner manufacturer specifies (usually 2–3 inches).</li>
+          <li>Load prepared jars onto the rack, lock the lid.</li>
+          <li>Vent steam for 10 minutes before pressurizing — this step is not optional, it removes trapped air that causes inaccurate pressure.</li>
+          <li>Bring to the pressure the recipe (and your altitude) requires, and start timing once pressure is reached.</li>
+          <li>Maintain steady pressure for the full processing time, adjusting heat as needed.</li>
+          <li>Turn off heat and let pressure drop to zero <strong>naturally</strong> — never force-cool or quick-release a canner.</li>
+          <li>Wait 10 minutes after pressure hits zero, then unlock and remove the lid away from your face.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tool-box searchable" data-keywords="altitude calculator canning adjustment elevation feet">
+      <h4>🧮 Altitude Adjustment Calculator</h4>
+      <p style="margin-top:0;font-size:0.85rem;">Recipes are written for sea level (0–1,000 ft). Higher elevations need longer times or higher pressure because water boils at a lower temperature. Pre-filled with your homestead's approximate elevation (~1,600 ft, Callahan County) — adjust if you know your exact number.</p>
+      <div class="row2">
+        <div>
+          <label for="altMethod">Method</label>
+          <select id="altMethod">
+            <option value="wb">Water Bath</option>
+            <option value="dial">Pressure — Dial Gauge</option>
+            <option value="weighted">Pressure — Weighted Gauge</option>
+          </select>
+        </div>
+        <div>
+          <label for="altFeet">Your altitude (feet)</label>
+          <input type="number" id="altFeet" placeholder="e.g. 4200" min="0">
+        </div>
+        <div>
+          <label for="altBase">Recipe's base time (minutes, water bath only)</label>
+          <input type="number" id="altBase" placeholder="e.g. 10">
+        </div>
+      </div>
+      <button class="go" onclick="calcAltitude()">Calculate</button>
+      <div class="tool-output" id="altOutput">Enter your details above and click Calculate.</div>
+    </div>
+
+    <table class="searchable" data-keywords="altitude table water bath minutes increase">
+      <caption>Water Bath: additional processing time by altitude</caption>
+      <tr><th>Altitude (ft)</th><th>Add to processing time</th></tr>
+      <tr><td>0 – 1,000</td><td>No adjustment</td></tr>
+      <tr><td>1,001 – 3,000</td><td>+5 minutes</td></tr>
+      <tr><td>3,001 – 6,000</td><td>+10 minutes</td></tr>
+      <tr><td>6,001 – 8,000</td><td>+15 minutes</td></tr>
+      <tr><td>8,001 – 10,000</td><td>+20 minutes</td></tr>
+    </table>
+
+    <table class="searchable" data-keywords="altitude table pressure canner psi dial weighted gauge">
+      <caption>Pressure Canning: PSI by altitude (time stays as recipe states)</caption>
+      <tr><th>Altitude (ft)</th><th>Weighted Gauge</th><th>Dial Gauge</th></tr>
+      <tr><td>0 – 1,000</td><td>10 PSI</td><td>11 PSI</td></tr>
+      <tr><td>1,001 – 2,000</td><td>15 PSI</td><td>11 PSI</td></tr>
+      <tr><td>2,001 – 3,000</td><td>15 PSI</td><td>12 PSI</td></tr>
+      <tr><td>3,001 – 6,000</td><td>15 PSI</td><td>13 PSI</td></tr>
+      <tr><td>6,001 – 8,000</td><td>15 PSI</td><td>14 PSI</td></tr>
+      <tr><td>8,001 – 10,000</td><td>15 PSI</td><td>15 PSI</td></tr>
+    </table>
+
+    <div class="card searchable" data-keywords="canning quick reference method by food jam salsa green beans meat soup">
+      <h3>What method for what food?</h3>
+      <table>
+        <tr><th>Food</th><th>Method</th><th>Notes</th></tr>
+        <tr><td>Jams, jellies, fruit butters</td><td>Water bath</td><td>High sugar/acid; follow a tested recipe for set</td></tr>
+        <tr><td>Whole/sliced fruit, fruit juice</td><td>Water bath</td><td>Ascorbic acid dip prevents browning</td></tr>
+        <tr><td>Tomatoes &amp; tomato sauce</td><td>Water bath</td><td>Must add lemon juice or citric acid — see above</td></tr>
+        <tr><td>Pickles, relish, salsa</td><td>Water bath</td><td>Never reduce the vinegar in a tested recipe</td></tr>
+        <tr><td>Plain vegetables (green beans, corn, carrots, potatoes)</td><td>Pressure only</td><td>Low-acid — never water bath these</td></tr>
+        <tr><td>Meat, poultry, seafood</td><td>Pressure only</td><td>Raw pack or hot pack, per tested recipe</td></tr>
+        <tr><td>Soups, stews, chili with meat/vegetables</td><td>Pressure only</td><td>Don't thicken before canning — thicken after opening</td></tr>
+        <tr><td>Broths &amp; stocks</td><td>Pressure only</td><td>Skim fat before canning</td></tr>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>Never do these things:</strong> reduce a processing time or pressure below what's tested; thicken,
+      add flour/cornstarch, or add extra dairy/fat to a low-acid recipe before canning; can in the oven or
+      microwave; reuse metal lids; can pumpkin/squash purée (only cubed) or refried beans, bread, or cakes at home;
+      or reduce the vinegar/acid in a pickle recipe. If a lid doesn't seal, or a sealed jar looks cloudy, spurts
+      liquid when opened, smells off, or the lid is bulging — do not taste it. Discard it where people and pets can't
+      access it.
+    </div>
+
+    <div class="callout histamine-mod searchable" data-keywords="canning histamine vinegar pickles canned fish tomatoes moderate">
+      <span class="tag histamine-mod">🟡 Moderate histamine</span> Canning's heat processing itself doesn't produce
+      histamine the way fermenting does, but two things in this tab commonly show up on low-histamine lists anyway:
+      vinegar-forward pickles/relish/salsa (vinegar is a histamine-liberating food for some people), and canned fish
+      or meat, which — like any shelf-stable protein — has had time to accumulate histamine by the time it's opened.
+      Tomatoes specifically are also flagged as histamine-liberating on their own, independent of how they're
+      preserved. Fresh or freshly frozen versions of the same foods are the lower-histamine choice.
+    </div>
+    <div class="callout gluten searchable" data-keywords="canning gluten free malt vinegar soy sauce swap">
+      <span class="tag gluten">🌾 Gluten swap</span> Plain distilled white vinegar and cider vinegar (what most
+      tested canning recipes call for) are gluten-free even though distilled from grain — the distillation process
+      leaves the gluten behind. Just watch for malt vinegar specifically (made from barley, not distilled the same
+      way) in any pickle or chutney recipe, and swap in distilled white or cider vinegar instead.
+    </div>
+  </div>
+
+  <!-- DEHYDRATING -->
+  <div class="subpane" id="preserve-dehydrating">
+    <div class="card searchable" data-keywords="dehydrating basics pretreat blanch conditioning storage">
+      <h3>Dehydrating basics</h3>
+      <p>Slice food uniformly so pieces dry at the same rate. Pretreat most fruit with a quick dip in an
+      ascorbic acid/lemon-juice solution to stop browning, and blanch most vegetables briefly in boiling water or
+      steam before drying — it slows nutrient loss and keeps color and texture better in storage.</p>
+      <p>After drying, <strong>condition</strong> fruits and vegetables: let the batch cool, then seal loosely in a
+      jar for 4–10 days, shaking daily. If moisture beads on the glass, redry the batch — uneven moisture is the
+      #1 cause of mold in stored dried food.</p>
+      <p>Store fully cooled, fully dry food in airtight containers (jars, mylar bags with oxygen absorbers) in a
+      cool, dark place. Most dried fruits and vegetables keep 6–12 months at room temperature, or 1–2 years in the
+      freezer; jerky keeps 1–2 months at room temp, up to a year frozen.</p>
+    </div>
+    <div class="callout"><strong>Meat and jerky are the exception to "just dry it."</strong> Dehydrators often
+    don't reach a high enough temperature to kill bacteria as food dries. USDA guidance: heat meat to 160°F (beef)
+    or poultry to 165°F — either by simmering marinated strips first, or by heating dried jerky in a 275°F oven for
+    10 minutes after dehydrating — before storing it at room temperature.</div>
+
+    <div class="callout histamine searchable" data-keywords="jerky dried meat histamine risk dried fruit moderate">
+      <span class="tag histamine">🔴 Histamine</span> Jerky and other slow-dried meats are commonly flagged as
+      high-histamine — the long, warm drying time allows the same slow protein breakdown that makes cured meat
+      high-histamine. <span class="tag histamine-mod">🟡 Moderate</span> Dried fruit shows up on many low-histamine
+      lists too, though tolerance varies more person to person than with dried meat — fresh or frozen fruit is the
+      safer default if you're watching this closely.
+    </div>
+    <div class="callout gluten searchable" data-keywords="gluten free grains pasta dehydrating swap">
+      <span class="tag gluten">🌾 Gluten swap</span> If you're dehydrating cooked grains or pasta for backpacking-style
+      meals, use a GF grain (rice, quinoa) or GF pasta — the drying process itself doesn't add gluten, but the grain
+      you start with does if it's wheat-based.
+    </div>
+
+    <input type="text" class="filter-input searchable" id="dehydFilter" placeholder="Filter foods (e.g. apple, jerky, basil)..." oninput="filterTable('dehydTable', this.value)">
+    <table id="dehydTable">
+      <caption>Dehydrator temperature &amp; time chart</caption>
+      <tr><th>Food</th><th>Category</th><th>Temp</th><th>Time</th><th>Dryness test</th></tr>
+    </table>
+  </div>
+
+  <!-- FREEZING -->
+  <div class="subpane" id="preserve-freezing">
+    <div class="callout tip searchable" data-keywords="freezing histamine lowest risk leftovers freeze quickly">
+      <strong style="color:var(--green-dark);">✅ Lowest-histamine preservation method here.</strong> Freezing at 0°F
+      essentially stops further histamine buildup — but timing matters: it doesn't reverse histamine that's already
+      formed. Freeze meat, fish, poultry, and cooked leftovers within 1–2 hours of cooking or harvest for the
+      low-histamine plate, rather than after they've sat out or spent a day or more in the fridge (refrigerated
+      high-protein leftovers keep gaining histamine over 24–48 hours even though they stay perfectly food-safe).
+    </div>
+    <div class="card searchable" data-keywords="freezing basics blanching packaging freezer burn">
+      <h3>Freezing basics</h3>
+      <p>Most vegetables need a quick blanch (boil, then ice-water bath) before freezing — it stops the enzyme
+      action that would otherwise turn them mushy and dull in the freezer. Fruit generally doesn't need blanching;
+      a quick open-freeze on a tray before bagging keeps pieces separate. Pack out as much air as possible to slow
+      freezer burn, label with the date, and use the oldest items first.</p>
+    </div>
+    <table class="searchable" data-keywords="blanching times vegetables freezer">
+      <caption>Blanching times (boiling water) for common vegetables</caption>
+      <tr><th>Vegetable</th><th>Blanch time</th></tr>
+      <tr><td>Green beans</td><td>3 minutes</td></tr>
+      <tr><td>Broccoli / cauliflower florets</td><td>3 minutes</td></tr>
+      <tr><td>Corn (on cob)</td><td>7–11 minutes (by size)</td></tr>
+      <tr><td>Corn (kernels, cut after blanching cob)</td><td>4 minutes</td></tr>
+      <tr><td>Peas</td><td>1½–2 minutes</td></tr>
+      <tr><td>Carrots (sliced)</td><td>2 minutes</td></tr>
+      <tr><td>Summer squash/zucchini (sliced)</td><td>3 minutes</td></tr>
+      <tr><td>Greens (spinach, chard, kale)</td><td>2 minutes</td></tr>
+      <tr><td>Peppers (no blanch needed)</td><td>None — freeze raw, sliced</td></tr>
+      <tr><td>Onions (no blanch needed)</td><td>None — freeze raw, chopped</td></tr>
+    </table>
+    <table class="searchable" data-keywords="freezer storage life months meat fruit vegetables">
+      <caption>Freezer storage life (0°F) for best quality</caption>
+      <tr><th>Food</th><th>Storage life</th></tr>
+      <tr><td>Blanched vegetables</td><td>8–12 months</td></tr>
+      <tr><td>Fruit</td><td>8–12 months</td></tr>
+      <tr><td>Ground meat</td><td>3–4 months</td></tr>
+      <tr><td>Whole cuts (beef, pork, lamb)</td><td>4–12 months</td></tr>
+      <tr><td>Whole poultry</td><td>up to 12 months</td></tr>
+      <tr><td>Poultry pieces</td><td>9 months</td></tr>
+      <tr><td>Fish (fatty, e.g. salmon)</td><td>2–3 months</td></tr>
+      <tr><td>Fish (lean, e.g. cod)</td><td>6 months</td></tr>
+      <tr><td>Bread/baked goods</td><td>2–3 months</td></tr>
+      <tr><td>Butter</td><td>6–9 months</td></tr>
+      <tr><td>Milk (quality drops but safe)</td><td>3 months</td></tr>
+    </table>
+  </div>
+
+  <!-- FERMENTING -->
+  <div class="subpane" id="preserve-fermenting">
+    <div class="callout histamine searchable" data-keywords="fermenting histamine risk high">
+      <span class="tag histamine">🔴 Histamine</span> <strong>Every fermented food is a high-histamine food</strong> —
+      the same bacteria that makes fermentation safe and delicious also produces histamine as it works. This is true
+      of sauerkraut, kimchi, and any lacto-ferment no matter how carefully it's made. Set aside a fresh, unfermented
+      portion for the low-histamine plate before it goes into the ferment crock.
+    </div>
+    <div class="card searchable" data-keywords="fermenting basics salt brine ratio lacto fermentation sauerkraut kimchi pickles">
+      <h3>Lacto-fermentation basics</h3>
+      <p>Salt does the safety work here: it favors the lactic-acid bacteria that naturally occur on vegetables
+      while suppressing the bacteria that cause spoilage. Two common approaches:</p>
+      <ul>
+        <li><strong>Dry-salt method</strong> (shredded veg — kraut, kimchi): salt at roughly <strong>2% of the
+        vegetable's weight</strong> (about 1½–2 tbsp fine salt per 5 lbs of shredded cabbage), then massage/pound
+        until it releases enough brine to submerge itself.</li>
+        <li><strong>Brine method</strong> (whole/cut veg — pickles, whole cabbage leaves): mix a brine of
+        <strong>2–5% salt by weight</strong> of the water (roughly 1½–3½ tbsp non-iodized salt per quart of water),
+        and submerge the vegetables completely.</li>
+      </ul>
+      <p>Keep everything under the brine with a weight, cover loosely (gas needs to escape), and ferment at room
+      temperature (60–75°F is ideal) out of direct sun. Taste starting around day 3–5; it's done when it tastes
+      sour enough for you — then move it to the fridge to slow fermentation.</p>
+    </div>
+    <div class="row2">
+      <div class="card searchable" data-keywords="fermentation normal signs bubbles cloudy kahm yeast">
+        <h3>Normal &amp; expected</h3>
+        <ul>
+          <li>Bubbling, fizzing, or a hiss when you burp the jar</li>
+          <li>Cloudy brine and some sediment on the bottom</li>
+          <li>A thin, white, harmless film (kahm yeast) — skim it off, ferment is still fine</li>
+          <li>Sour, tangy, pleasantly funky smell</li>
+          <li>Color dulling slightly (kraut going from bright to olive-green is normal)</li>
+        </ul>
+      </div>
+      <div class="card searchable" data-keywords="fermentation spoiled signs mold slimy throw out">
+        <h3>Spoiled — throw it out</h3>
+        <ul>
+          <li>Fuzzy mold in <strong>any color</strong> other than white kahm film — pink, black, green, blue</li>
+          <li>Sliminess on the vegetables themselves (not just the brine)</li>
+          <li>A putrid, rotten, or otherwise off smell instead of sour/tangy</li>
+          <li>Vegetables floating above the brine and visibly rotting</li>
+          <li>Any pink or orange discoloration in the brine itself</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout tip"><strong>Starter recipes:</strong> classic sauerkraut is just cabbage + 2% salt.
+    Kimchi adds garlic, ginger, scallion, and gochugaru to napa cabbage in the same salt range. Fridge dill pickles
+    use a 3.5% brine with dill, garlic, and a splash of vinegar for extra tang and crunch.</div>
+    <div class="callout gluten searchable" data-keywords="gluten free kimchi gochujang fish sauce check label">
+      <span class="tag gluten">🌾 Gluten swap</span> If a kimchi recipe calls for gochujang paste, check the label —
+      many brands include wheat flour; several brands are labeled gluten-free. Fish sauce is usually gluten-free but
+      brands vary, so check that label too. Plain gochugaru (Korean chili flakes) is naturally gluten-free.
+    </div>
+  </div>
+
+  <!-- CURING & SMOKING -->
+  <div class="subpane" id="preserve-curing">
+    <div class="callout histamine searchable" data-keywords="curing smoking histamine risk high bacon salami jerky aged">
+      <span class="tag histamine">🔴 Histamine</span> <strong>Cured, smoked, and aged meats are some of the highest-histamine
+      foods there are</strong> — bacon, salami, cured ham, and smoked sausage all get their flavor from the same slow
+      bacterial/enzymatic process that steadily raises histamine. Freshly cooked, unaged meat (see the Freezing tab) is
+      the low-histamine alternative for the same cuts.
+    </div>
+    <div class="card searchable" data-keywords="curing salt prague powder cure 1 cure 2 sodium nitrite safety">
+      <h3>Curing salts — what they're for</h3>
+      <p>Cure #1 (often sold as "Prague Powder #1" or "Insta Cure #1") is a mix of table salt and 6.25% sodium
+      nitrite, dyed pink so it's never mistaken for regular salt. It's used for short-cure items you'll cook and
+      eat soon: bacon, corned beef, sausage, ham, pastrami. Cure #2 adds sodium nitrate as well, which slowly
+      converts to nitrite over weeks — it's for long, air-dried products like salami and prosciutto that cure for
+      weeks or months without cooking.</p>
+      <div class="callout"><strong>This is the one ingredient in this whole guide where a mistake can be lethal.</strong>
+      Regulations cap sodium nitrite at 200 ppm in finished meat; most home recipes target well under that. A commonly
+      published commercial rate is about <strong>1 level teaspoon (≈6g) of Cure #1 per 5 lbs of meat</strong> for dry
+      cures — but brands vary in density, so always weigh on a gram scale and follow the exact instructions printed
+      on your specific package rather than any rate here. Store it away from children, labeled clearly, and never
+      substitute it teaspoon-for-teaspoon with table salt in any other recipe.</div>
+    </div>
+
+    <div class="tool-box searchable" data-keywords="curing salt calculator cure 1 grams meat weight">
+      <h4>🧮 Rough Cure #1 Estimator</h4>
+      <p style="margin-top:0;font-size:0.85rem;">Gives a ballpark based on the common 1 tsp (~6g) per 5 lbs rate.
+      <strong>Always confirm against your product's own label before using.</strong></p>
+      <label for="cureLbs">Meat weight (lbs)</label>
+      <input type="number" id="cureLbs" placeholder="e.g. 10" min="0" style="max-width:160px;">
+      <button class="go" onclick="calcCure()">Estimate</button>
+      <div class="tool-output" id="cureOutput">Enter a weight and click Estimate.</div>
+    </div>
+
+    <div class="row2">
+      <div class="card searchable" data-keywords="hot smoking safe temperature poultry ground meat whole cuts">
+        <h3>Hot smoking (recommended default)</h3>
+        <p>Hot smoking cooks the food while it smokes, at smoker temperatures of 225–300°F. This is the safe,
+        forgiving method for home use because the meat reaches a fully-cooked internal temperature:</p>
+        <table>
+          <tr><th>Food</th><th>Safe internal temp</th></tr>
+          <tr><td>Whole cuts (steak, chops, roasts)</td><td>145°F + 3 min rest</td></tr>
+          <tr><td>Ground meat</td><td>160°F</td></tr>
+          <tr><td>Poultry (whole or parts)</td><td>165°F</td></tr>
+        </table>
+        <p>Use two thermometers — one for the smoker's air temperature, one probe for the meat itself. Always
+        thaw meat completely first; a still-frozen center spends too long in the 40–140°F "danger zone."</p>
+      </div>
+      <div class="card searchable" data-keywords="cold smoking risk cheese fish requires curing">
+        <h3>Cold smoking (advanced, higher risk)</h3>
+        <p>Cold smoking flavors food at low temperatures (under ~90°F) without cooking it. Because the food never
+        reaches a safe temperature, cold-smoked meat and fish <strong>must be cured first</strong> (see Cure #1/#2
+        above) to control bacterial growth during the long smoke. Cold smoking is best reserved for already
+        food-safe items like hard cheese, or for cured products, and is not a good starting point for beginners —
+        the margin for error is much smaller than hot smoking.</p>
+      </div>
+    </div>
+
+    <div class="card searchable" data-keywords="jerky safety heat before after dehydrating">
+      <h3>Jerky, specifically</h3>
+      <p>See the Dehydrating tab for full temp/time charts. The safety step that matters most: bring marinated
+      strips to a full simmer (or heat dried jerky in a 275°F oven for 10 minutes) so the meat actually reaches
+      160°F (beef) / 165°F (poultry) at some point in the process — drying alone at typical dehydrator temperatures
+      does not reliably kill bacteria.</p>
+    </div>
+
+    <div class="callout gluten searchable" data-keywords="gluten free brine marinade soy sauce worcestershire beer sausage filler swap">
+      <span class="tag gluten">🌾 Gluten swap</span> Brines and marinades are where gluten sneaks into cured/smoked
+      meat: soy sauce and Worcestershire sauce are traditionally wheat-based (swap in tamari, coconut aminos, or a
+      GF-labeled Worcestershire), beer brines use regular beer (swap in a certified GF beer, cider, or broth), and
+      homemade sausage sometimes uses bread-based "rusk" as a filler (swap in rice, GF breadcrumbs, or skip it).
+    </div>
+  </div>
+
+  <!-- ROOT CELLAR -->
+  <div class="subpane" id="preserve-cellar">
+    <div class="card searchable" data-keywords="root cellar storage conditions temperature humidity">
+      <h3>Root cellaring basics</h3>
+      <p>Most root cellar crops want one of two conditions: <strong>cold &amp; moist</strong> (32–40°F, 85–95%
+      humidity — think a damp basement corner or a buried box) or <strong>cool &amp; dry</strong> (50–60°F, 60–70%
+      humidity — a garage shelf or dry closet). Mixing the two groups shortens storage life for both, and one
+      rotting item can spoil a whole bin — check stored produce every couple of weeks and pull anything soft.</p>
+    </div>
+    <table class="searchable" data-keywords="root cellar crop storage life months conditions">
+      <caption>Storage conditions &amp; life by crop</caption>
+      <tr><th>Crop</th><th>Conditions</th><th>Typical storage life</th></tr>
+      <tr><td>Potatoes</td><td>Cold &amp; moist, dark</td><td>4–6 months</td></tr>
+      <tr><td>Carrots, beets, turnips (in damp sand)</td><td>Cold &amp; moist</td><td>4–6 months</td></tr>
+      <tr><td>Cabbage</td><td>Cold &amp; moist</td><td>2–3 months</td></tr>
+      <tr><td>Apples (away from other produce)</td><td>Cold &amp; moist</td><td>3–6 months</td></tr>
+      <tr><td>Onions, garlic (cured first)</td><td>Cool &amp; dry</td><td>4–8 months</td></tr>
+      <tr><td>Winter squash &amp; pumpkin (cured first)</td><td>Cool &amp; dry, ~55–60°F</td><td>3–6 months</td></tr>
+      <tr><td>Sweet potatoes (cured first)</td><td>Cool &amp; dry, ~55–60°F</td><td>4–6 months</td></tr>
+      <tr><td>Dry beans, grains</td><td>Cool &amp; dry, airtight</td><td>1+ year</td></tr>
+    </table>
+    <div class="callout tip"><strong>Curing before storage:</strong> onions, garlic, winter squash, and sweet
+    potatoes all last much longer if "cured" first — a 1–3 week rest in a warm, airy, well-ventilated spot to dry
+    the outer skin and heal any minor scrapes before they go into cool storage.</div>
+  </div>
+
+  <!-- DAIRY -->
+  <div class="subpane" id="preserve-dairy">
+    <div class="card searchable" data-keywords="dairy butter making chevre cheese milk safety pasteurize">
+      <h3>Butter, from the milk log</h3>
+      <p>Skim cream off fresh milk (or use heavy cream), let it come to about 55–60°F, and shake or churn until it
+      separates into butter solids and buttermilk — usually 10–20 minutes by hand mixer. Pour off the buttermilk
+      (save it for baking), then "wash" the butter under cold water, kneading until the water runs clear — this
+      removes residual buttermilk that would otherwise sour the butter. Salt to taste if desired, and store cold.</p>
+      <h3>Basic soft cheese (chevre-style)</h3>
+      <p>Warm milk to about 86°F, add a mesophilic culture (or a splash of cultured buttermilk) and a few drops of
+      rennet, and let it sit undisturbed at room temperature for 12–24 hours until it sets into a solid curd. Ladle
+      into a cloth-lined colander and let it drain 6–12 hours (longer = firmer cheese), then salt and refrigerate.
+      It typically keeps 1–2 weeks in the fridge.</p>
+      <div class="callout"><strong>Raw milk note:</strong> if you're using unpasteurized milk, keep it well
+      chilled, use it quickly, and know that soft/fresh cheeses make it easiest for any bacteria present to survive
+      and multiply — aged hard cheeses are generally considered lower risk than fresh soft ones.</div>
+      <div class="callout histamine searchable" data-keywords="cheese histamine risk aged fresh butter chevre">
+        <span class="tag histamine">🔴 Histamine</span> Aged and hard cheeses are some of the most concentrated
+        histamine sources in any diet — the longer a cheese ages, the more histamine it accumulates. Fresh butter
+        and quick, unaged soft cheese (like the chevre above, eaten within a few days) are much lower, though still
+        cultured, so they're worth watching individually rather than assuming they're histamine-free.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GARDEN ============ -->
+<section class="pane" id="pane-garden">
+  <h2 class="section-title">Garden</h2>
+  <nav class="subtabs" id="gardenTabs">
+    <button data-sub="calendar" class="active">Planting Calendar</button>
+    <button data-sub="seedstart">Seed Starting</button>
+    <button data-sub="pests">Pest &amp; Disease ID</button>
+  </nav>
+
+  <div class="subpane active" id="garden-calendar">
+    <div class="tool-box searchable" data-keywords="planting calendar frost date calculator schedule">
+      <h4>📅 Planting Calendar Builder</h4>
+      <p style="margin-top:0;font-size:0.85rem;">Pre-filled with the estimated average frost dates for your
+      Callahan County homestead (last spring frost ~April 5, first fall frost ~November 1) and already built below —
+      adjust either date any time you learn more precise numbers for your exact spot, and the schedule updates
+      when you click the button again.</p>
+      <div class="row2">
+        <div>
+          <label for="lastFrost">Average last spring frost</label>
+          <input type="date" id="lastFrost">
+        </div>
+        <div>
+          <label for="firstFrost">Average first fall frost (optional)</label>
+          <input type="date" id="firstFrost">
+        </div>
+      </div>
+      <button class="go" onclick="buildCalendar()">Build my schedule</button>
+      <div class="tool-output" id="calendarOutput">Enter your frost date(s) and click "Build my schedule."</div>
+    </div>
+    <div class="card searchable" data-keywords="succession planting tips continuous harvest">
+      <h3>Succession planting</h3>
+      <p>For crops you eat continuously rather than all at once — lettuce, radishes, bush beans, carrots, cilantro,
+      spinach — sow a short new row every 2–3 weeks through the growing season instead of all at once. Stop new
+      sowings early enough that the crop's "days to maturity" still fits before your first fall frost.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="garden-seedstart">
+    <div class="card searchable" data-keywords="seed starting indoors depth light hardening off transplant">
+      <h3>Seed starting basics</h3>
+      <ul>
+        <li><strong>Depth:</strong> as a rule of thumb, plant a seed about twice as deep as it is wide. Very fine
+        seed (lettuce, some herbs) often needs light to germinate — press into the surface instead of burying.</li>
+        <li><strong>Light:</strong> a sunny south-facing window is rarely bright enough for stocky seedlings; a
+        shop light or grow light 2–3 inches above the seedlings, on 14–16 hrs/day, prevents leggy stretching.</li>
+        <li><strong>Temperature:</strong> most seeds germinate fastest around 65–75°F; a seedling heat mat helps in
+        a cool room, especially for peppers and tomatoes.</li>
+        <li><strong>Hardening off:</strong> over 7–10 days before transplanting outside, gradually increase
+        seedlings' outdoor time and direct sun exposure so they don't scorch or wilt from the shock of wind, sun,
+        and temperature swings.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subpane" id="garden-pests">
+    <input type="text" class="filter-input searchable" id="pestFilter" placeholder="Filter pests/diseases (e.g. tomato, aphid, mildew)..." oninput="filterCards('pestList', this.value)">
+    <div id="pestList"></div>
+  </div>
+</section>
+
+<!-- ============ LIVESTOCK ============ -->
+<section class="pane" id="pane-livestock">
+  <h2 class="section-title">Livestock &amp; Poultry</h2>
+  <nav class="subtabs" id="livestockTabs">
+    <button data-sub="poultry" class="active">Poultry</button>
+    <button data-sub="goats">Goats</button>
+    <button data-sub="sheep">Sheep</button>
+    <button data-sub="cattle">Cattle</button>
+    <button data-sub="pigs">Pigs</button>
+    <button data-sub="rabbits">Rabbits</button>
+    <button data-sub="breeding">Breeding &amp; Incubation</button>
+    <button data-sub="firstaid">First Aid Basics</button>
+  </nav>
+  <div id="species-container"></div>
+</section>
+
+<!-- ============ REFERENCE ============ -->
+<section class="pane" id="pane-reference">
+  <h2 class="section-title">Reference</h2>
+  <nav class="subtabs" id="referenceTabs">
+    <button data-sub="safety" class="active">Food Safety</button>
+    <button data-sub="shelflife">Shelf Life</button>
+    <button data-sub="conversions">Conversions</button>
+    <button data-sub="glossary">Glossary</button>
+    <button data-sub="dietary">Dietary Notes</button>
+  </nav>
+
+  <div class="subpane active" id="reference-safety">
+    <div class="card searchable" data-keywords="food safety spoilage signs botulism throw out">
+      <h3>When in doubt, throw it out</h3>
+      <p>Signs a preserved food should be discarded without tasting: a bulging or leaking lid, a jar that spurts
+      liquid or foam when opened, cloudy liquid in a food that's normally clear, mold of any color, a foul or
+      "off" smell, or a seal that failed. For low-acid home-canned food specifically, if you have any doubt about
+      whether it was processed correctly, the CDC guidance is to boil it hard for 10 minutes (plus 1 minute per
+      1,000 ft of elevation) before even smelling or tasting it — or simply discard it. Never taste suspect food to
+      test it; botulism toxin can be present without any noticeable change in smell or taste.</p>
+    </div>
+    <div class="card searchable" data-keywords="botulism risk foods clostridium">
+      <h3>Highest botulism-risk foods</h3>
+      <p>Low-acid, home-canned or vacuum-sealed foods that were water-bath canned instead of pressure canned, or
+      under-processed: green beans, corn, beets, asparagus, plain vegetables in general, meat, poultry, seafood,
+      and any low-acid food stored in oil at room temperature (like garlic-in-oil). Commercially canned goods carry
+      far lower risk because they're processed under strict industrial controls.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="reference-shelflife">
+    <table class="searchable" data-keywords="shelf life chart canned dehydrated frozen best quality">
+      <caption>General shelf life by preservation method (quality, not strict safety cutoffs)</caption>
+      <tr><th>Method</th><th>Best quality window</th></tr>
+      <tr><td>Home-canned, high-acid (jam, pickles, fruit)</td><td>12–18 months</td></tr>
+      <tr><td>Home-canned, low-acid (vegetables, meat)</td><td>2–3 years</td></tr>
+      <tr><td>Dehydrated fruit/vegetables</td><td>6–12 months room temp; 1–2 yrs frozen</td></tr>
+      <tr><td>Jerky</td><td>1–2 months room temp; up to 1 yr frozen</td></tr>
+      <tr><td>Frozen produce</td><td>8–12 months</td></tr>
+      <tr><td>Frozen meat (whole cuts)</td><td>4–12 months</td></tr>
+      <tr><td>Fermented vegetables (refrigerated)</td><td>4–6+ months</td></tr>
+      <tr><td>Root cellar crops</td><td>see Root Cellar tab — 2–8 months by crop</td></tr>
+      <tr><td>Hard cheese</td><td>Weeks to months, refrigerated</td></tr>
+      <tr><td>Soft/fresh cheese</td><td>1–2 weeks, refrigerated</td></tr>
+    </table>
+  </div>
+
+  <div class="subpane" id="reference-conversions">
+    <table class="searchable" data-keywords="conversions volume weight measurements cooking">
+      <caption>Common kitchen conversions</caption>
+      <tr><th>Measure</th><th>Equals</th></tr>
+      <tr><td>3 teaspoons</td><td>1 tablespoon</td></tr>
+      <tr><td>4 tablespoons</td><td>¼ cup</td></tr>
+      <tr><td>16 tablespoons</td><td>1 cup</td></tr>
+      <tr><td>1 cup</td><td>8 fl oz</td></tr>
+      <tr><td>2 cups</td><td>1 pint</td></tr>
+      <tr><td>4 cups / 2 pints</td><td>1 quart</td></tr>
+      <tr><td>4 quarts</td><td>1 gallon</td></tr>
+      <tr><td>1 pound</td><td>16 ounces / ~454 grams</td></tr>
+      <tr><td>1 kilogram</td><td>~2.2 pounds</td></tr>
+      <tr><td>1 standard canning jar (pint)</td><td>2 cups</td></tr>
+      <tr><td>1 standard canning jar (quart)</td><td>4 cups</td></tr>
+      <tr><td>°F to °C</td><td>(°F − 32) × 5/9</td></tr>
+    </table>
+  </div>
+
+  <div class="subpane" id="reference-glossary">
+    <table class="searchable" data-keywords="glossary terms definitions headspace hot pack raw pack brine curing blanch">
+      <caption>Glossary of common terms</caption>
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td>Headspace</td><td>The empty gap left between the food/liquid and the jar rim, needed for a proper vacuum seal</td></tr>
+      <tr><td>Hot pack</td><td>Food is heated/cooked before being packed into jars</td></tr>
+      <tr><td>Raw pack</td><td>Raw, unheated food is packed directly into jars, then covered with hot liquid</td></tr>
+      <tr><td>Brine</td><td>A salt-and-water (sometimes vinegar) solution used for fermenting or pickling</td></tr>
+      <tr><td>Curing (meat)</td><td>Preserving meat with salt and/or nitrite/nitrate curing salts, often before smoking</td></tr>
+      <tr><td>Curing (produce)</td><td>A drying/resting period for onions, garlic, and winter squash that toughens skin for longer storage</td></tr>
+      <tr><td>Blanching</td><td>A brief boil or steam, followed by an ice-water bath, used to prep vegetables before freezing or drying</td></tr>
+      <tr><td>Conditioning (dehydrating)</td><td>Letting dried food equalize in a loosely sealed jar for several days to catch uneven moisture before storage</td></tr>
+      <tr><td>Kahm yeast</td><td>A harmless white film that can form on ferments; skim and continue</td></tr>
+      <tr><td>Days to maturity</td><td>Approximate days from transplant (or direct sow) to first harvest for a given variety</td></tr>
+      <tr><td>Hardening off</td><td>Gradually acclimating indoor-started seedlings to outdoor conditions before transplanting</td></tr>
+      <tr><td>Gestation</td><td>Length of pregnancy for a given livestock species</td></tr>
+      <tr><td>Broody (poultry)</td><td>A hen's instinct to sit on eggs to hatch them</td></tr>
+    </table>
+  </div>
+
+  <div class="subpane" id="reference-dietary">
+    <div class="callout searchable" data-keywords="dietary flags legend gluten free low histamine key">
+      <strong>How the flags work:</strong> throughout the Preserving tabs you'll see three tags — <span class="tag histamine">🔴 histamine</span>
+      for methods/foods that are classic high-histamine offenders, <span class="tag histamine-mod">🟡 moderate</span> for foods
+      commonly flagged but where reactions vary more by person, and <span class="tag gluten">🌾 gluten swap</span> wherever an
+      ingredient (usually a sauce, vinegar, or filler) commonly hides gluten and has an easy swap. None of this replaces your
+      daughter's doctor or dietitian's specific list — individual histamine and gluten tolerances vary a lot, especially for a
+      young child, so treat these as a starting point to double-check against, not a final word.
+    </div>
+
+    <div class="card searchable" data-keywords="low histamine diet general rules fresh frozen leftovers">
+      <h3>🔴 Low-histamine basics for a homestead kitchen</h3>
+      <p>Histamine isn't something you add — it builds up as bacteria and enzymes break food down over time. That's
+      why the same processes that make food shelf-stable (fermenting, curing, aging, slow drying) are exactly the
+      ones that raise histamine the most. A few rules of thumb that show up throughout this guide:</p>
+      <ul>
+        <li><strong>Fresh and freshly frozen is lowest-risk.</strong> Freezing at 0°F essentially halts further
+        histamine buildup — but it doesn't reverse histamine that's already formed, so the timing matters: freeze
+        meat, fish, and cooked leftovers within 1–2 hours of cooking or harvest, not after they've sat out or spent
+        days in the fridge.</li>
+        <li><strong>Refrigerated leftovers still climb.</strong> High-protein leftovers (meat, fish, poultry, bone
+        broth) measurably gain histamine over 24–48 hours in the fridge, even though they're perfectly food-safe.
+        For a low-histamine eater, that's the practical reason to serve/freeze leftovers within a day rather than
+        eating them all week.</li>
+        <li><strong>Fermented, cured, aged, and smoked foods are inherently high-histamine</strong> — the bacteria
+        doing the preserving work is the same bacteria producing histamine as a byproduct. This is true no matter
+        how carefully or safely it's made.</li>
+        <li><strong>A few fresh foods are commonly flagged too</strong> — independent of preservation method,
+        tomatoes, spinach, eggplant, citrus, strawberries, pineapple, and vinegar itself show up on most
+        low-histamine avoid-lists. Something can be "safe" by every food-safety measure in this guide and still be
+        worth watching for a histamine-sensitive kiddo.</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>None of this means skipping fermenting, curing, or dehydrating for the
+      family</strong> — just treat those batches as "not for the low-histamine plate," the same way you'd set aside
+      a separate, smaller portion before it's fermented/cured/smoked for anyone in the house who needs it.</p>
+    </div>
+
+    <div class="card searchable" data-keywords="gluten free swaps soy sauce vinegar worcestershire sausage filler">
+      <h3>🌾 Gluten-free basics for a homestead kitchen</h3>
+      <p>Almost nothing in canning, curing, fermenting, or dehydrating starts out containing gluten — vegetables,
+      fruit, meat, and salt are all naturally gluten-free. The risk is almost always one specific hidden ingredient
+      in a recipe, not the method itself. The repeat offenders, with swaps:</p>
+      <table>
+        <tr><th>Ingredient</th><th>Why it's risky</th><th>Gluten-free swap</th></tr>
+        <tr><td>Soy sauce / teriyaki</td><td>Traditionally brewed from wheat and soy</td><td>Tamari (labeled GF) or coconut aminos</td></tr>
+        <tr><td>Malt vinegar</td><td>Made from barley</td><td>Distilled white or apple cider vinegar (both GF)</td></tr>
+        <tr><td>Worcestershire sauce</td><td>Many brands use malt vinegar or barley</td><td>Check the label for a GF-labeled brand</td></tr>
+        <tr><td>Gochujang (kimchi recipes)</td><td>Many brands include wheat flour</td><td>Look for a brand labeled gluten-free</td></tr>
+        <tr><td>Sausage filler ("rusk")</td><td>A bread-based cereal filler in some sausage recipes</td><td>Rice, GF breadcrumbs, or skip the filler</td></tr>
+        <tr><td>Seasoning/rub blends</td><td>Some pre-mixed blends use wheat starch as an anti-caking agent</td><td>Check the label, or mix your own from single-ingredient spices</td></tr>
+        <tr><td>Beer brines</td><td>Regular beer contains gluten</td><td>Certified GF beer, or swap in cider/broth</td></tr>
+      </table>
+      <p style="margin-top:8px;font-size:0.9rem;color:var(--muted);">Distilled vinegars (including plain white
+      vinegar used in most tested canning recipes) are gluten-free even when distilled from a gluten grain — the
+      distillation process leaves the gluten protein behind.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Built as a companion to the Roped In Ranch app · Times, temperatures, and ratios are general guidance drawn from
+  USDA, NCHFP, and university extension sources — always follow the specific instructions on your equipment and
+  ingredients, and consult a vet for animal health concerns.
+</footer>
+
+<script>
+/* ---------------- Navigation ---------------- */
+function showPane(name){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pane-'+name).classList.add('active');
+  document.querySelectorAll('#mainTabs button').forEach(b=>b.classList.toggle('active', b.dataset.pane===name));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('#mainTabs button').forEach(btn=>{
+  btn.addEventListener('click', ()=>showPane(btn.dataset.pane));
+});
+
+function wireSubtabs(navId, paneprefix){
+  const nav = document.getElementById(navId);
+  nav.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      nav.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const container = nav.parentElement;
+      container.querySelectorAll('.subpane').forEach(sp=>sp.classList.remove('active'));
+      const target = document.getElementById(paneprefix+'-'+btn.dataset.sub);
+      if(target) target.classList.add('active');
+    });
+  });
+}
+wireSubtabs('preserveTabs','preserve');
+wireSubtabs('gardenTabs','garden');
+wireSubtabs('referenceTabs','reference');
+
+function goTo(pane, sub){
+  showPane(pane);
+  setTimeout(()=>{
+    const navMap = {preserve:'preserveTabs', garden:'gardenTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+    const nav = document.getElementById(navMap[pane]);
+    if(nav){
+      const btn = nav.querySelector('button[data-sub="'+sub+'"]');
+      if(btn) btn.click();
+    }
+  }, 50);
+}
+document.querySelectorAll('.home-card').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    const [pane, sub] = card.dataset.goto.split('|');
+    goTo(pane, sub);
+  });
+});
+document.querySelectorAll('a.jumplink[data-goto]').forEach(link=>{
+  link.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const [pane, sub] = link.dataset.goto.split('|');
+    goTo(pane, sub);
+  });
+});
+
+/* ---------------- Altitude calculator ---------------- */
+function calcAltitude(){
+  const method = document.getElementById('altMethod').value;
+  const feet = parseFloat(document.getElementById('altFeet').value);
+  const out = document.getElementById('altOutput');
+  if(isNaN(feet) || feet < 0){ out.innerHTML = "Please enter your altitude in feet."; return; }
+  if(method === 'wb'){
+    const base = parseFloat(document.getElementById('altBase').value);
+    let add = 0;
+    if(feet <= 1000) add = 0;
+    else if(feet <= 3000) add = 5;
+    else if(feet <= 6000) add = 10;
+    else if(feet <= 8000) add = 15;
+    else add = 20;
+    if(isNaN(base)){
+      out.innerHTML = "At "+feet.toLocaleString()+" ft, add <strong>"+add+" minutes</strong> to your recipe's water bath processing time.";
+    } else {
+      out.innerHTML = "At "+feet.toLocaleString()+" ft: process for <strong>"+(base+add)+" minutes</strong> ("+base+" base + "+add+" altitude adjustment).";
+    }
+  } else {
+    let dial, weighted;
+    if(feet <= 1000){ weighted = 10; dial = 11; }
+    else if(feet <= 2000){ weighted = 15; dial = 11; }
+    else if(feet <= 3000){ weighted = 15; dial = 12; }
+    else if(feet <= 6000){ weighted = 15; dial = 13; }
+    else if(feet <= 8000){ weighted = 15; dial = 14; }
+    else { weighted = 15; dial = 15; }
+    if(method === 'dial'){
+      out.innerHTML = "At "+feet.toLocaleString()+" ft with a <strong>dial gauge</strong>, process at <strong>"+dial+" PSI</strong>. Keep the processing time exactly as your recipe states.";
+    } else {
+      out.innerHTML = "At "+feet.toLocaleString()+" ft with a <strong>weighted gauge</strong>, process at <strong>"+weighted+" PSI</strong>. Keep the processing time exactly as your recipe states.";
+    }
+  }
+}
+
+/* ---------------- Cure calculator ---------------- */
+function calcCure(){
+  const lbs = parseFloat(document.getElementById('cureLbs').value);
+  const out = document.getElementById('cureOutput');
+  if(isNaN(lbs) || lbs <= 0){ out.innerHTML = "Please enter a meat weight in pounds."; return; }
+  const grams = (lbs / 5) * 6;
+  out.innerHTML = "Rough estimate: <strong>"+grams.toFixed(1)+" grams</strong> of Cure #1 for "+lbs+" lbs of meat, "+
+    "based on the common 6g-per-5lb rate. <strong>Weigh this on a gram scale and cross-check against your product's own label</strong> — "+
+    "density varies by brand, and this is a starting estimate only, not a substitute for package directions.";
+}
+
+/* ---------------- Planting calendar builder ---------------- */
+const CROPS = [
+  {name:"Tomatoes", startIndoors:-56, transplant:14, direct:null},
+  {name:"Peppers", startIndoors:-63, transplant:21, direct:null},
+  {name:"Eggplant", startIndoors:-63, transplant:21, direct:null},
+  {name:"Broccoli", startIndoors:-42, transplant:-21, direct:null},
+  {name:"Cabbage", startIndoors:-42, transplant:-21, direct:null},
+  {name:"Lettuce", startIndoors:-28, transplant:-14, direct:-21},
+  {name:"Onions (from seed)", startIndoors:-70, transplant:-21, direct:null},
+  {name:"Basil", startIndoors:-42, transplant:14, direct:null},
+  {name:"Peas", startIndoors:null, transplant:null, direct:-28},
+  {name:"Spinach", startIndoors:null, transplant:null, direct:-21},
+  {name:"Carrots", startIndoors:null, transplant:null, direct:-14},
+  {name:"Beets", startIndoors:null, transplant:null, direct:-14},
+  {name:"Radishes", startIndoors:null, transplant:null, direct:-14},
+  {name:"Green beans (bush)", startIndoors:null, transplant:null, direct:7},
+  {name:"Corn", startIndoors:null, transplant:null, direct:7},
+  {name:"Cucumbers", startIndoors:-21, transplant:14, direct:14},
+  {name:"Summer squash/zucchini", startIndoors:-21, transplant:14, direct:14},
+  {name:"Winter squash/pumpkin", startIndoors:-21, transplant:14, direct:14},
+  {name:"Melons", startIndoors:-28, transplant:21, direct:21},
+  {name:"Potatoes (seed potato)", startIndoors:null, transplant:null, direct:-14},
+];
+function fmtDate(d){
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+function buildCalendar(){
+  const lastVal = document.getElementById('lastFrost').value;
+  const out = document.getElementById('calendarOutput');
+  if(!lastVal){ out.innerHTML = "Please enter your average last spring frost date."; return; }
+  const lastFrost = new Date(lastVal + 'T00:00:00');
+  let html = '<table><tr><th>Crop</th><th>Start indoors</th><th>Transplant outside</th><th>Or direct-sow</th></tr>';
+  CROPS.forEach(c=>{
+    const si = c.startIndoors!==null ? fmtDate(new Date(lastFrost.getTime()+c.startIndoors*86400000)) : "—";
+    const tp = c.transplant!==null ? fmtDate(new Date(lastFrost.getTime()+c.transplant*86400000)) : "—";
+    const ds = c.direct!==null ? fmtDate(new Date(lastFrost.getTime()+c.direct*86400000)) : "—";
+    html += '<tr><td>'+c.name+'</td><td>'+si+'</td><td>'+tp+'</td><td>'+ds+'</td></tr>';
+  });
+  html += '</table><p style="font-family:Arial,sans-serif;font-size:0.8rem;color:var(--muted);">Dates are estimates based on typical weeks-from-frost timing — adjust for your specific varieties and local microclimate. Negative "direct-sow" dates before last frost apply to cold-hardy crops that tolerate light frost.</p>';
+  out.innerHTML = html;
+}
+
+/* ---------------- Homestead defaults (Cisco, TX area) ---------------- */
+const HOMESTEAD = { altitudeFt: 1600, lastFrostMonth: 4, lastFrostDay: 5, firstFrostMonth: 11, firstFrostDay: 1 };
+function nextOccurrence(month, day){
+  // month is 1-indexed. Returns the next date (today or future) matching this month/day.
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  let candidate = new Date(today.getFullYear(), month-1, day);
+  if(candidate < today){
+    candidate = new Date(today.getFullYear()+1, month-1, day);
+  }
+  return candidate;
+}
+function toDateInputValue(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function applyHomesteadDefaults(){
+  const altFeetEl = document.getElementById('altFeet');
+  if(altFeetEl && !altFeetEl.value) altFeetEl.value = HOMESTEAD.altitudeFt;
+  const lastFrostEl = document.getElementById('lastFrost');
+  const firstFrostEl = document.getElementById('firstFrost');
+  if(lastFrostEl && !lastFrostEl.value){
+    lastFrostEl.value = toDateInputValue(nextOccurrence(HOMESTEAD.lastFrostMonth, HOMESTEAD.lastFrostDay));
+  }
+  if(firstFrostEl && !firstFrostEl.value){
+    firstFrostEl.value = toDateInputValue(nextOccurrence(HOMESTEAD.firstFrostMonth, HOMESTEAD.firstFrostDay));
+  }
+  // Auto-build the calendar once with the defaults filled in
+  if(lastFrostEl && lastFrostEl.value) buildCalendar();
+}
+applyHomesteadDefaults();
+
+/* ---------------- Dehydrating table ---------------- */
+const DEHYD = [
+  ["Apples","Fruit","135°F","6-12 hrs","Pliable, no moisture"],
+  ["Bananas","Fruit","135°F","8-12 hrs","Pliable to crisp"],
+  ["Strawberries","Fruit","135°F","8-14 hrs","Pliable, no moisture"],
+  ["Blueberries (checked/cracked skin)","Fruit","135°F","10-18 hrs","Pliable, no moisture"],
+  ["Peaches/Apricots","Fruit","135°F","8-14 hrs","Pliable, no moisture"],
+  ["Mangoes","Fruit","135°F","8-14 hrs","Pliable, slightly tacky"],
+  ["Fruit leather","Fruit","135-140°F","6-12 hrs","Peels away, not sticky"],
+  ["Onions","Vegetable","125°F","6-12 hrs","Brittle"],
+  ["Bell peppers","Vegetable","125°F","6-12 hrs","Brittle to leathery"],
+  ["Zucchini/summer squash","Vegetable","125°F","6-12 hrs","Brittle"],
+  ["Carrots (blanched)","Vegetable","125°F","8-12 hrs","Brittle"],
+  ["Corn (blanched)","Vegetable","125°F","8-14 hrs","Brittle"],
+  ["Mushrooms","Vegetable","125°F","6-10 hrs","Brittle, leathery"],
+  ["Tomatoes","Vegetable","125°F","8-14 hrs","Leathery to brittle"],
+  ["Green beans (blanched)","Vegetable","125°F","8-12 hrs","Brittle"],
+  ["Basil","Herb","95-105°F","12-24 hrs","Crumbles easily"],
+  ["Oregano","Herb","95-105°F","4-8 hrs","Crumbles easily"],
+  ["Thyme","Herb","95-105°F","2-4 hrs","Crumbles easily"],
+  ["Mint","Herb","95-105°F","4-8 hrs","Crumbles easily"],
+  ["Rosemary","Herb","95-105°F","4-8 hrs","Crumbles easily"],
+  ["Beef/venison jerky (pre-heated to 160°F)","Meat","160°F","4-12 hrs","Bends and cracks, doesn't break clean"],
+  ["Poultry jerky (pre-heated to 165°F)","Meat","165°F","4-8 hrs","Bends and cracks"],
+  ["Fish jerky (pre-heated)","Meat","145°F","6-12 hrs","Firm, no moisture"],
+  ["Cooked grains/pasta","Grain","145°F","6-12 hrs","Hard and dry"],
+];
+function renderDehyd(){
+  const table = document.getElementById('dehydTable');
+  DEHYD.forEach(row=>{
+    const tr = document.createElement('tr');
+    row.forEach(cell=>{ const td=document.createElement('td'); td.textContent=cell; tr.appendChild(td); });
+    table.appendChild(tr);
+  });
+}
+renderDehyd();
+function filterTable(tableId, query){
+  const table = document.getElementById(tableId);
+  const q = query.toLowerCase();
+  Array.from(table.rows).slice(1).forEach(row=>{
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+/* ---------------- Pests & diseases ---------------- */
+const PESTS = [
+  {name:"Aphids", type:"Pest", crops:"Most vegetables, especially brassicas & peppers", id:"Tiny pear-shaped insects (green, black, or gray) clustered on new growth and leaf undersides; sticky honeydew residue; curling leaves.", fix:"Blast off with water, encourage ladybugs/lacewings, or use insecticidal soap on heavy infestations."},
+  {name:"Tomato hornworm", type:"Pest", crops:"Tomatoes, peppers, eggplant", id:"Large (3-4\") green caterpillar with white diagonal stripes and a horn on the rear; stripped leaves and dark green/black droppings on the ground.", fix:"Hand-pick in early morning/evening; leave any hornworm covered in white wasp cocoons alone — it's already being parasitized."},
+  {name:"Squash bugs", type:"Pest", crops:"Squash, pumpkins, zucchini", id:"Gray-brown shield-shaped adults; bronze egg clusters on leaf undersides; wilting that starts at the base of the vine.", fix:"Crush egg clusters, hand-pick adults, and remove densely matted mulch where they overwinter."},
+  {name:"Squash vine borer", type:"Pest", crops:"Squash, pumpkins", id:"Sudden wilting of one vine even with wet soil; sawdust-like frass near the base; look for a small entry hole in the stem.", fix:"Slit the stem lengthwise to remove the borer and mound soil over the wound, or wrap young stems in foil/row cover to prevent egg-laying."},
+  {name:"Colorado potato beetle", type:"Pest", crops:"Potatoes, eggplant, tomatoes", id:"Yellow-orange beetle with black stripes; orange larvae with black spots; leaves skeletonized from the top down.", fix:"Hand-pick adults and larvae, crush orange egg clusters on leaf undersides, rotate potato beds yearly."},
+  {name:"Cabbage worms/loopers", type:"Pest", crops:"Brassicas (cabbage, broccoli, kale)", id:"Small white or pale green caterpillars; irregular holes in leaves; white butterflies fluttering around plants.", fix:"Row covers before butterflies arrive, hand-pick, or use Bt (Bacillus thuringiensis) spray."},
+  {name:"Cucumber beetle", type:"Pest", crops:"Cucumbers, squash, melons", id:"Yellow beetle with black stripes or spots; chewed leaves and flowers; can spread bacterial wilt.", fix:"Row covers until flowering, yellow sticky traps, remove plant debris in fall."},
+  {name:"Flea beetles", type:"Pest", crops:"Eggplant, radish, brassicas, potatoes", id:"Tiny jumping beetles that leave many small round \"shotgun\" holes in leaves, especially on seedlings.", fix:"Row covers on young transplants, keep plants vigorously growing (they outgrow minor damage fast)."},
+  {name:"Slugs & snails", type:"Pest", crops:"Lettuce, seedlings, strawberries", id:"Ragged holes in leaves, slime trails, most active at night or after rain.", fix:"Hand-pick at night, beer traps, diatomaceous earth around plants, clear damp mulch/hiding spots."},
+  {name:"Powdery mildew", type:"Disease", crops:"Squash, cucumbers, melons", id:"White, powdery coating on leaf surfaces, usually starting on older leaves; leaves may yellow and die back.", fix:"Improve airflow/spacing, water at the soil line not overhead, remove badly affected leaves, milk or potassium bicarbonate sprays for minor cases."},
+  {name:"Early/late blight", type:"Disease", crops:"Tomatoes, potatoes", id:"Dark concentric-ring spots on lower leaves (early blight) or water-soaked, rapidly spreading dark blotches (late blight); can defoliate plants quickly.", fix:"Remove and destroy affected leaves/plants (don't compost), mulch to prevent soil splash, rotate nightshade beds, choose resistant varieties."},
+  {name:"Blossom end rot", type:"Disorder (not a disease)", crops:"Tomatoes, peppers, squash", id:"Sunken, dark, leathery patch on the blossom end (bottom) of the fruit.", fix:"Caused by inconsistent watering disrupting calcium uptake, not a soil calcium deficiency in most cases — water deeply and evenly, mulch to hold moisture."},
+  {name:"Damping off", type:"Disease", crops:"Seedlings (any crop, indoors)", id:"Seedlings collapse at the soil line and topple over shortly after sprouting.", fix:"Use sterile seed-starting mix, avoid overwatering, ensure good airflow, don't reuse unsterilized trays."},
+];
+function renderPests(query){
+  const container = document.getElementById('pestList');
+  container.innerHTML = '';
+  const q = (query||'').toLowerCase();
+  PESTS.forEach(p=>{
+    const hay = (p.name+p.type+p.crops+p.id+p.fix).toLowerCase();
+    if(q && !hay.includes(q)) return;
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = '<h3>'+p.name+' <span class="tag">'+p.type+'</span></h3>'+
+      '<p><strong>Affects:</strong> '+p.crops+'</p>'+
+      '<p><strong>Identify:</strong> '+p.id+'</p>'+
+      '<p><strong>Organic-first fix:</strong> '+p.fix+'</p>';
+    container.appendChild(div);
+  });
+}
+renderPests('');
+function filterCards(containerId, query){ renderPests(query); }
+
+/* ---------------- Livestock species ---------------- */
+const SPECIES = {
+  poultry: {
+    title: "Poultry (chickens, ducks, geese, turkeys)",
+    housing: "2-4 sq ft/bird inside the coop, 8-10 sq ft/bird in the run; 1 nest box per 4-5 hens; roost space ~8-10 inches/bird.",
+    feed: "Chick starter (18-20% protein) to 8 wks, grower feed to point-of-lay, then 16% layer feed with free-choice oyster shell for calcium. Waterfowl need niacin-supplemented feed or brewer's yeast added.",
+    health: "Watch for lethargy, pale comb, discharge, or change in droppings. Common issues: bumblefoot (swollen foot pad), mites/lice (check vent feathers), egg-bound hens (straining, no egg produced).",
+    firstaid: "Isolate sick birds immediately. Keep a basic kit: Vetericyn or iodine for wounds, electrolyte powder, blu-kote spray to deter pecking at wounds, epsom salts for a foot soak on bumblefoot.",
+    breeding: "See Breeding & Incubation tab for incubation days by species."
+  },
+  goats: {
+    title: "Goats",
+    housing: "3-ft covered shelter minimum per goat, sturdy fencing (goats are escape artists) — woven wire or field fence at least 4 ft high.",
+    feed: "Good quality grass hay free-choice, a mineral supplement formulated for goats (not sheep — copper differs), grain only for milkers/pregnant does in moderation.",
+    health: "Check body condition, coat quality, and manure consistency regularly. Common issues: internal parasites (check FAMACHA eyelid score), hoof overgrowth (trim every 6-8 weeks), bloat.",
+    firstaid: "Kit basics: thermometer (normal temp ~101.5-103.5°F), Blu-Kote, hoof trimmers, CD&T vaccine on schedule, molasses/electrolytes for a sick or off-feed goat.",
+    breeding: "Gestation ~150 days (about 5 months). Watch for signs of labor: restlessness, pawing, separating from the herd, discharge. See Breeding tab for the full table."
+  },
+  sheep: {
+    title: "Sheep",
+    housing: "Similar shelter needs to goats but less determined to escape; standard field fencing is usually adequate.",
+    feed: "Grass hay/pasture as the base; sheep-specific mineral mix is critical — sheep are highly sensitive to excess copper, so never use goat or cattle minerals.",
+    health: "Watch for lameness (foot rot is common in wet conditions), wool/fleece condition, and internal parasites via FAMACHA scoring.",
+    firstaid: "Kit basics: hoof trimmers and foot bath solution for foot rot, thermometer (normal ~101.5-103.5°F), electrolytes, dedicated sheep dewormer.",
+    breeding: "Gestation ~147 days (about 5 months). See Breeding tab for the full table."
+  },
+  cattle: {
+    title: "Cattle",
+    housing: "Windbreak/shelter from wind and precipitation, sturdy perimeter fencing, minimum ~1-2 acres/head of pasture depending on region and forage quality.",
+    feed: "Pasture or hay as the base of the diet; free-choice mineral block formulated for cattle; grain only as needed for finishing or milk production.",
+    health: "Watch for limping, discharge, reduced appetite, or isolation from the herd (a sign something's wrong). Vaccinate per your vet's regional schedule (blackleg and others are common).",
+    firstaid: "Kit basics: large-animal thermometer (normal ~101.5°F), wound spray, halter and lead for restraint, your vet's number on speed dial — cattle first aid usually needs professional backup fast.",
+    breeding: "Gestation ~283 days (about 9-9.5 months). See Breeding tab for the full table."
+  },
+  pigs: {
+    title: "Pigs",
+    housing: "Sturdy fencing (pigs are strong and will test weak spots), a dry bedded shelter, wallow/mud area for temperature regulation in hot weather.",
+    feed: "Complete hog feed appropriate to age/stage (starter, grower, finisher, or gestation/lactation for breeding stock); pigs also do well on garden scraps and dairy surplus as a supplement, not the base diet.",
+    health: "Watch for coughing (respiratory issues spread fast in pigs), lameness, and skin condition. Sunburn is a real risk for light-skinned pigs without wallow access.",
+    firstaid: "Kit basics: iodine for navel care on newborn piglets, iron supplement for piglets raised without soil access, thermometer (normal ~101.5-103.5°F).",
+    breeding: "Gestation ~114 days (3 months, 3 weeks, 3 days). See Breeding tab for the full table."
+  },
+  rabbits: {
+    title: "Rabbits",
+    housing: "Wire-bottom or solid-bottom hutch with a covered nest box for breeding does, at least 4 sq ft per adult, protected from direct sun and predators.",
+    feed: "Timothy or grass hay free-choice as the base, a measured amount of rabbit pellet feed, fresh water daily.",
+    health: "Watch for runny eyes/nose, overgrown teeth or nails, wet/matted fur around the tail (a sign of digestive upset), and reduced appetite (rabbits hide illness well — any drop in eating is urgent).",
+    firstaid: "Kit basics: nail clippers, styptic powder, a critical-care syringe feed for a rabbit that stops eating, and a vet who treats rabbits — their metabolisms are unforgiving of delayed care.",
+    breeding: "Gestation ~31 days — one of the shortest of any homestead species. See Breeding tab for the full table."
+  }
+};
+function renderSpecies(sub){
+  const container = document.getElementById('species-container');
+  if(sub === 'breeding'){
+    container.innerHTML = `
+    <table><caption>Gestation length by species</caption>
+      <tr><th>Species</th><th>Gestation</th><th>Typical litter/offspring</th></tr>
+      <tr><td>Goat</td><td>~150 days</td><td>1-3 kids</td></tr>
+      <tr><td>Sheep</td><td>~147 days</td><td>1-2 lambs</td></tr>
+      <tr><td>Cattle</td><td>~283 days</td><td>1 calf</td></tr>
+      <tr><td>Pig</td><td>~114 days</td><td>8-12 piglets</td></tr>
+      <tr><td>Rabbit</td><td>~31 days</td><td>4-12 kits</td></tr>
+    </table>
+    <table><caption>Poultry incubation by species</caption>
+      <tr><th>Species</th><th>Incubation</th><th>Ideal temp / humidity</th></tr>
+      <tr><td>Chicken</td><td>21 days</td><td>99.5°F / 45-50% (65% last 3 days)</td></tr>
+      <tr><td>Duck</td><td>28 days</td><td>99.5°F / 55% (higher last few days)</td></tr>
+      <tr><td>Goose</td><td>28-34 days</td><td>99.5°F / 55%+</td></tr>
+      <tr><td>Turkey</td><td>28 days</td><td>99.5°F / 50-55%</td></tr>
+      <tr><td>Quail</td><td>16-18 days</td><td>99.5°F / 45-50%</td></tr>
+    </table>
+    <div class="callout tip">Turn eggs 3-5 times daily (odd numbers so they don't rest the same side each night) until 2-3 days before hatch, then stop turning and raise humidity to help chicks pip and hatch.</div>
+    `;
+  } else if(sub === 'firstaid'){
+    container.innerHTML = `
+    <div class="card"><h3>General livestock first-aid kit</h3>
+    <p>Across species, a solid base kit covers: a livestock-rated thermometer, blood-stop powder, iodine or chlorhexidine wound wash, vet wrap, a good pair of scissors/hoof trimmers, electrolyte powder, a syringe (no needle) for oral fluids, and a card with your vet's after-hours number taped inside the barn door.</p>
+    <p><strong>Call the vet, don't wait, for:</strong> heavy bleeding, an animal down and unable to rise, difficult/prolonged labor, bloat with visible distension, or any sudden collapse. Homestead first aid is for minor wounds and monitoring — not a substitute for veterinary care on anything serious.</p></div>
+    `;
+  } else {
+    const s = SPECIES[sub];
+    if(!s) return;
+    container.innerHTML = `<div class="species-card">
+      <h3>${s.title}</h3>
+      <div class="grid2">
+        <div><h5>Housing</h5><p>${s.housing}</p></div>
+        <div><h5>Feed</h5><p>${s.feed}</p></div>
+        <div><h5>Health watch</h5><p>${s.health}</p></div>
+        <div><h5>First aid</h5><p>${s.firstaid}</p></div>
+      </div>
+      <p><strong>Breeding:</strong> ${s.breeding}</p>
+    </div>`;
+  }
+}
+document.getElementById('livestockTabs').querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('livestockTabs').querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderSpecies(btn.dataset.sub);
+  });
+});
+renderSpecies('poultry');
+
+/* ---------------- Global search ---------------- */
+const searchInput = document.getElementById('globalSearch');
+const searchResults = document.getElementById('searchResults');
+const SEARCH_INDEX = [
+  {title:"High-acid vs low-acid & botulism basics", pane:"preserve", sub:"canning", kw:"botulism pressure canner high acid low acid safety rule"},
+  {title:"Water bath canning steps", pane:"preserve", sub:"canning", kw:"water bath jars jam jelly fruit steps"},
+  {title:"Pressure canning steps", pane:"preserve", sub:"canning", kw:"pressure canner vegetables meat vent steam"},
+  {title:"Altitude adjustment calculator (canning)", pane:"preserve", sub:"canning", kw:"altitude elevation feet psi calculator"},
+  {title:"What canning method for what food", pane:"preserve", sub:"canning", kw:"tomatoes green beans salsa pickles meat soup method"},
+  {title:"Dehydrating basics & jerky safety", pane:"preserve", sub:"dehydrating", kw:"dehydrator pretreat blanch condition storage jerky 160 165"},
+  {title:"Dehydrator temp/time chart", pane:"preserve", sub:"dehydrating", kw:"apple banana strawberry jerky herbs basil dehydrate temperature time"},
+  {title:"Freezing & blanching times", pane:"preserve", sub:"freezing", kw:"blanch freeze vegetables storage life freezer burn"},
+  {title:"Lacto-fermentation basics", pane:"preserve", sub:"fermenting", kw:"sauerkraut kimchi pickles salt ratio brine ferment"},
+  {title:"Normal vs spoiled ferment signs", pane:"preserve", sub:"fermenting", kw:"mold kahm yeast slimy spoiled ferment"},
+  {title:"Curing salts (Cure #1 / #2) & safety", pane:"preserve", sub:"curing", kw:"prague powder sodium nitrite cure bacon sausage ham"},
+  {title:"Cure #1 estimator tool", pane:"preserve", sub:"curing", kw:"curing salt calculator grams meat weight"},
+  {title:"Hot smoking vs cold smoking", pane:"preserve", sub:"curing", kw:"smoker temperature hot cold smoke poultry 165 145 160"},
+  {title:"Root cellar storage conditions", pane:"preserve", sub:"cellar", kw:"potatoes onions garlic squash apples carrots root cellar cold moist"},
+  {title:"Butter & chevre cheese making", pane:"preserve", sub:"dairy", kw:"butter cream churn chevre cheese rennet milk raw"},
+  {title:"Planting calendar builder", pane:"garden", sub:"calendar", kw:"frost date planting schedule tomatoes seed start transplant"},
+  {title:"Succession planting", pane:"garden", sub:"calendar", kw:"succession lettuce radish continuous harvest"},
+  {title:"Seed starting basics", pane:"garden", sub:"seedstart", kw:"seed depth light hardening off grow light transplant"},
+  {title:"Pest & disease identification", pane:"garden", sub:"pests", kw:"aphid hornworm squash bug beetle blight mildew tomato pepper"},
+  {title:"Poultry care sheet", pane:"livestock", sub:"poultry", kw:"chicken duck goose turkey coop feed layer bumblefoot"},
+  {title:"Goat care sheet", pane:"livestock", sub:"goats", kw:"goat kidding hoof famacha mineral"},
+  {title:"Sheep care sheet", pane:"livestock", sub:"sheep", kw:"sheep wool foot rot copper mineral"},
+  {title:"Cattle care sheet", pane:"livestock", sub:"cattle", kw:"cattle cow calf pasture vaccinate"},
+  {title:"Pig care sheet", pane:"livestock", sub:"pigs", kw:"pig hog piglet wallow feed"},
+  {title:"Rabbit care sheet", pane:"livestock", sub:"rabbits", kw:"rabbit hutch kit doe kindling"},
+  {title:"Gestation & incubation reference", pane:"livestock", sub:"breeding", kw:"gestation incubation days temperature humidity chicken goat sheep cattle pig hatch"},
+  {title:"General livestock first aid kit", pane:"livestock", sub:"firstaid", kw:"first aid kit vet emergency wound thermometer"},
+  {title:"Botulism & spoilage warning signs", pane:"reference", sub:"safety", kw:"botulism spoilage throw out mold bulging lid"},
+  {title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
+  {title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
+  {title:"Glossary of terms", pane:"reference", sub:"glossary", kw:"headspace hot pack raw pack brine glossary definition"},
+  {title:"Dietary flags: low-histamine & gluten-free", pane:"reference", sub:"dietary", kw:"histamine gluten free swap soy sauce vinegar leftovers freeze tomatoes fermented cured aged"},
+];
+
+/* ---------------- Ingredient Finder ---------------- */
+const JUMP = {
+  freezing: {pane:"preserve", sub:"freezing", label:"❄️ Freeze"},
+  canning: {pane:"preserve", sub:"canning", label:"🫙 Pressure Can"},
+  canningwb: {pane:"preserve", sub:"canning", label:"🫙 Water Bath Can"},
+  dehydrating: {pane:"preserve", sub:"dehydrating", label:"☀️ Dehydrate"},
+  curing: {pane:"preserve", sub:"curing", label:"🥓 Cure & Smoke"},
+  fermenting: {pane:"preserve", sub:"fermenting", label:"🥬 Ferment"},
+  cellar: {pane:"preserve", sub:"cellar", label:"🥔 Root Cellar / Dry Storage"},
+  dairy: {pane:"preserve", sub:"dairy", label:"🧀 Butter/Cheese"},
+};
+const GLUTEN_SWAP_NOTE = "Standard marinades/brines lean on soy sauce or Worcestershire — swap tamari (labeled GF) or coconut aminos, and a GF-labeled Worcestershire. See Reference → Dietary Notes for the full swap list.";
+function meatMethods({freezeNote, canNote, jerkyNote, jerkyRecipe, cureNote, jerkyTemp}){
+  return [
+    {jkey:"freezing", directions:freezeNote, histamine:"low",
+      histNote:"Freezing promptly after processing is the lowest-histamine way to store this meat — chill fast and freeze within a day or two rather than letting it sit refrigerated."},
+    {jkey:"canning", directions:canNote, histamine:"moderate",
+      histNote:"Canned meat has had time to sit by the time it's opened — moderate histamine risk compared to fresh-frozen, even though pressure canning itself is very safe food-safety-wise."},
+    {jkey:"dehydrating", directions:jerkyNote, recipe:jerkyRecipe, histamine:"high",
+      histNote:"Slow-dried meat is one of the most consistently flagged high-histamine foods — a good batch to make separately from the low-histamine plate.",
+      gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
+    {jkey:"curing", directions:cureNote, histamine:"high",
+      histNote:"Cured and smoked meat is inherently high-histamine, no matter how carefully it's made — see the Curing & Smoking tab.",
+      gluten:true, glutenNote:"Brines/marinades and some sausage fillers commonly hide gluten — see Reference → Dietary Notes for swaps."},
+  ];
+}
+const INGREDIENTS = [
+  { name:"Venison (Deer)", aliases:["deer","venison","buck","doe","wild game"],
+    methods: meatMethods({
+      freezeNote:"Field-dress and chill fast; cut into steaks, roasts, and stew meat and freeze within a day or two of processing — venison's low fat content means it dries out and picks up freezer burn quickly otherwise.",
+      canNote:"Cut into 1-inch cubes or strips. Raw-pack or hot-pack (browned to rare) into jars with 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge or 10 lb weighted gauge (0-2,000 ft / 0-1,000 ft) — same table as the Canning tab. Strong-tasting wild game benefits from a 1-hour soak in a brine of 1 tbsp salt per quart of water before packing, and it's worth boiling home-canned wild game 10-15 minutes before tasting as extra insurance.",
+      jerkyNote:"Slice against the grain into 1/8–1/4 inch strips, marinate 6–24 hrs refrigerated, then dry at 160°F until it bends and cracks without breaking (roughly 4–12 hrs) — this brings the meat through a safe temperature as it dries. Full chart on the Dehydrating tab.",
+      jerkyRecipe:{title:"Basic Venison Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","1/4 cup Worcestershire sauce","1 tbsp coarse black pepper","1 tsp garlic powder","1 tsp onion powder","1/2 tsp red pepper flakes (optional)"]},
+      cureNote:"Venison is lean, so it's often blended with pork or beef fat for sausage or snack sticks — mix in Cure #1 at the rate on your package, stuff into casings, and hot-smoke to 160°F internal. Whole cuts can also be cured into jerky-style cured meat."
+    }) },
+  { name:"Chicken (Poultry)", aliases:["chicken","hen","rooster","poultry","broiler"],
+    methods:[
+      {jkey:"freezing", directions:"Whole birds or cut pieces freeze well up to about a year. Chill quickly after butchering and freeze within a day for the best quality and lowest histamine.", histamine:"low", histNote:"Fresh-frozen poultry is the lowest-histamine way to keep chicken on hand."},
+      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min. Both at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — hot pack (partly cooked first) gives better liquid coverage than raw pack.", histamine:"moderate", histNote:"Canned poultry, like any canned meat, has accumulated more histamine by the time it's opened than a fresh-frozen piece."},
+      {jkey:"dehydrating", directions:"Chicken jerky works the same way as red meat jerky — slice thin, marinate, and dry at 165°F (poultry's higher safe temperature) until firm and dry throughout.", histamine:"high", histNote:"Same as any slow-dried meat — a consistently flagged high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
+    ] },
+  { name:"Goat", aliases:["goat","chevon","kid","billy","doe goat"],
+    methods: meatMethods({
+      freezeNote:"Cuts freeze well; chill quickly after butchering and freeze within a day or two.",
+      canNote:"Same process as venison or beef: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      jerkyNote:"Trim well (goat can have a strong-flavored fat) and dry the same way as venison jerky — 160°F until it bends and cracks.",
+      jerkyRecipe:{title:"Basic Goat Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","2 tbsp brown sugar or honey","1 tbsp cumin","1 tsp garlic powder","1 tsp smoked paprika"]},
+      cureNote:"Goat takes well to a Mediterranean-style dry-cured leg, or ground into sausage with Cure #1 at the package rate."
+    }) },
+  { name:"Sheep (Lamb/Mutton)", aliases:["sheep","lamb","mutton","ewe","ram"],
+    methods: meatMethods({
+      freezeNote:"Cuts freeze well; trim excess fat first since it can turn rancid faster than lean cuts in the freezer.",
+      canNote:"Same standard meat-cubes process: pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      jerkyNote:"Trim fat thoroughly before slicing (lamb fat turns rancid and off-flavored faster than beef or venison fat) and dry at 160°F until it bends and cracks.",
+      jerkyRecipe:{title:"Basic Lamb Jerky Marinade (per 2 lbs meat)", lines:["1/3 cup soy sauce or tamari","2 tbsp lemon juice","1 tbsp dried rosemary or mint","1 tsp garlic powder"]},
+      cureNote:"Lamb cures well into a Mediterranean-style cured leg (like a mutton prosciutto) or ground sausage with merguez-style spicing."
+    }) },
+  { name:"Beef (Cattle)", aliases:["beef","cattle","cow","steer","calf","bull"],
+    methods: meatMethods({
+      freezeNote:"Cuts freeze well for many months; chill and freeze promptly after butchering/processing.",
+      canNote:"Classic use of the standard meat table: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      jerkyNote:"The classic jerky cut — slice lean cuts (round, flank) against the grain, marinate, and dry at 160°F until it bends and cracks.",
+      jerkyRecipe:{title:"Classic Beef Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","1/4 cup Worcestershire sauce","1 tbsp black pepper","1 tsp garlic powder","1 tsp onion powder","1 tbsp brown sugar (optional)"]},
+      cureNote:"Beef is the classic corned beef and pastrami cure with Cure #1, or grind for smoked sausage/snack sticks (cook to 160°F internal)."
+    }) },
+  { name:"Pork (Pig)", aliases:["pork","pig","hog","swine","boar"],
+    methods: meatMethods({
+      freezeNote:"Cuts freeze well; chill and freeze promptly, especially fattier cuts which are more prone to freezer-burn flavor changes over long storage.",
+      canNote:"Same standard meat process: pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      jerkyNote:"Less traditional than beef/venison, but lean pork loin works — slice thin, marinate, and dry at 160°F until it bends and cracks.",
+      jerkyRecipe:{title:"Basic Pork Jerky Marinade (per 2 lbs meat)", lines:["1/3 cup soy sauce or tamari","2 tbsp honey","1 tbsp five-spice or smoked paprika","1 tsp garlic powder"]},
+      cureNote:"The classic use of curing salts — bacon (dry-cure or brine, then cold- or hot-smoke), ham, and fresh sausage. Follow a tested bacon/ham recipe for the Cure #1 rate and cure time, which run longer than a quick sausage cure."
+    }) },
+  { name:"Rabbit", aliases:["rabbit","bunny","hare"],
+    methods:[
+      {jkey:"freezing", directions:"Whole or cut-up rabbit freezes well; chill and freeze promptly after butchering.", histamine:"low", histNote:"Fresh-frozen is the lowest-histamine way to store rabbit."},
+      {jkey:"canning", directions:"Same times as chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"moderate", histNote:"Canned rabbit, like any canned meat, carries more histamine than fresh-frozen by the time it's opened."},
+      {jkey:"dehydrating", directions:"Less traditional, but rabbit jerky works the same way as other lean meats — slice thin, marinate, dry at 160°F until it bends and cracks.", histamine:"high", histNote:"Slow-dried meat is a classic high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
+    ] },
+  { name:"Tomatoes", aliases:["tomato","tomatoes"],
+    methods:[
+      {jkey:"canningwb", directions:"Water bath can as sauce, juice, or whole/halved — always add bottled lemon juice (2 tbsp/quart, 1 tbsp/pint) or 1/4 tsp citric acid per quart, since modern varieties are often lower-acid than older ones. See the Canning tab's tomato note.", histamine:"moderate", histNote:"Tomatoes are commonly flagged as histamine-liberating on their own, independent of how they're preserved."},
+      {jkey:"freezing", directions:"Freeze whole or cored (skins slip off easily after thawing) for future sauce — no blanching needed, though quality is best used cooked rather than fresh after thawing.", histamine:"low", histNote:"Freezing keeps histamine lowest, though tomatoes themselves are still a commonly flagged food regardless of method."},
+      {jkey:"dehydrating", directions:"Slice or halve small/paste tomatoes, dry at 125°F until leathery to brittle (8-14 hrs) for sun-dried-style tomatoes; pack in oil only after fully drying and refrigerate (not shelf-stable at room temp).", histamine:"moderate", histNote:"Same histamine-liberating note as fresh tomatoes applies."},
+    ] },
+  { name:"Cucumbers", aliases:["cucumber","cucumbers","pickling cucumber"],
+    methods:[
+      {jkey:"fermenting", directions:"The traditional full-sour or half-sour dill pickle — submerge in a 3.5-5% salt brine with dill and garlic, ferment at room temperature until sour enough, then refrigerate.", histamine:"high", histNote:"Fermented pickles are inherently high-histamine, like any ferment.", gluten:false},
+      {jkey:"canningwb", directions:"Quick vinegar-brine pickles, water bath canned — never reduce the vinegar in a tested recipe.", histamine:"moderate", histNote:"Vinegar-forward pickles are commonly flagged on low-histamine lists.", gluten:true, glutenNote:"Watch for malt vinegar in older recipes — swap distilled white or cider vinegar."},
+    ] },
+  { name:"Peppers", aliases:["pepper","peppers","bell pepper","jalapeno","chili pepper","hot pepper"],
+    methods:[
+      {jkey:"dehydrating", directions:"Dry at 125°F until brittle to leathery (6-12 hrs); grind fully dried hot peppers into your own chili flakes or powder.", histamine:"low", histNote:"Dried peppers themselves aren't a classic histamine offender, though very spicy foods can trigger similar symptoms in some sensitive people via a different mechanism (capsaicin, not histamine)."},
+      {jkey:"freezing", directions:"No blanching needed — freeze sliced or diced raw for cooking later.", histamine:"low"},
+      {jkey:"canningwb", directions:"Pickled peppers or salsa, water bath canned per a tested recipe — never reduce the vinegar or change the ratio of low-acid ingredients.", histamine:"moderate", histNote:"Vinegar-based pickled peppers carry the same moderate flag as other vinegar-forward pickles.", gluten:true, glutenNote:"Check for malt vinegar in older recipes."},
+      {jkey:"fermenting", directions:"Fermented hot sauce: blend peppers with a 2-3% salt brine, ferment until sour, then blend smooth and bottle (refrigerate).", histamine:"high", histNote:"Fermented hot sauce is high-histamine, same as any ferment."},
+    ] },
+  { name:"Summer Squash & Zucchini", aliases:["zucchini","squash","summer squash","yellow squash"],
+    methods:[
+      {jkey:"freezing", directions:"Blanch sliced or shredded squash 3 minutes, cool, and freeze — the recommended way to preserve it long-term.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice thin, dry at 125°F until brittle (6-12 hrs) for squash chips or soup additions.", histamine:"low"},
+    ],
+    note:"⚠️ There's no tested-safe recipe for plain canned summer squash or zucchini (on its own, cubed or sliced) — the dense texture doesn't allow reliable heat penetration in a pressure canner. Freeze, dehydrate, or use it in a tested relish/pickle recipe instead of plain-canning it." },
+  { name:"Green Beans", aliases:["green beans","string beans","snap beans"],
+    methods:[
+      {jkey:"canning", directions:"A classic pressure-canning vegetable — pints 20 min / quarts 25 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Never water bath can green beans; they're low-acid.", histamine:"low"},
+      {jkey:"freezing", directions:"Blanch 3 minutes, cool, and freeze — see the Freezing tab's blanching table.", histamine:"low"},
+      {jkey:"fermenting", directions:"Dilly beans: ferment whole trimmed beans in a dill brine the same way as cucumber pickles.", histamine:"high", histNote:"Fermented dilly beans carry the same high-histamine flag as any ferment."},
+    ] },
+  { name:"Corn", aliases:["corn","sweet corn"],
+    methods:[
+      {jkey:"canning", directions:"Whole kernel corn, pressure canned: pints 55 min / quarts 85 min (raw pack) at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Never water bath can corn; it's low-acid.", histamine:"low"},
+      {jkey:"freezing", directions:"Blanch corn on the cob 7-11 minutes depending on size, cool, then cut kernels if desired and freeze.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch, cut kernels, and dry at 125°F until brittle (8-14 hrs) for dried corn to rehydrate later.", histamine:"low"},
+    ] },
+  { name:"Onions & Garlic", aliases:["onion","onions","garlic"],
+    methods:[
+      {jkey:"cellar", directions:"Cure (dry) for 1-3 weeks in a warm, airy spot after harvest, then store cool and dry (55-60°F, low humidity) for 4-8 months.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice thin and dry at 125°F until brittle (6-12 hrs), then grind into onion or garlic powder.", histamine:"low"},
+      {jkey:"fermenting", directions:"Fermented honey garlic or pickled onions — submerge in brine or raw honey and let ferment at room temperature.", histamine:"high", histNote:"Fermented onion/garlic preparations carry the same high-histamine flag as any ferment."},
+    ],
+    note:"⚠️ Never store garlic (or herbs) in oil at room temperature — garlic-in-oil is a well-known botulism risk since it's a low-acid food sitting in an oxygen-free environment at unsafe temperatures. Refrigerate garlic-in-oil and use within about a week, or acidify it properly first." },
+  { name:"Carrots", aliases:["carrot","carrots"],
+    methods:[
+      {jkey:"canning", directions:"Pressure can sliced or whole small carrots: pints 25 min / quarts 30 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"freezing", directions:"Blanch sliced carrots 2 minutes, cool, and freeze.", histamine:"low"},
+      {jkey:"cellar", directions:"Pack in slightly damp sand in a cold (32-40°F), moist root cellar for 4-6 months.", histamine:"low"},
+      {jkey:"fermenting", directions:"Fermented carrot sticks in a simple salt brine, same method as other lacto-ferments.", histamine:"high", histNote:"Fermented carrots carry the same high-histamine flag as any ferment."},
+    ] },
+  { name:"Apples", aliases:["apple","apples"],
+    methods:[
+      {jkey:"canningwb", directions:"Applesauce or pie filling, water bath canned per a tested recipe.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice into rings, dip in ascorbic acid/lemon water to prevent browning, dry at 135°F until pliable (6-12 hrs).", histamine:"low"},
+      {jkey:"freezing", directions:"Slice, dip in ascorbic acid solution, and freeze for future baking.", histamine:"low"},
+      {jkey:"cellar", directions:"Whole apples keep 3-6 months cold and moist (32-40°F) — store away from other produce since they release ripening gas.", histamine:"low"},
+    ] },
+  { name:"Peaches", aliases:["peach","peaches"],
+    methods:[
+      {jkey:"canningwb", directions:"Halves or slices in light syrup or juice, water bath canned per a tested recipe.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice, dip in ascorbic acid solution, dry at 135°F until pliable (8-14 hrs).", histamine:"low"},
+      {jkey:"freezing", directions:"Slice, dip in ascorbic acid solution, and freeze — best quality of all three methods for fresh eating later.", histamine:"low"},
+    ] },
+  { name:"Strawberries", aliases:["strawberry","strawberries"],
+    methods:[
+      {jkey:"freezing", directions:"Hull, open-freeze on a tray, then bag — the best-quality method for strawberries by far.", histamine:"low"},
+      {jkey:"canningwb", directions:"Jam or preserves, water bath canned per a tested recipe (usually needs added pectin since strawberries are low in natural pectin).", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice thin, dry at 135°F until pliable, no moisture (8-14 hrs).", histamine:"moderate", histNote:"Dried fruit shows up on many low-histamine lists, though tolerance varies more by person than with dried meat — fresh or frozen is the safer default."},
+    ] },
+  { name:"Blueberries", aliases:["blueberry","blueberries"],
+    methods:[
+      {jkey:"freezing", directions:"Open-freeze on a tray, then bag — no prep needed beyond washing and drying.", histamine:"low"},
+      {jkey:"canningwb", directions:"Jam or pie filling, water bath canned per a tested recipe.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Check/crack the skins in boiling water briefly so they dry evenly, then dry at 135°F until pliable (10-18 hrs).", histamine:"moderate", histNote:"Dried fruit is commonly flagged on low-histamine lists, though individual tolerance varies."},
+    ] },
+  { name:"Mangoes", aliases:["mango","mangoes","mangos"],
+    methods:[
+      {jkey:"dehydrating", directions:"Slice, dry at 135°F until pliable to slightly tacky (8-14 hrs) — one of the most popular dried fruits.", histamine:"moderate", histNote:"Dried fruit is commonly flagged on low-histamine lists; mango is also a tropical fruit some low-histamine lists flag on its own, independent of drying."},
+      {jkey:"freezing", directions:"Peel, cube, and open-freeze on a tray, then bag.", histamine:"low"},
+      {jkey:"canningwb", directions:"Chutney (with vinegar and spices), water bath canned per a tested recipe.", histamine:"moderate", histNote:"Vinegar-forward chutney carries the same moderate flag as other vinegar preserves.", gluten:true, glutenNote:"Check any soy sauce or spice blend in a chutney recipe for hidden wheat."},
+    ] },
+  { name:"Milk & Dairy", aliases:["milk","dairy","cream"],
+    methods:[
+      {jkey:"dairy", directions:"See the Dairy & Cheese tab for full butter and fresh chevre-style cheese directions.", histamine:"low", histNote:"Fresh butter and quick unaged soft cheese are much lower-histamine than aged/hard cheese — serve fresh rather than letting cheese age further if histamine is a concern."},
+      {jkey:"freezing", directions:"Milk and cream can be frozen, though texture separates on thawing — better shaken/blended back together and used in cooking/baking rather than drinking plain.", histamine:"low"},
+    ] },
+
+  /* ---- Expanded meats & protein ---- */
+  { name:"Turkey", aliases:["turkey","tom turkey","hen turkey"],
+    methods:[
+      {jkey:"freezing", directions:"Whole birds or parts freeze well up to a year; chill fast after butchering and freeze within a day for best quality.", histamine:"low", histNote:"Fresh-frozen is the lowest-histamine way to keep turkey on hand."},
+      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min, at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — hot pack gives better liquid coverage.", histamine:"moderate", histNote:"Canned poultry carries more histamine than fresh-frozen by the time it's opened."},
+      {jkey:"dehydrating", directions:"Turkey jerky works like any lean poultry jerky — slice thin, marinate, dry at 165°F until firm throughout.", histamine:"high", histNote:"Slow-dried meat is a classic high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
+      {jkey:"curing", directions:"Turkey breast cures and smokes well (think deli-style smoked turkey) — brine with Cure #1 at the package rate, then hot-smoke to 165°F internal.", histamine:"high", histNote:"Cured and smoked meat is inherently high-histamine.", gluten:true, glutenNote:"Brines often include soy sauce or other hidden-gluten ingredients — see Reference → Dietary Notes."},
+    ] },
+  { name:"Duck", aliases:["duck","duckling","drake"],
+    methods:[
+      {jkey:"freezing", directions:"Whole or parted duck freezes well; render and save the fat separately (it keeps a long time refrigerated or frozen and is prized for cooking).", histamine:"low"},
+      {jkey:"canning", directions:"Same poultry table as chicken/turkey: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Skim the extra fat before canning.", histamine:"moderate"},
+      {jkey:"curing", directions:"Duck breast is the classic candidate for a simple dry-cured, air-dried \"duck prosciutto\" (salt-cure 24 hrs, rinse, air-dry 1-3 weeks) or smoked whole.", histamine:"high", histNote:"Cured/air-dried duck is high-histamine, same as any cured meat.", gluten:false},
+    ] },
+  { name:"Goose", aliases:["goose","gander","geese"],
+    methods:[
+      {jkey:"freezing", directions:"Whole or parted goose freezes well; render the abundant fat separately — goose fat keeps for months refrigerated and is excellent for cooking.", histamine:"low"},
+      {jkey:"canning", directions:"Same poultry table as duck/chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Skim heavily before canning — goose renders a lot of fat.", histamine:"moderate"},
+      {jkey:"curing", directions:"Goose breast cures well the same way as duck breast (salt-cure and air-dry), or smoke whole.", histamine:"high", histNote:"Cured meat is inherently high-histamine.", gluten:false},
+    ] },
+  { name:"Quail", aliases:["quail"],
+    methods:[
+      {jkey:"freezing", directions:"Whole small birds freeze well; because they're so small, freeze in the exact portion size you'll cook (often 1-2 birds per person).", histamine:"low"},
+      {jkey:"canning", directions:"Same bone-in poultry time as chicken with bones: pints 65 min / quarts 75 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — pint jars are the practical choice given their small size.", histamine:"moderate"},
+      {jkey:"curing", directions:"Whole quail smokes well (brief brine, then hot-smoke to 165°F) — a nice way to use birds beyond fresh roasting.", histamine:"high", histNote:"Smoked meat is inherently high-histamine.", gluten:false},
+    ] },
+  { name:"Fish", aliases:["fish","catfish","bass","crappie","perch","trout","tilapia"],
+    methods:[
+      {jkey:"freezing", directions:"Gut and ice fish within 2 hours of catching, then freeze whole or filleted as soon as possible — vacuum-sealing or a water-glaze (dip in water, freeze, repeat) prevents freezer burn on lean fish.", histamine:"low", histNote:"Fast icing and fast freezing are the whole game with fish — this is the one ingredient where delay matters most."},
+      {jkey:"canning", directions:"Raw-pack cleaned fish (headed, gutted, cut into 3½-inch lengths, skin-side to the glass) into pint jars with 1-inch headspace — no added liquid, salt is optional (1 tsp/pint). Process 100 minutes at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pint jars only — quarts aren't a tested size for fish.", histamine:"moderate"},
+      {jkey:"dehydrating", directions:"Fish jerky: brine or marinate, then dry at 145°F until firm with no moisture (6-12 hrs) — see the Dehydrating tab's chart.", histamine:"high", histNote:"Fish is one of the most notorious high-histamine foods, especially if it wasn't iced fast right after catching — histamine can form in fish flesh within hours at warm temperatures, well before any preservation method comes into play.", gluten:true, glutenNote:"Marinades often include soy sauce — swap tamari or coconut aminos."},
+      {jkey:"curing", directions:"Smoking fish (hot-smoke to 145°F internal) is traditional, but smoked fish is still perishable — refrigerate and eat within a few days, or freeze, rather than treating it as shelf-stable.", histamine:"high", histNote:"Smoked fish is especially high-histamine — a good one to keep off the low-histamine plate entirely.", gluten:false},
+    ],
+    note:"⚠️ Fish is the ingredient where speed matters most for histamine: ice or chill it within 2 hours of catching, no exceptions — histamine forms in fish flesh faster than in any other homestead protein, even before you decide how to preserve it." },
+  { name:"Eggs", aliases:["egg","eggs"],
+    methods:[
+      {jkey:"freezing", directions:"Whisk whole eggs until fully blended and freeze in a container or ice cube tray (great for portioning); freeze whites plain, and whisk yolks with a pinch of salt or sugar first so they don't gel. Keeps about 12 months. Thaw in the fridge and cook to 160°F.", histamine:"low", histNote:"Freezing is the go-to way to preserve extra eggs for a low-histamine diet — do not freeze eggs in the shell."},
+      {jkey:"dehydrating", directions:"Powdered/dried eggs are a real thing (scramble thin, dry at low heat, then grind) but require careful, fast handling since raw egg is a higher-risk food to dry at home — many homesteaders prefer freeze-drying (a different, specialized process) over a standard dehydrator for eggs.", histamine:"moderate", histNote:"Slow-dried eggs sit in a warm environment for hours, similar to other slow-dried proteins — moderate histamine caution applies."},
+    ],
+    note:"⚠️ There's no tested-safe home method for pressure- or water-bath canning eggs — don't attempt it. Freezing (above) or refrigerator pickling (vinegar-brine pickled eggs, kept cold and eaten within a few weeks — not shelf-stable) are the safe routes." },
+  { name:"Sausage", aliases:["sausage","snack sticks","bratwurst","brats","breakfast sausage"],
+    methods:[
+      {jkey:"freezing", directions:"Raw patties or links freeze well for months — separate with parchment before freezing so you can pull out just what you need. Cooked sausage also freezes well.", histamine:"low", histNote:"Freshly made and promptly frozen sausage is the lowest-histamine way to enjoy it."},
+      {jkey:"canning", directions:"Only plain fresh (uncured) sausage — no cheese pieces or cured/specialty varieties. Lightly brown patties or 1-4 inch pieces first (raw pack isn't allowed), drain the fat, pack with added liquid (broth, water, or tomato juice) and 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"moderate", histNote:"Canned sausage carries the same moderate flag as any canned meat."},
+      {jkey:"curing", directions:"The classic use — mix ground meat (often part pork fat for moisture) with Cure #1 at your package's rate plus your spice blend, stuff into casings, and hot-smoke to 160°F internal for links, or dry-cure for weeks with Cure #2 for a shelf-stable snack stick.", recipe:{title:"Basic Breakfast Sausage Spice Blend (per 5 lbs ground pork)", lines:["3 tbsp kosher salt","1 tbsp black pepper","1 tbsp rubbed sage","2 tsp brown sugar","1 tsp red pepper flakes","1/2 tsp nutmeg","No Cure #1 needed — this is a fresh, cook-and-eat sausage, not a cured one"]},
+        histamine:"high", histNote:"Cured/smoked sausage and snack sticks are inherently high-histamine.", gluten:true, glutenNote:"Some casings and commercial spice blends carry hidden gluten (fillers, anti-caking wheat starch) — check labels, or mix your own blend from single-ingredient spices like the recipe here."},
+      {jkey:"dehydrating", directions:"Not a great candidate for a standard dehydrator — sausage's higher fat content dries unevenly and turns rancid faster than lean jerky cuts. Freezing or the canning/curing methods above hold up much better.", histamine:"high", gluten:false},
+    ] },
+
+  /* ---- Expanded vegetables ---- */
+  { name:"Potatoes", aliases:["potato","potatoes","spuds"],
+    methods:[
+      {jkey:"cellar", directions:"The classic root cellar crop — cold, moist, and dark (32-40°F, 85-95% humidity) for 4-6 months. Keep away from light, which turns skins green.", histamine:"low"},
+      {jkey:"canning", directions:"Peel, cube, and pressure can (never water bath — potatoes are low-acid): pints 35 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"freezing", directions:"Raw potatoes freeze poorly (grainy texture), but blanched/parboiled cubes, mashed potatoes, or shredded hash browns (blanched first) all freeze well.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch, slice, and dry at 125°F until brittle for dried potato slices or hash browns to rehydrate later.", histamine:"low"},
+    ] },
+  { name:"Sweet Potatoes", aliases:["sweet potato","sweet potatoes","yams"],
+    methods:[
+      {jkey:"cellar", directions:"Cure 1-2 weeks in a warm, humid spot right after harvest, then store cool and dry (55-60°F) for 4-6 months — don't refrigerate raw sweet potatoes, cold turns the centers hard.", histamine:"low"},
+      {jkey:"canning", directions:"Peel, cube, and pressure can: pints 65 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"freezing", directions:"Best cooked first — bake or boil, mash or cube, then freeze; raw sweet potato doesn't freeze as well.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch, slice thin, and dry at 125°F until leathery for sweet potato chips.", histamine:"low"},
+    ] },
+  { name:"Beets", aliases:["beet","beets","beetroot"],
+    methods:[
+      {jkey:"canning", directions:"Cook until skins slip off, cube or slice, then pressure can: pints 30 min / quarts 35 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pickled beets (with vinegar) can go in a water bath instead.", histamine:"low"},
+      {jkey:"freezing", directions:"Cook until tender, cool, peel, and slice or cube before freezing — raw beets don't freeze well.", histamine:"low"},
+      {jkey:"cellar", directions:"Trim tops, pack in damp sand, and store cold and moist (32-40°F) for 4-6 months.", histamine:"low"},
+      {jkey:"fermenting", directions:"Fermented pickled beets or beet kvass, same brine method as other lacto-ferments.", histamine:"high", histNote:"Fermented beets carry the same high-histamine flag as any ferment."},
+    ] },
+  { name:"Cabbage", aliases:["cabbage"],
+    methods:[
+      {jkey:"fermenting", directions:"Sauerkraut is the classic use — shred and salt at 2% by weight, see the Fermenting tab for the full method.", histamine:"high", histNote:"Fermented cabbage (kraut, kimchi) is inherently high-histamine."},
+      {jkey:"freezing", directions:"Blanch shredded or wedged cabbage 1-1½ minutes before freezing — texture softens, so frozen cabbage is best used cooked (soups, stir-fries) rather than raw afterward.", histamine:"low", histNote:"Fresh or frozen (unfermented) cabbage is the low-histamine option — set some aside before it goes into the kraut crock."},
+      {jkey:"cellar", directions:"Whole heads keep 2-3 months cold and moist (32-40°F), wrapped or on a shelf away from other produce (cabbage has a strong smell).", histamine:"low"},
+    ] },
+  { name:"Broccoli & Cauliflower", aliases:["broccoli","cauliflower"],
+    methods:[
+      {jkey:"freezing", directions:"By far the best method for these two — there's no tested recipe for plain-canning either one. Broccoli: steam blanch 3-3½ min or water blanch 2 min. Cauliflower: steam blanch 4-5 min or water blanch 3-4 min. Cool fully and freeze.", histamine:"low", histNote:"The recommended low-histamine route for both — fresh or freezer, not canned or long-stored."},
+      {jkey:"fermenting", directions:"Pickled cauliflower (with vinegar) is a safe water-bath option since the added acid makes it shelf-stable — plain cauliflower or broccoli cannot be safely canned without it.", histamine:"moderate", histNote:"Vinegar-forward pickles carry the moderate histamine flag common to that category."},
+    ],
+    note:"⚠️ There's no scientifically tested recipe for plain-canning broccoli or cauliflower — pressure canning turns them unpalatably soft anyway. Freeze them instead (directions below); only pickled/acidified cauliflower is a safe canning option." },
+  { name:"Asparagus", aliases:["asparagus"],
+    methods:[
+      {jkey:"canning", directions:"Pressure can spears or pieces: pints 30 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft), for hot pack or raw pack alike.", histamine:"low"},
+      {jkey:"freezing", directions:"Blanch 2-4 minutes depending on stalk thickness, cool, and freeze upright or laid flat.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch and dry at 125°F until brittle — less common, but works for soup additions.", histamine:"low"},
+    ] },
+  { name:"Peas (English/Shelling)", aliases:["peas","english peas","shelling peas","sweet peas"],
+    methods:[
+      {jkey:"freezing", directions:"Shell, blanch 1½-2 minutes, cool, and freeze — the most popular way to preserve garden peas by far. See the Freezing tab's blanching table.", histamine:"low"},
+      {jkey:"canning", directions:"Shell and pressure can: pints 40 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — same time for both jar sizes.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch and dry at 125°F until hard, similar to how split peas are naturally dried.", histamine:"low"},
+    ] },
+  { name:"Okra", aliases:["okra"],
+    methods:[
+      {jkey:"freezing", directions:"Blanch whole pods 3-4 minutes (this keeps them from getting overly slimy later), cool, and freeze whole or sliced.", histamine:"low"},
+      {jkey:"canning", directions:"Plain okra, pressure canned: pints 25 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pickled okra (vinegar brine) is a classic water-bath option instead.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice and dry at 125°F until brittle for dried okra chips, or grind fully dried pods into a soup/gumbo thickener.", histamine:"low"},
+    ] },
+  { name:"Winter Squash & Pumpkin", aliases:["winter squash","pumpkin","butternut","acorn squash"],
+    methods:[
+      {jkey:"canning", directions:"Cube into 1-inch pieces — never mash or purée before canning; the dense texture can prevent heat from reaching the center safely. Pressure can pints 55 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Drain and mash after opening if you want it smooth for pie.", histamine:"low"},
+      {jkey:"freezing", directions:"Cook, mash, cool, and freeze — this is how to safely freeze it smooth (unlike canning, mashed is fine for the freezer).", histamine:"low"},
+      {jkey:"cellar", directions:"Cure 1-2 weeks in a warm spot, then store cool and dry (50-60°F) for 3-6 months.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice or cube thin and dry at 125°F until leathery to brittle.", histamine:"low"},
+    ],
+    note:"⚠️ Never can mashed or puréed squash/pumpkin, including as \"pumpkin butter\" — only 1-inch cubes are a tested-safe canning shape. Purée after opening, or freeze it mashed instead." },
+  { name:"Radishes", aliases:["radish","radishes"],
+    methods:[
+      {jkey:"fermenting", directions:"Quick-pickled or lacto-fermented radish slices, same brine method as cucumber pickles — ready in days.", histamine:"high", histNote:"Fermented radish carries the same high-histamine flag as any ferment."},
+      {jkey:"freezing", directions:"Not a great freezer candidate raw (they turn soft and lose their crunch) — best enjoyed fresh or fermented rather than frozen.", histamine:"low"},
+    ] },
+  { name:"Turnips", aliases:["turnip","turnips"],
+    methods:[
+      {jkey:"canning", directions:"Peel, cube, and pressure can like carrots: pints 30 min / quarts 35 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"freezing", directions:"Peel, cube, blanch 2-3 minutes, cool, and freeze.", histamine:"low"},
+      {jkey:"cellar", directions:"Store cold and moist (32-40°F) in damp sand, same as carrots and beets, for 4-6 months.", histamine:"low"},
+      {jkey:"fermenting", directions:"Fermented turnip pickles (a South Asian and Middle Eastern staple) use the same brine method as other lacto-ferments.", histamine:"high", histNote:"Fermented turnips carry the high-histamine flag common to any ferment."},
+    ] },
+  { name:"Dry Beans (Pinto, Black, etc.)", aliases:["dry beans","pinto beans","black beans","kidney beans","dried beans"],
+    methods:[
+      {jkey:"cellar", directions:"Once fully dried on the plant (or oven/dehydrator-finished), store in airtight containers in a cool, dry pantry — no refrigeration needed, and they keep a year or more.", histamine:"low"},
+      {jkey:"canning", directions:"Soak dry beans 12-18 hrs (or quick-soak: boil 2 min, sit 1 hr), drain, cover with fresh water, boil 30 minutes, then pack with the cooking liquid and pressure can: pints 75 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"freezing", directions:"Cooked beans freeze very well — portion and freeze in their cooking liquid for quick future meals.", histamine:"low"},
+    ] },
+  { name:"Leafy Greens (Spinach, Chard, Kale)", aliases:["spinach","chard","kale","swiss chard","leafy greens","greens"],
+    methods:[
+      {jkey:"freezing", directions:"Blanch 2 minutes, cool, squeeze out excess water, and freeze in portions — the most popular way to preserve garden greens.", histamine:"low"},
+      {jkey:"canning", directions:"Steam or wilt 3-5 minutes, pack loosely, and pressure can hot-pack only: pints 70 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"dehydrating", directions:"Kale in particular dries well into crisp \"chips\" at 125°F (season before or after drying); spinach and chard can be dried and crumbled into soup seasoning too.", histamine:"low"},
+    ] },
+  { name:"Eggplant", aliases:["eggplant","aubergine"],
+    methods:[
+      {jkey:"freezing", directions:"Blanch slices 4 minutes (helps prevent browning and mushiness), cool, and freeze — best used cooked afterward rather than raw.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Blanch, slice thin, and dry at 125°F until leathery.", histamine:"low"},
+      {jkey:"fermenting", directions:"Pickled or fermented eggplant (common in Middle Eastern and South Asian traditions) uses a vinegar or salt-brine method.", histamine:"high", histNote:"Fermented eggplant carries the high-histamine flag common to any ferment.", gluten:false},
+    ],
+    note:"⚠️ There's no widely tested plain-canning recipe for eggplant — freeze, dehydrate, or pickle it instead." },
+  { name:"Herbs (Basil, Oregano, Thyme, etc.)", aliases:["herbs","basil","oregano","thyme","rosemary","mint","cilantro","parsley"],
+    methods:[
+      {jkey:"dehydrating", directions:"See the Dehydrating tab's chart for temps/times by herb (generally 95-105°F, a few hours) — the most common way to preserve garden herbs.", histamine:"low"},
+      {jkey:"freezing", directions:"Chop fresh herbs and freeze in oil or water in ice cube trays — a great way to preserve peak-season flavor for cooking, and arguably better flavor than dried for some herbs like basil.", histamine:"low", histNote:"Freezing herbs in oil cubes is a genuinely good low-histamine-friendly option — just keep the cubes frozen until use rather than storing the oil at room temperature."},
+    ] },
+
+  /* ---- Expanded fruits ---- */
+  { name:"Pears", aliases:["pear","pears"],
+    methods:[
+      {jkey:"canningwb", directions:"Halves or slices in light syrup or juice, water bath canned per a tested recipe — similar process to canning peaches.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice, dip in ascorbic acid solution, dry at 135°F until pliable (8-14 hrs).", histamine:"low"},
+      {jkey:"freezing", directions:"Slice, dip in ascorbic acid solution, and freeze — best used cooked afterward since texture softens.", histamine:"low"},
+    ] },
+  { name:"Plums", aliases:["plum","plums"],
+    methods:[
+      {jkey:"canningwb", directions:"Halves or whole (pierce skins first) in light syrup, water bath canned per a tested recipe.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Halve, pit, and dry at 135°F until pliable and leathery (10-20 hrs) for homemade prunes.", histamine:"moderate", histNote:"Dried fruit is commonly flagged on low-histamine lists — fresh or frozen plums are the safer default."},
+      {jkey:"freezing", directions:"Halve, pit, and freeze — quality holds up well for later baking or sauce.", histamine:"low"},
+    ] },
+  { name:"Cherries", aliases:["cherry","cherries"],
+    methods:[
+      {jkey:"freezing", directions:"Pit and open-freeze on a tray, then bag — the best-quality method for cherries.", histamine:"low"},
+      {jkey:"canningwb", directions:"Pitted, in light syrup or juice, water bath canned per a tested recipe; also classic for pie filling.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Pit and dry at 135°F until pliable, no moisture (12-20 hrs) for dried cherries.", histamine:"moderate", histNote:"Dried fruit is commonly flagged on low-histamine lists."},
+    ] },
+  { name:"Grapes", aliases:["grape","grapes"],
+    methods:[
+      {jkey:"freezing", directions:"Wash, dry, and freeze whole on a tray — a genuinely great frozen snack, no other prep needed.", histamine:"low"},
+      {jkey:"canningwb", directions:"Juice or jelly, water bath canned per a tested recipe.", histamine:"moderate", histNote:"Grape juice/jelly is fine, but note that wine and other fermented grape products are high-histamine — this entry is about fresh-preserved grapes, not fermented ones."},
+      {jkey:"dehydrating", directions:"Dry at 135°F until leathery and wrinkled (many hours) for homemade raisins — best with small, thin-skinned varieties.", histamine:"moderate", histNote:"Dried fruit (raisins included) shows up on many low-histamine lists."},
+    ] },
+  { name:"Melons & Watermelon", aliases:["watermelon","melon","cantaloupe","honeydew"],
+    methods:[
+      {jkey:"freezing", directions:"Cube and freeze, best used blended into a smoothie or granita afterward since the texture turns soft and watery on thawing — not great for eating thawed in chunks.", histamine:"low"},
+      {jkey:"canningwb", directions:"Pickled watermelon rind is the classic Southern preserve — the rind (not the flesh) is brined then canned in a sweet-spiced vinegar syrup, water bath processed.", histamine:"moderate", histNote:"Vinegar-forward pickles carry the moderate histamine flag common to that category."},
+    ] },
+  { name:"Figs", aliases:["fig","figs"],
+    methods:[
+      {jkey:"canningwb", directions:"Whole fig preserves in light syrup, water bath canned per a tested recipe — figs are naturally low-acid-ish, so always add lemon juice as the recipe specifies.", histamine:"low"},
+      {jkey:"freezing", directions:"Wash, stem, and freeze whole on a tray — figs freeze and thaw well for baking.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Halve and dry at 135°F until leathery (many hours) for dried figs.", histamine:"moderate", histNote:"Dried fruit is commonly flagged on low-histamine lists."},
+    ] },
+  { name:"Pecans & Nuts", aliases:["pecan","pecans","nuts","walnuts","almonds"],
+    methods:[
+      {jkey:"freezing", directions:"Shelled nuts keep far longer in the freezer than the pantry — their oils turn rancid at room temperature within months but stay fresh for a year or more frozen.", histamine:"low", histNote:"Freezing is genuinely the best way to keep nuts fresh, no histamine downside at all."},
+      {jkey:"dehydrating", directions:"Fresh-harvested (in-shell) pecans need a 1-2 week air-dry/cure in a single layer in a warm, airy spot before long-term storage — this isn't the same as dehydrating cooked food, just removing excess moisture from the shell and meat.", histamine:"low"},
+      {jkey:"cellar", directions:"Shelled nuts keep a few months in a cool, dry pantry; in-shell nuts keep longer than shelled.", histamine:"low"},
+    ] },
+  { name:"Rhubarb", aliases:["rhubarb"],
+    methods:[
+      {jkey:"freezing", directions:"Chop and freeze raw — no blanching strictly required, though a quick blanch helps preserve color and texture for later baking.", histamine:"low"},
+      {jkey:"canningwb", directions:"Sauce or pie filling (often combined with strawberries), water bath canned per a tested recipe.", histamine:"low"},
+      {jkey:"dehydrating", directions:"Slice thin and dry at 135°F until leathery — less common, best used ground into a tart seasoning.", histamine:"low"},
+    ] },
+];
+function matchIngredients(q){
+  return INGREDIENTS.filter(ing => ing.name.toLowerCase().includes(q) || ing.aliases.some(a=>a.includes(q)));
+}
+function histTag(level){
+  if(level==="high") return '<span class="tag histamine">🔴 histamine</span>';
+  if(level==="moderate") return '<span class="tag histamine-mod">🟡 moderate histamine</span>';
+  return '<span class="tag safe">🟢 low histamine</span>';
+}
+let activeIngName = null, activeMethodKey = null;
+
+function renderIngredientBlock(ing){
+  const chips = ing.methods.map(m=>{
+    const j = JUMP[m.jkey];
+    const isActive = activeIngName===ing.name && activeMethodKey===m.jkey;
+    return '<button type="button" class="ing-chip'+(isActive?' active':'')+'" data-ing="'+ing.name+'" data-method="'+m.jkey+'">'+j.label+'</button>';
+  }).join('');
+  let detail = '';
+  const activeMethod = ing.methods.find(m=>m.jkey===activeMethodKey);
+  if(activeIngName===ing.name && activeMethod){
+    const j = JUMP[activeMethod.jkey];
+    let recipeHtml = '';
+    if(activeMethod.recipe){
+      recipeHtml = '<div class="ing-recipe"><strong>'+activeMethod.recipe.title+'</strong><ul>'+
+        activeMethod.recipe.lines.map(l=>'<li>'+l+'</li>').join('')+'</ul></div>';
+    }
+    let flagsHtml = '<div class="ing-flags">'+histTag(activeMethod.histamine);
+    if(activeMethod.gluten) flagsHtml += ' <span class="tag gluten">🌾 gluten swap</span>';
+    flagsHtml += '</div>';
+    let notesHtml = '';
+    if(activeMethod.histNote) notesHtml += '<p class="ing-note histamine-text">'+activeMethod.histNote+'</p>';
+    if(activeMethod.glutenNote) notesHtml += '<p class="ing-note gluten-text">'+activeMethod.glutenNote+'</p>';
+    detail = '<div class="ing-detail">'+
+      '<p>'+activeMethod.directions+'</p>'+
+      recipeHtml + flagsHtml + notesHtml +
+      '<a class="jumplink ing-jump" data-pane="'+j.pane+'" data-sub="'+j.sub+'">Open full '+j.label.replace(/^[^\s]+\s/,'')+' guide →</a>'+
+      '</div>';
+  }
+  const noteHtml = ing.note ? '<div class="ing-note-callout">'+ing.note+'</div>' : '';
+  return '<div class="ing-block"><div class="ing-name">🍽️ '+ing.name+'</div>'+
+    noteHtml +
+    '<div class="ing-chips">'+chips+'</div>'+detail+'</div>';
+}
+
+function doSearch(){
+  const q = searchInput.value.trim().toLowerCase();
+  if(q.length < 2){ searchResults.classList.remove('show'); searchResults.innerHTML=''; return; }
+  const ingMatches = matchIngredients(q);
+  const topicMatches = SEARCH_INDEX.filter(item => (item.title+' '+item.kw).toLowerCase().includes(q));
+  if(!ingMatches.some(i=>i.name===activeIngName)){ activeIngName = null; activeMethodKey = null; }
+
+  let html = '';
+  if(ingMatches.length){
+    html += ingMatches.slice(0,6).map(renderIngredientBlock).join('');
+  }
+  if(topicMatches.length){
+    if(ingMatches.length) html += '<div class="result-divider">Other results</div>';
+    html += topicMatches.slice(0,8).map(m=>
+      '<div class="result" data-pane="'+m.pane+'" data-sub="'+m.sub+'"><div class="rtitle">'+m.title+'</div><div class="rpath">'+m.pane+' → '+m.sub+'</div></div>'
+    ).join('');
+  }
+  if(!ingMatches.length && !topicMatches.length){
+    html = '<div class="result">No matches yet for that ingredient/topic — try a different word, or tell me to add it.</div>';
+  }
+  searchResults.innerHTML = html;
+  searchResults.classList.add('show');
+}
+searchInput.addEventListener('input', doSearch);
+searchInput.addEventListener('focus', doSearch);
+document.addEventListener('click', (e)=>{
+  if(!searchResults.contains(e.target) && e.target !== searchInput){
+    searchResults.classList.remove('show');
+  }
+});
+searchResults.addEventListener('click', (e)=>{
+  e.stopPropagation();
+  const chip = e.target.closest('.ing-chip');
+  if(chip){
+    const ing = chip.dataset.ing, method = chip.dataset.method;
+    if(activeIngName===ing && activeMethodKey===method){
+      activeIngName = null; activeMethodKey = null;
+    } else {
+      activeIngName = ing; activeMethodKey = method;
+    }
+    doSearch();
+    return;
+  }
+  const jump = e.target.closest('.ing-jump');
+  if(jump){
+    goTo(jump.dataset.pane, jump.dataset.sub);
+    searchResults.classList.remove('show');
+    searchInput.value = '';
+    activeIngName = null; activeMethodKey = null;
+    return;
+  }
+  const r = e.target.closest('.result');
+  if(!r || !r.dataset.pane) return;
+  showPane(r.dataset.pane);
+  const navMap = {preserve:'preserveTabs', garden:'gardenTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+  setTimeout(()=>{
+    const nav = document.getElementById(navMap[r.dataset.pane]);
+    if(nav){
+      const btn = nav.querySelector('button[data-sub="'+r.dataset.sub+'"]');
+      if(btn) btn.click();
+    }
+    searchResults.classList.remove('show');
+    searchInput.value = '';
+  }, 50);
+});
+</script>
+</body>
+</html>
