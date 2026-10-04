@@ -376,6 +376,8 @@ footer{
 .home-card p{margin:0; font-size:0.85rem; color: var(--muted); font-family:Arial,sans-serif;}
 a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 .searchable{scroll-margin-top: 170px;}
+@keyframes flashHi{0%{box-shadow:0 0 0 4px var(--barn);}100%{box-shadow:0 0 0 4px rgba(161,61,46,0);}}
+.flash{animation:flashHi 2s ease-out; border-radius:8px;}
 </style>
 </head>
 <body>
@@ -467,7 +469,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 
   <!-- CANNING -->
   <div class="subpane active" id="preserve-canning">
-    <div class="card searchable" data-keywords="canning basics high acid low acid botulism pressure water bath">
+    <div class="card searchable" id="t-acid" data-keywords="canning basics high acid low acid botulism pressure water bath">
       <h3>The one rule that matters most</h3>
       <p><span class="tag risk">Low-acid foods</span> — vegetables, meat, poultry, seafood, and any mixture of these
       (soups, stews) — <strong>must be processed in a pressure canner</strong>. A boiling water bath never gets hot
@@ -482,7 +484,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     </div>
 
     <div class="row2">
-      <div class="card searchable" data-keywords="water bath canning steps jars jam jelly fruit">
+      <div class="card searchable" id="t-waterbath" data-keywords="water bath canning steps jars jam jelly fruit">
         <h3>Water Bath Canning — the basics</h3>
         <ol>
           <li>Inspect jars for chips/cracks; wash jars, lids, and bands in hot soapy water.</li>
@@ -494,7 +496,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
           <li>Don't touch lids for 12–24 hrs. Check seals (lid should not flex when pressed), label, and store.</li>
         </ol>
       </div>
-      <div class="card searchable" data-keywords="pressure canning steps vegetables meat poultry weighted gauge dial gauge">
+      <div class="card searchable" id="t-pressure" data-keywords="pressure canning steps vegetables meat poultry weighted gauge dial gauge">
         <h3>Pressure Canning — the basics</h3>
         <ol>
           <li>Add the amount of water the canner manufacturer specifies (usually 2–3 inches).</li>
@@ -508,7 +510,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       </div>
     </div>
 
-    <div class="tool-box searchable" data-keywords="altitude calculator canning adjustment elevation feet">
+    <div class="tool-box searchable" id="t-altitude" data-keywords="altitude calculator canning adjustment elevation feet">
       <h4>🧮 Altitude Adjustment Calculator</h4>
       <p style="margin-top:0;font-size:0.85rem;">Recipes are written for sea level (0–1,000 ft). Higher elevations need longer times or higher pressure because water boils at a lower temperature. Pre-filled with your homestead's approximate elevation (~1,600 ft, Callahan County) — adjust if you know your exact number.</p>
       <div class="row2">
@@ -554,7 +556,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <tr><td>8,001 – 10,000</td><td>15 PSI</td><td>15 PSI</td></tr>
     </table>
 
-    <div class="card searchable" data-keywords="canning quick reference method by food jam salsa green beans meat soup">
+    <div class="card searchable" id="t-method" data-keywords="canning quick reference method by food jam salsa green beans meat soup">
       <h3>What method for what food?</h3>
       <table>
         <tr><th>Food</th><th>Method</th><th>Notes</th></tr>
@@ -596,7 +598,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 
   <!-- DEHYDRATING -->
   <div class="subpane" id="preserve-dehydrating">
-    <div class="card searchable" data-keywords="dehydrating basics pretreat blanch conditioning storage">
+    <div class="card searchable" id="t-dehyd" data-keywords="dehydrating basics pretreat blanch conditioning storage">
       <h3>Dehydrating basics</h3>
       <p>Slice food uniformly so pieces dry at the same rate. Pretreat most fruit with a quick dip in an
       ascorbic acid/lemon-juice solution to stop browning, and blanch most vegetables briefly in boiling water or
@@ -649,7 +651,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       a quick open-freeze on a tray before bagging keeps pieces separate. Pack out as much air as possible to slow
       freezer burn, label with the date, and use the oldest items first.</p>
     </div>
-    <table class="searchable" data-keywords="blanching times vegetables freezer">
+    <table class="searchable" id="t-blanch" data-keywords="blanching times vegetables freezer">
       <caption>Blanching times (boiling water) for common vegetables</caption>
       <tr><th>Vegetable</th><th>Blanch time</th></tr>
       <tr><td>Green beans</td><td>3 minutes</td></tr>
@@ -688,7 +690,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       of sauerkraut, kimchi, and any lacto-ferment no matter how carefully it's made. Set aside a fresh, unfermented
       portion for the low-histamine plate before it goes into the ferment crock.
     </div>
-    <div class="card searchable" data-keywords="fermenting basics salt brine ratio lacto fermentation sauerkraut kimchi pickles">
+    <div class="card searchable" id="t-ferment" data-keywords="fermenting basics salt brine ratio lacto fermentation sauerkraut kimchi pickles">
       <h3>Lacto-fermentation basics</h3>
       <p>Salt does the safety work here: it favors the lactic-acid bacteria that naturally occur on vegetables
       while suppressing the bacteria that cause spoilage. Two common approaches:</p>
@@ -705,7 +707,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       sour enough for you — then move it to the fridge to slow fermentation.</p>
     </div>
     <div class="row2">
-      <div class="card searchable" data-keywords="fermentation normal signs bubbles cloudy kahm yeast">
+      <div class="card searchable" id="t-fermentsigns" data-keywords="fermentation normal signs bubbles cloudy kahm yeast">
         <h3>Normal &amp; expected</h3>
         <ul>
           <li>Bubbling, fizzing, or a hiss when you burp the jar</li>
@@ -744,7 +746,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       bacterial/enzymatic process that steadily raises histamine. Freshly cooked, unaged meat (see the Freezing tab) is
       the low-histamine alternative for the same cuts.
     </div>
-    <div class="card searchable" data-keywords="curing salt prague powder cure 1 cure 2 sodium nitrite safety">
+    <div class="card searchable" id="t-curesalts" data-keywords="curing salt prague powder cure 1 cure 2 sodium nitrite safety">
       <h3>Curing salts — what they're for</h3>
       <p>Cure #1 (often sold as "Prague Powder #1" or "Insta Cure #1") is a mix of table salt and 6.25% sodium
       nitrite, dyed pink so it's never mistaken for regular salt. It's used for short-cure items you'll cook and
@@ -759,7 +761,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       substitute it teaspoon-for-teaspoon with table salt in any other recipe.</div>
     </div>
 
-    <div class="tool-box searchable" data-keywords="curing salt calculator cure 1 grams meat weight">
+    <div class="tool-box searchable" id="t-cureest" data-keywords="curing salt calculator cure 1 grams meat weight">
       <h4>🧮 Rough Cure #1 Estimator</h4>
       <p style="margin-top:0;font-size:0.85rem;">Gives a ballpark based on the common 1 tsp (~6g) per 5 lbs rate.
       <strong>Always confirm against your product's own label before using.</strong></p>
@@ -770,7 +772,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     </div>
 
     <div class="row2">
-      <div class="card searchable" data-keywords="hot smoking safe temperature poultry ground meat whole cuts">
+      <div class="card searchable" id="t-smoking" data-keywords="hot smoking safe temperature poultry ground meat whole cuts">
         <h3>Hot smoking (recommended default)</h3>
         <p>Hot smoking cooks the food while it smokes, at smoker temperatures of 225–300°F. This is the safe,
         forgiving method for home use because the meat reaches a fully-cooked internal temperature:</p>
@@ -811,7 +813,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 
   <!-- ROOT CELLAR -->
   <div class="subpane" id="preserve-cellar">
-    <div class="card searchable" data-keywords="root cellar storage conditions temperature humidity">
+    <div class="card searchable" id="t-cellar" data-keywords="root cellar storage conditions temperature humidity">
       <h3>Root cellaring basics</h3>
       <p>Most root cellar crops want one of two conditions: <strong>cold &amp; moist</strong> (32–40°F, 85–95%
       humidity — think a damp basement corner or a buried box) or <strong>cool &amp; dry</strong> (50–60°F, 60–70%
@@ -837,7 +839,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 
   <!-- DAIRY -->
   <div class="subpane" id="preserve-dairy">
-    <div class="card searchable" data-keywords="dairy butter making chevre cheese milk safety pasteurize">
+    <div class="card searchable" id="t-dairy" data-keywords="dairy butter making chevre cheese milk safety pasteurize">
       <h3>Butter, from the milk log</h3>
       <p>Skim cream off fresh milk (or use heavy cream), let it come to about 55–60°F, and shake or churn until it
       separates into butter solids and buttermilk — usually 10–20 minutes by hand mixer. Pour off the buttermilk
@@ -871,7 +873,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </nav>
 
   <div class="subpane active" id="garden-calendar">
-    <div class="tool-box searchable" data-keywords="planting calendar frost date calculator schedule fall spring days to maturity harvest">
+    <div class="tool-box searchable" id="t-calendar" data-keywords="planting calendar frost date calculator schedule fall spring days to maturity harvest">
       <h4>📅 Planting Calendar Builder</h4>
       <p style="margin-top:0;font-size:0.85rem;">Pre-filled with the estimated average frost dates for your
       Callahan County homestead (last spring frost ~April 5, first fall frost ~November 1) and already built below —
@@ -892,14 +894,14 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <button class="go" onclick="buildCalendar()">Build my schedule</button>
       <div class="tool-output" id="calendarOutput">Enter your frost date(s) and click "Build my schedule."</div>
     </div>
-    <div class="card searchable" data-keywords="succession planting tips continuous harvest">
+    <div class="card searchable" id="t-succession" data-keywords="succession planting tips continuous harvest">
       <h3>Succession planting</h3>
       <p>For crops you eat continuously rather than all at once — lettuce, radishes, bush beans, carrots, cilantro,
       spinach — sow a short new row every 2–3 weeks through the growing season instead of all at once. Stop new
       sowings early enough that the crop's "days to maturity" still fits before your first fall frost.</p>
     </div>
 
-    <div class="card searchable" data-keywords="how much to plant quantity per person yield reference garden sizing">
+    <div class="card searchable" id="t-howmuch" data-keywords="how much to plant quantity per person yield reference garden sizing">
       <h3>📏 How much to plant</h3>
       <p>Rough rule-of-thumb quantities per person who eats that crop regularly — scale up or down for your family
       and how much you want left over for preserving. These are starting points, not guarantees; actual yield swings
@@ -934,7 +936,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       how to size that bed.</p>
     </div>
 
-    <div class="card searchable" data-keywords="asparagus perennial bed raised bed crowns Mary Washington Jersey Giant UC 157">
+    <div class="card searchable" id="t-asparagus" data-keywords="asparagus perennial bed raised bed crowns Mary Washington Jersey Giant UC 157">
       <h3>🌿 Asparagus — a perennial bed, planned once</h3>
       <p>Unlike everything else on this page, asparagus is a perennial — plant it once and, if the bed is sized and
       sited well, it keeps producing for 15–20+ years. That also means it's worth getting the planning right up
@@ -964,7 +966,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="garden-seedstart">
-    <div class="card searchable" data-keywords="seed starting indoors depth light hardening off transplant">
+    <div class="card searchable" id="t-seedstart" data-keywords="seed starting indoors depth light hardening off transplant">
       <h3>Seed starting basics</h3>
       <ul>
         <li><strong>Depth:</strong> as a rule of thumb, plant a seed about twice as deep as it is wide. Very fine
@@ -1014,7 +1016,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </nav>
 
   <div class="subpane active" id="reference-safety">
-    <div class="card searchable" data-keywords="food safety spoilage signs botulism throw out">
+    <div class="card searchable" id="t-spoilage" data-keywords="food safety spoilage signs botulism throw out">
       <h3>When in doubt, throw it out</h3>
       <p>Signs a preserved food should be discarded without tasting: a bulging or leaking lid, a jar that spurts
       liquid or foam when opened, cloudy liquid in a food that's normally clear, mold of any color, a foul or
@@ -1033,7 +1035,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="reference-shelflife">
-    <table class="searchable" data-keywords="shelf life chart canned dehydrated frozen best quality">
+    <table class="searchable" id="t-shelflife" data-keywords="shelf life chart canned dehydrated frozen best quality">
       <caption>General shelf life by preservation method (quality, not strict safety cutoffs)</caption>
       <tr><th>Method</th><th>Best quality window</th></tr>
       <tr><td>Home-canned, high-acid (jam, pickles, fruit)</td><td>12–18 months</td></tr>
@@ -1050,7 +1052,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="reference-conversions">
-    <table class="searchable" data-keywords="conversions volume weight measurements cooking">
+    <table class="searchable" id="t-conversions" data-keywords="conversions volume weight measurements cooking">
       <caption>Common kitchen conversions</caption>
       <tr><th>Measure</th><th>Equals</th></tr>
       <tr><td>3 teaspoons</td><td>1 tablespoon</td></tr>
@@ -1069,7 +1071,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="reference-glossary">
-    <table class="searchable" data-keywords="glossary terms definitions headspace hot pack raw pack brine curing blanch">
+    <table class="searchable" id="t-glossary" data-keywords="glossary terms definitions headspace hot pack raw pack brine curing blanch">
       <caption>Glossary of common terms</caption>
       <tr><th>Term</th><th>Meaning</th></tr>
       <tr><td>Headspace</td><td>The empty gap left between the food/liquid and the jar rim, needed for a proper vacuum seal</td></tr>
@@ -1089,7 +1091,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="reference-dietary">
-    <div class="callout searchable" data-keywords="dietary flags legend gluten free low histamine key">
+    <div class="callout searchable" id="t-dietary" data-keywords="dietary flags legend gluten free low histamine key">
       <strong>How the flags work:</strong> throughout the Preserving tabs you'll see three tags — <span class="tag histamine">🔴 histamine</span>
       for methods/foods that are classic high-histamine offenders, <span class="tag histamine-mod">🟡 moderate</span> for foods
       commonly flagged but where reactions vary more by person, and <span class="tag gluten">🌾 gluten swap</span> wherever an
@@ -1184,6 +1186,18 @@ wireSubtabs('preserveTabs','preserve');
 wireSubtabs('gardenTabs','garden');
 wireSubtabs('referenceTabs','reference');
 
+function scrollToAnchor(id){
+  if(!id) return;
+  setTimeout(()=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    const bar = document.querySelector('.sticky-top');
+    const offset = (bar ? bar.offsetHeight : 0) + 12;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({top: Math.max(top,0), behavior:'smooth'});
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  }, 120);
+}
 function goTo(pane, sub){
   showPane(pane);
   setTimeout(()=>{
@@ -1543,27 +1557,27 @@ renderSpecies('poultry');
 const searchInput = document.getElementById('globalSearch');
 const searchResults = document.getElementById('searchResults');
 const SEARCH_INDEX = [
-  {title:"High-acid vs low-acid & botulism basics", pane:"preserve", sub:"canning", kw:"botulism pressure canner high acid low acid safety rule"},
-  {title:"Water bath canning steps", pane:"preserve", sub:"canning", kw:"water bath jars jam jelly fruit steps"},
-  {title:"Pressure canning steps", pane:"preserve", sub:"canning", kw:"pressure canner vegetables meat vent steam"},
-  {title:"Altitude adjustment calculator (canning)", pane:"preserve", sub:"canning", kw:"altitude elevation feet psi calculator"},
-  {title:"What canning method for what food", pane:"preserve", sub:"canning", kw:"tomatoes green beans salsa pickles meat soup method"},
-  {title:"Dehydrating basics & jerky safety", pane:"preserve", sub:"dehydrating", kw:"dehydrator pretreat blanch condition storage jerky 160 165"},
-  {title:"Dehydrator temp/time chart", pane:"preserve", sub:"dehydrating", kw:"apple banana strawberry jerky herbs basil dehydrate temperature time"},
-  {title:"Freezing & blanching times", pane:"preserve", sub:"freezing", kw:"blanch freeze vegetables storage life freezer burn"},
-  {title:"Lacto-fermentation basics", pane:"preserve", sub:"fermenting", kw:"sauerkraut kimchi pickles salt ratio brine ferment"},
-  {title:"Normal vs spoiled ferment signs", pane:"preserve", sub:"fermenting", kw:"mold kahm yeast slimy spoiled ferment"},
-  {title:"Curing salts (Cure #1 / #2) & safety", pane:"preserve", sub:"curing", kw:"prague powder sodium nitrite cure bacon sausage ham"},
-  {title:"Cure #1 estimator tool", pane:"preserve", sub:"curing", kw:"curing salt calculator grams meat weight"},
-  {title:"Hot smoking vs cold smoking", pane:"preserve", sub:"curing", kw:"smoker temperature hot cold smoke poultry 165 145 160"},
-  {title:"Root cellar storage conditions", pane:"preserve", sub:"cellar", kw:"potatoes onions garlic squash apples carrots root cellar cold moist"},
-  {title:"Butter & chevre cheese making", pane:"preserve", sub:"dairy", kw:"butter cream churn chevre cheese rennet milk raw"},
-  {title:"Planting calendar builder", pane:"garden", sub:"calendar", kw:"frost date planting schedule tomatoes seed start transplant"},
-  {title:"Succession planting", pane:"garden", sub:"calendar", kw:"succession lettuce radish continuous harvest"},
-  {title:"How much to plant (per person quantities)", pane:"garden", sub:"calendar", kw:"how much plant quantity yield per person garden sizing"},
-  {title:"Asparagus — perennial bed", pane:"garden", sub:"calendar", kw:"asparagus perennial crowns raised bed mary washington jersey giant uc157 histamine gluten"},
-  {title:"Seed starting basics", pane:"garden", sub:"seedstart", kw:"seed depth light hardening off grow light transplant"},
-  {title:"Pest & disease identification", pane:"garden", sub:"pests", kw:"aphid hornworm squash bug beetle blight mildew tomato pepper"},
+  {anchor:"t-acid", title:"High-acid vs low-acid & botulism basics", pane:"preserve", sub:"canning", kw:"botulism pressure canner high acid low acid safety rule"},
+  {anchor:"t-waterbath", title:"Water bath canning steps", pane:"preserve", sub:"canning", kw:"water bath jars jam jelly fruit steps"},
+  {anchor:"t-pressure", title:"Pressure canning steps", pane:"preserve", sub:"canning", kw:"pressure canner vegetables meat vent steam"},
+  {anchor:"t-altitude", title:"Altitude adjustment calculator (canning)", pane:"preserve", sub:"canning", kw:"altitude elevation feet psi calculator"},
+  {anchor:"t-method", title:"What canning method for what food", pane:"preserve", sub:"canning", kw:"tomatoes green beans salsa pickles meat soup method"},
+  {anchor:"t-dehyd", title:"Dehydrating basics & jerky safety", pane:"preserve", sub:"dehydrating", kw:"dehydrator pretreat blanch condition storage jerky 160 165"},
+  {anchor:"dehydFilter", title:"Dehydrator temp/time chart", pane:"preserve", sub:"dehydrating", kw:"apple banana strawberry jerky herbs basil dehydrate temperature time"},
+  {anchor:"t-blanch", title:"Freezing & blanching times", pane:"preserve", sub:"freezing", kw:"blanch freeze vegetables storage life freezer burn"},
+  {anchor:"t-ferment", title:"Lacto-fermentation basics", pane:"preserve", sub:"fermenting", kw:"sauerkraut kimchi pickles salt ratio brine ferment"},
+  {anchor:"t-fermentsigns", title:"Normal vs spoiled ferment signs", pane:"preserve", sub:"fermenting", kw:"mold kahm yeast slimy spoiled ferment"},
+  {anchor:"t-curesalts", title:"Curing salts (Cure #1 / #2) & safety", pane:"preserve", sub:"curing", kw:"prague powder sodium nitrite cure bacon sausage ham"},
+  {anchor:"t-cureest", title:"Cure #1 estimator tool", pane:"preserve", sub:"curing", kw:"curing salt calculator grams meat weight"},
+  {anchor:"t-smoking", title:"Hot smoking vs cold smoking", pane:"preserve", sub:"curing", kw:"smoker temperature hot cold smoke poultry 165 145 160"},
+  {anchor:"t-cellar", title:"Root cellar storage conditions", pane:"preserve", sub:"cellar", kw:"potatoes onions garlic squash apples carrots root cellar cold moist"},
+  {anchor:"t-dairy", title:"Butter & chevre cheese making", pane:"preserve", sub:"dairy", kw:"butter cream churn chevre cheese rennet milk raw"},
+  {anchor:"t-calendar", title:"Planting calendar builder", pane:"garden", sub:"calendar", kw:"frost date planting schedule tomatoes seed start transplant"},
+  {anchor:"t-succession", title:"Succession planting", pane:"garden", sub:"calendar", kw:"succession lettuce radish continuous harvest"},
+  {anchor:"t-howmuch", title:"How much to plant (per person quantities)", pane:"garden", sub:"calendar", kw:"how much plant quantity yield per person garden sizing"},
+  {anchor:"t-asparagus", title:"Asparagus — perennial bed", pane:"garden", sub:"calendar", kw:"asparagus perennial crowns raised bed mary washington jersey giant uc157 histamine gluten"},
+  {anchor:"t-seedstart", title:"Seed starting basics", pane:"garden", sub:"seedstart", kw:"seed depth light hardening off grow light transplant"},
+  {anchor:"pestFilter", title:"Pest & disease identification", pane:"garden", sub:"pests", kw:"aphid hornworm squash bug beetle blight mildew tomato pepper"},
   {title:"Poultry care sheet", pane:"livestock", sub:"poultry", kw:"chicken duck goose turkey coop feed layer bumblefoot"},
   {title:"Goat care sheet", pane:"livestock", sub:"goats", kw:"goat kidding hoof famacha mineral"},
   {title:"Sheep care sheet", pane:"livestock", sub:"sheep", kw:"sheep wool foot rot copper mineral"},
@@ -1572,11 +1586,11 @@ const SEARCH_INDEX = [
   {title:"Rabbit care sheet", pane:"livestock", sub:"rabbits", kw:"rabbit hutch kit doe kindling"},
   {title:"Gestation & incubation reference", pane:"livestock", sub:"breeding", kw:"gestation incubation days temperature humidity chicken goat sheep cattle pig hatch"},
   {title:"General livestock first aid kit", pane:"livestock", sub:"firstaid", kw:"first aid kit vet emergency wound thermometer"},
-  {title:"Botulism & spoilage warning signs", pane:"reference", sub:"safety", kw:"botulism spoilage throw out mold bulging lid"},
-  {title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
-  {title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
-  {title:"Glossary of terms", pane:"reference", sub:"glossary", kw:"headspace hot pack raw pack brine glossary definition"},
-  {title:"Dietary flags: low-histamine & gluten-free", pane:"reference", sub:"dietary", kw:"histamine gluten free swap soy sauce vinegar leftovers freeze tomatoes fermented cured aged"},
+  {anchor:"t-spoilage", title:"Botulism & spoilage warning signs", pane:"reference", sub:"safety", kw:"botulism spoilage throw out mold bulging lid"},
+  {anchor:"t-shelflife", title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
+  {anchor:"t-conversions", title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
+  {anchor:"t-glossary", title:"Glossary of terms", pane:"reference", sub:"glossary", kw:"headspace hot pack raw pack brine glossary definition"},
+  {anchor:"t-dietary", title:"Dietary flags: low-histamine & gluten-free", pane:"reference", sub:"dietary", kw:"histamine gluten free swap soy sauce vinegar leftovers freeze tomatoes fermented cured aged"},
 ];
 
 /* ---------------- Ingredient Finder ---------------- */
@@ -1997,7 +2011,7 @@ function doSearch(){
   if(topicMatches.length){
     if(ingMatches.length) html += '<div class="result-divider">Other results</div>';
     html += topicMatches.slice(0,8).map(m=>
-      '<div class="result" data-pane="'+m.pane+'" data-sub="'+m.sub+'"><div class="rtitle">'+m.title+'</div><div class="rpath">'+m.pane+' → '+m.sub+'</div></div>'
+      '<div class="result" data-pane="'+m.pane+'" data-sub="'+m.sub+'" data-anchor="'+(m.anchor||'')+'"><div class="rtitle">'+m.title+'</div><div class="rpath">'+m.pane+' → '+m.sub+'</div></div>'
     ).join('');
   }
   if(!ingMatches.length && !topicMatches.length){
@@ -2046,6 +2060,7 @@ searchResults.addEventListener('click', (e)=>{
     }
     searchResults.classList.remove('show');
     searchInput.value = '';
+    scrollToAnchor(r.dataset.anchor);
   }, 50);
 });
 </script>
