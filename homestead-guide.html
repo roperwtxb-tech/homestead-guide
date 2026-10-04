@@ -378,6 +378,24 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 .searchable{scroll-margin-top: 170px;}
 @keyframes flashHi{0%{box-shadow:0 0 0 4px var(--barn);}100%{box-shadow:0 0 0 4px rgba(161,61,46,0);}}
 .flash{animation:flashHi 2s ease-out; border-radius:8px;}
+.muted-small{font-family:Arial,sans-serif; font-size:0.8rem; color:var(--muted);}
+.plant-now{background:#eef5ea; border:1px solid #cfe2c6; border-left:4px solid var(--green); border-radius:6px; padding:10px 12px; margin-bottom:14px;}
+.plant-now h4{margin:0 0 6px;}
+.plant-now p{margin:4px 0; font-size:0.9rem;}
+.guide-nav{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+.guide-nav button{font:inherit; font-family:Arial,sans-serif; font-size:0.8rem; padding:5px 10px; border-radius:16px; border:1px solid var(--tan); background:var(--paper); color:var(--ink); cursor:pointer;}
+.guide-nav button:hover{background:var(--tan);}
+.ing-chip.grow-chip{border-color:#9cc28f;}
+.grow-crop{margin:6px 0 8px;}
+.grow-name{font-weight:bold; font-size:0.9rem;}
+.grow-crop ul{margin:4px 0 0; padding-left:18px; font-size:0.85rem;}
+.ing-detail .jumplink{margin-right:10px;}
+.tag.ev-good{background:#dcebd8; color:var(--green-dark);}
+.tag.ev-some{background:#fdf3d8; color:#7a5714;}
+.tag.ev-folk{background:#ececec; color:#555;}
+.table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%;}
+.table-wrap > table{margin-top:0;}
+@media (max-width:640px){ .table-wrap table{font-size:0.8rem;} .table-wrap th, .table-wrap td{padding:5px 6px;} }
 </style>
 </head>
 <body>
@@ -868,19 +886,20 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   <h2 class="section-title">Garden</h2>
   <nav class="subtabs" id="gardenTabs">
     <button data-sub="calendar" class="active">Planting Calendar</button>
+    <button data-sub="crops">Crop Guides</button>
+    <button data-sub="companion">Companion Planting</button>
     <button data-sub="seedstart">Seed Starting</button>
     <button data-sub="pests">Pest &amp; Disease ID</button>
   </nav>
 
+  <!-- ===== Planting Calendar ===== -->
   <div class="subpane active" id="garden-calendar">
     <div class="tool-box searchable" id="t-calendar" data-keywords="planting calendar frost date calculator schedule fall spring days to maturity harvest">
       <h4>📅 Planting Calendar Builder</h4>
-      <p style="margin-top:0;font-size:0.85rem;">Pre-filled with the estimated average frost dates for your
-      Callahan County homestead (last spring frost ~April 5, first fall frost ~November 1) and already built below —
-      adjust either date any time you learn more precise numbers for your exact spot, and the schedule updates
-      when you click the button again. Builds <strong>two</strong> schedules: a spring planting table (with an
-      estimated harvest date for each crop) and, using your first fall frost date, a second fall planting table for
-      the cool-season crops worth a second round before winter.</p>
+      <p style="margin-top:0;font-size:0.85rem;">Pre-filled with the average frost dates for your Callahan County
+      homestead (last spring frost ~April 5, first fall frost ~November 1) and already built below. It shows what's
+      in its planting window today, a spring table and a fall table, using Texas A&amp;M AgriLife's Texas-specific
+      timing. Change either date and click the button to rebuild. On a phone, swipe the tables sideways to see every column.</p>
       <div class="row2">
         <div>
           <label for="lastFrost">Average last spring frost</label>
@@ -894,49 +913,202 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <button class="go" onclick="buildCalendar()">Build my schedule</button>
       <div class="tool-output" id="calendarOutput">Enter your frost date(s) and click "Build my schedule."</div>
     </div>
+
     <div class="card searchable" id="t-succession" data-keywords="succession planting tips continuous harvest">
       <h3>Succession planting</h3>
       <p>For crops you eat continuously rather than all at once — lettuce, radishes, bush beans, carrots, cilantro,
       spinach — sow a short new row every 2–3 weeks through the growing season instead of all at once. Stop new
-      sowings early enough that the crop's "days to maturity" still fits before your first fall frost.</p>
+      sowings early enough that the crop's days to harvest still fits before the end of its planting window.</p>
     </div>
 
-    <div class="card searchable" id="t-howmuch" data-keywords="how much to plant quantity per person yield reference garden sizing">
+    <div class="card searchable" id="t-howmuch" data-keywords="how much to plant quantity per person yield reference garden sizing spacing">
       <h3>📏 How much to plant</h3>
-      <p>Rough rule-of-thumb quantities per person who eats that crop regularly — scale up or down for your family
-      and how much you want left over for preserving. These are starting points, not guarantees; actual yield swings
-      with variety, weather, and how well the bed is cared for.</p>
-      <table>
-        <tr><th>Crop</th><th>Per person</th><th>What that gets you</th></tr>
-        <tr><td>Tomatoes</td><td>2–4 plants</td><td>~8–10 lbs per plant over the season — fresh eating plus some canning</td></tr>
-        <tr><td>Peppers</td><td>3–5 plants</td><td>Several dozen fruit per plant across the season</td></tr>
-        <tr><td>Eggplant</td><td>1–2 plants</td><td>4–6 fruit per plant</td></tr>
-        <tr><td>Broccoli</td><td>3–5 plants</td><td>One main head plus side shoots per plant</td></tr>
-        <tr><td>Cabbage</td><td>2–3 plants</td><td>One 2–5 lb head per plant</td></tr>
-        <tr><td>Lettuce</td><td>4–6 plants per succession</td><td>Cut-and-come-again heads; resow every 2–3 weeks</td></tr>
-        <tr><td>Onions (from seed)</td><td>10–15 plants</td><td>Enough bulbs for a few months of cooking</td></tr>
-        <tr><td>Basil</td><td>1–2 plants</td><td>Plenty for fresh use; a few more if freezing pesto</td></tr>
-        <tr><td>Peas</td><td>15–20 plants</td><td>Pods are small per plant, so plant generously</td></tr>
-        <tr><td>Spinach</td><td>10–15 plants per succession</td><td>Several cut-and-come-again harvests</td></tr>
-        <tr><td>Carrots</td><td>25–40 plants (~10–15 ft of row)</td><td>A steady supply for months</td></tr>
-        <tr><td>Beets</td><td>10–15 plants</td><td>Roots plus greens</td></tr>
-        <tr><td>Radishes</td><td>10–15 plants per succession</td><td>Ready in ~3–4 weeks — resow often</td></tr>
-        <tr><td>Turnips</td><td>5–10 plants</td><td>Roots and greens both</td></tr>
-        <tr><td>Kale</td><td>2–4 plants</td><td>Cut-and-come-again through fall and into winter</td></tr>
-        <tr><td>Green beans (bush)</td><td>10–15 plants</td><td>Stagger plantings every few weeks for a steady harvest</td></tr>
-        <tr><td>Corn</td><td>10–15 plants, in blocks not rows</td><td>1–2 ears per stalk — blocks are needed for pollination</td></tr>
-        <tr><td>Cucumbers</td><td>2–3 plants fresh eating; 4–6 for pickling</td><td>Very prolific vines once they get going</td></tr>
-        <tr><td>Summer squash/zucchini</td><td>1–2 plants</td><td>Famously more than enough per plant</td></tr>
-        <tr><td>Winter squash/pumpkin</td><td>1–2 plants</td><td>3–6 fruit per plant depending on variety</td></tr>
-        <tr><td>Melons</td><td>2–3 plants</td><td>2–4 fruit per plant</td></tr>
-        <tr><td>Potatoes (seed potato)</td><td>5–10 lbs of seed potatoes</td><td>Roughly 5–10× that weight back at harvest</td></tr>
-      </table>
-      <p style="font-family:Arial,sans-serif;font-size:0.8rem;color:var(--muted);">Asparagus isn't in this table — as
-      a perennial it doesn't scale by "plants per person per season" the same way. See the Asparagus card below for
-      how to size that bed.</p>
+      <p>How much to plant <strong>per person</strong>, from Texas A&amp;M AgriLife's Texas Home Vegetable Gardening
+      Guide. The first column is for eating fresh in season; the second is what to plant if you also want to freeze
+      or can it — for both, plant roughly the two amounts combined. A "hill" is a small mound of 2–3 plants.
+      Treat these as starting points; yield swings with variety, weather and care.</p>
+      <div id="howMuchTable"></div>
+      <p class="muted-small">* Basil and cilantro aren't in AgriLife's table; those amounts are general guidance.
+      Asparagus is a 15–20 year planting — see its card in Crop Guides for sizing a bed.</p>
+    </div>
+  </div>
+
+  <!-- ===== Crop Guides ===== -->
+  <div class="subpane" id="garden-crops">
+    <div class="card">
+      <h3>🌾 Crop Guides</h3>
+      <p>The crops that need more than a planting date: day-length onions, heat-stalled tomatoes, fall-planted garlic
+      and strawberries, perennials, and the fruits that do or don't suit Callahan County. Tap one to jump to it.</p>
+      <div class="guide-nav">
+        <button type="button" data-anchor="g-before">Before you plant</button>
+        <button type="button" data-anchor="g-tomatoes">Tomatoes &amp; peppers</button>
+        <button type="button" data-anchor="g-cool">Cool-season crops</button>
+        <button type="button" data-anchor="g-onions">Onions</button>
+        <button type="button" data-anchor="g-garlic">Garlic</button>
+        <button type="button" data-anchor="g-potatoes">Potatoes</button>
+        <button type="button" data-anchor="g-sweetpotatoes">Sweet potatoes</button>
+        <button type="button" data-anchor="g-okra">Okra &amp; southern peas</button>
+        <button type="button" data-anchor="g-herbs">Herbs</button>
+        <button type="button" data-anchor="g-asparagus">Asparagus</button>
+        <button type="button" data-anchor="g-strawberries">Strawberries</button>
+        <button type="button" data-anchor="g-blackberries">Blackberries</button>
+        <button type="button" data-anchor="g-blueberries">Blueberries</button>
+        <button type="button" data-anchor="g-grapes">Grapes</button>
+        <button type="button" data-anchor="g-fruittrees">Fruit trees</button>
+        <button type="button" data-anchor="g-figs">Figs</button>
+        <button type="button" data-anchor="g-pecans">Pecans</button>
+        <button type="button" data-anchor="g-notsuited">Won't thrive here</button>
+      </div>
     </div>
 
-    <div class="card searchable" id="t-asparagus" data-keywords="asparagus perennial bed raised bed crowns Mary Washington Jersey Giant UC 157">
+    <div class="card searchable" id="g-before" data-keywords="before you plant soil test alkaline iron chlorosis fertilizer mulch drip irrigation wind">
+      <h3>🧪 Before you plant</h3>
+      <p><strong>Test the soil first.</strong> Every 2–3 years, send a sample to Texas A&amp;M AgriLife's Soil, Water and
+      Forage Testing Lab in College Station. The Callahan County Extension office has sample bags and forms. The
+      results tell you your pH and exactly what to add, so you're not guessing.</p>
+      <p><strong>Expect alkaline soil.</strong> Callahan County soils are mostly loam over clay, neutral to
+      moderately alkaline. High pH locks up iron: the newest leaves turn yellow while their veins stay green (iron
+      chlorosis). The fix is chelated iron labeled <strong>EDDHA</strong>, which keeps working at high pH. A foliar
+      iron spray is a quick but short-lived fix.</p>
+      <p><strong>Fertilizer.</strong> For clay soils AgriLife suggests 1–2 lb of 10-20-10 (or 12-24-12) per 100 sq ft
+      before planting. Your soil test results override this.</p>
+      <p><strong>Water and mulch.</strong> Aim for about 1 inch a week, soaking at least 6 inches deep. AgriLife calls
+      drip irrigation the best option: it keeps leaves dry (less disease) and uses the least water. Mulch 1–2 inches
+      in general and 4–6 inches around tomatoes in summer to keep roots cool.</p>
+      <p><strong>Wind.</strong> Wrap new tomato cages with row cover or perforated plastic right after transplanting.
+      A windbreak row of sorghum, sunflowers or rye shelters about 10 ft downwind for every foot of its height.</p>
+      <p><strong>About your frost dates.</strong> This guide uses April 5 and November 1 from the Baird and Clyde
+      weather stations, the closest to you. Abilene's averages are a bit milder (about March 21 and November 11).
+      Sticking with the more conservative dates protects you from a late cold snap.</p>
+    </div>
+
+    <div class="card searchable" id="g-tomatoes" data-keywords="tomatoes peppers eggplant heat fruit set fall tomatoes varieties">
+      <h3>🍅 Tomatoes, peppers &amp; eggplant in Texas heat</h3>
+      <p><strong>Heat is the real enemy, not cold.</strong> Tomatoes stop setting fruit when nights stay above about
+      70–75°F or days run above about 95°F. Plant transplants as early as frost allows (mid-April for you) so the
+      plants set fruit before late-June heat shuts them down.</p>
+      <p><strong>Tomato varieties that handle Texas:</strong> Texas Superstar picks Tomato444 (BHN 444) and Tycoon,
+      plus Celebrity, Carnival, Sun Pride and Heatwave for heat set. Cherry types (Porter, Juliet, Cherry Grande,
+      Sweet 100) keep producing longest. Roma for paste.</p>
+      <p><strong>Peppers:</strong> Big Bertha and Jupiter (bell), TAM Mild Jalapeño, Hidalgo Serrano.
+      <strong>Eggplant:</strong> Black Beauty, Black Magic. Both shrug off summer better than tomatoes: keep them
+      watered and they'll produce again in fall.</p>
+      <p><strong>The fall crop.</strong> Texas grows a real second tomato season. Transplant in early to late July,
+      about 100–120 days before first frost; AgriLife's last good date for your region is around July 25. Peppers and
+      eggplant go in mid to late July. Use transplants, not seed, and give them afternoon shade and plenty of water
+      their first couple of weeks. Tycoon resists tomato yellow leaf curl virus, which shows up more in fall.</p>
+      <p><strong>Spacing:</strong> tomatoes 3–4 ft apart in rows 3–4 ft apart; peppers and eggplant 1½–2 ft apart.</p>
+    </div>
+
+    <div class="card searchable" id="g-cool" data-keywords="cool season broccoli cabbage cauliflower lettuce spinach kale collards carrots fall garden bolting">
+      <h3>🥦 Cool-season crops: fall is your better season</h3>
+      <p>Broccoli, cabbage, cauliflower, lettuce, spinach, kale, collards, chard, carrots and beets all grow in spring
+      too, but here spring plantings race into heat and bolt or turn bitter. Broccoli, for example, flowers early once
+      it matures much above 80°F. AgriLife says fall planting is often more successful in Texas, and doesn't
+      recommend spring cauliflower at all.</p>
+      <p><strong>Fall timing for you:</strong> broccoli, cabbage and cauliflower transplants mid-July through late
+      August; lettuce late July through August; spinach, turnips, radishes and English peas keep going into October.
+      The Planting Calendar's fall table has exact windows. Cold-hardy crops handle light freezes and keep producing
+      past first frost; kale and collards taste sweeter after one.</p>
+      <p><strong>Spring timing:</strong> transplants go in about 4–6 weeks before last frost (late February to early
+      March for you). Pick early-maturing varieties.</p>
+      <p><strong>Varieties</strong> (AgriLife North Central Texas list): broccoli Packman, Green Magic, Premium Crop;
+      cabbage Early Jersey Wakefield; cauliflower Snow Crown; lettuce Black Seeded Simpson, Red Sails, Buttercrunch;
+      spinach Melody, Tyee; kale Dwarf Blue Curled; collards Blue Max, Georgia; carrots Royal Chantenay (short, good
+      in clay), Danvers 126.</p>
+    </div>
+
+    <div class="card searchable" id="g-onions" data-keywords="onions short day intermediate day 1015 granex candy transplants bulbing">
+      <h3>🧅 Onions</h3>
+      <p><strong>Day length decides everything.</strong> Onions start forming bulbs once days reach a set length.
+      Grow <strong>short-day</strong> varieties, which bulb at 10–12 hours of daylight. Intermediate-day types like
+      Candy are a reasonable second choice at your latitude. Skip long-day onions (the kind sold up north); they won't
+      bulb properly here.</p>
+      <p><strong>Varieties:</strong> Texas Supersweet 1015Y, Yellow, Red and White Granex, Early Grano 502, Texas
+      Early White, Burgundy. Intermediate-day: Candy.</p>
+      <p><strong>Planting:</strong> set transplants late January to mid-February (earlier is better), ¾ inch deep and
+      3 inches apart. Or sow seed in October–December; the "1015" is named for sowing around October 15.</p>
+      <p><strong>Every leaf becomes a ring.</strong> The more leaves a plant grows before bulbing starts in spring,
+      the bigger the onion. Feed at planting (2–3 lb of 10-10-10 per 100 sq ft) and again at the 5–6 leaf stage
+      (½ cup per 10 ft of row).</p>
+      <p><strong>Harvest</strong> May–July, when the necks soften and the tops fall over. Let them dry in the garden
+      1–2 days, then cure in shade. Sweet onions keep about 3 months; see the Root Cellar tab for storage.</p>
+    </div>
+
+    <div class="card searchable" id="g-garlic" data-keywords="garlic softneck hardneck fall planting cloves curing">
+      <h3>🧄 Garlic</h3>
+      <p><strong>Planted in fall, harvested the next summer.</strong> Plant cloves late September through October
+      (AgriLife's fall guide lists October for your region), 1–2 inches deep, pointed end up, 3–6 inches apart. Wait
+      until the soil a couple of inches down is below 85°F.</p>
+      <p><strong>Softneck types are the safe bet in Texas:</strong> California Early, California White, Creole types,
+      Lorz Italian, Inchelium Red, Texas Rose or Texas White. Elephant garlic (really a leek) does well too.
+      Hardneck types prefer colder winters; yours are colder than Central Texas, so a small trial is fine, but it's
+      unproven here.</p>
+      <p><strong>Harvest</strong> roughly late May to June, once the lower ⅓–½ of the leaves have browned.
+      <strong>Cure</strong> by hanging in shade with good airflow for 2–4 weeks, then trim roots to ¼ inch and tops to
+      about 2 inches.</p>
+    </div>
+
+    <div class="card searchable" id="g-potatoes" data-keywords="irish potatoes seed potatoes cutting curing hilling valentine fall potatoes">
+      <h3>🥔 Irish potatoes</h3>
+      <p><strong>Plant</strong> when soil 4 inches down reaches about 50°F, 4–6 weeks before last frost: late
+      February to early March for you. (The Texas tradition is around Valentine's or Presidents' Day; your later frost
+      date nudges it a little later.)</p>
+      <p><strong>Seed pieces:</strong> 5–6 days before planting, cut seed potatoes into 1½–2 oz pieces (about the size
+      of a hen's egg), each with at least one good eye. Let them cure in a ventilated spot so the cut sides seal over.
+      Plant 3–4 inches deep, 10–12 inches apart, rows 30–36 inches apart.</p>
+      <p><strong>Growing:</strong> pull soil up around the stems as they grow (hilling), and mulch thickly once plants
+      are 8–10 inches tall. Keep moisture even; drought followed by heavy watering gives cracked, knobby
+      tubers.</p>
+      <p><strong>Varieties:</strong> Red LaSoda, Dark Red Norland, Viking, Kennebec, Yukon Gold, Russet Norkotah.</p>
+      <p><strong>Harvest</strong> 75–110 days after planting, once the tops die back and the skins are firm.
+      <strong>A fall crop</strong> is possible but marginal: small whole potatoes planted in mid-July into hot soil.
+      AgriLife's sources don't agree on timing, so treat it as an experiment.</p>
+    </div>
+
+    <div class="card searchable" id="g-sweetpotatoes" data-keywords="sweet potatoes slips curing beauregard storage">
+      <h3>🍠 Sweet potatoes</h3>
+      <p><strong>Grown from slips</strong> (rooted vine cuttings), not seed. Plant once the soil is above 65°F, at
+      least 2 weeks after last frost: late April through May for you. One of the best crops for your summers; it
+      loves heat.</p>
+      <p><strong>Planting:</strong> 3–4 inches deep, 12–24 inches apart, on ridges about 8 inches high with rows 3–4 ft
+      apart. Give about an inch of water a week, and stop watering 2–3 weeks before harvest.</p>
+      <p><strong>Varieties:</strong> Beauregard (most popular), Centennial, Jewel, Vardaman (compact, about 100
+      days).</p>
+      <p><strong>Harvest</strong> after 100–130 days, before the soil cools below about 55°F, which causes chilling
+      injury.</p>
+      <p><strong>Cure them, or they won't taste right.</strong> Hold at 80–85°F and 85–90% humidity for 7–10 days (a
+      warm room with the roots in loosely closed boxes or bags works). Curing heals nicks so they store without
+      rotting, and turns starch into sugar. Then store at 55–60°F for 3–7 months. Never refrigerate: below 50°F
+      they get hard cores and off flavors.</p>
+    </div>
+
+    <div class="card searchable" id="g-okra" data-keywords="okra southern peas black eyed peas purple hull cream peas summer heat">
+      <h3>🌞 Okra &amp; southern peas: your summer workhorses</h3>
+      <p>Both thrive in the heat that shuts tomatoes down, so they fill the garden through July and August.</p>
+      <p><strong>Okra:</strong> wait for soil around 75°F (early to mid-May for you) and soak seed overnight. Plant
+      ½–1 inch deep and thin to 12–24 inches apart. Varieties: Clemson Spineless, Emerald, Lee, Cajun Delight;
+      Blondy and Annie Oakley stay compact; Burgundy is red. <strong>Pick pods at 2–4 inches every 1–2
+      days.</strong> They turn woody fast, and the plant slows down if pods are left on. A second planting needs at
+      least 70–90 days before frost (by early to mid-August).</p>
+      <p><strong>Southern peas</strong> (black-eyed, purple hull, cream, crowder): plant 2–10 weeks after last frost,
+      or 10–12 weeks before first frost for a fall crop. Varieties: Texas Pink Eye, Texas Cream 8, Zipper Cream,
+      California #5 (black-eyed), Mississippi Silver.</p>
+    </div>
+
+    <div class="card searchable" id="g-herbs" data-keywords="herbs cilantro parsley dill basil rosemary oregano thyme sage mint">
+      <h3>🌿 Herbs</h3>
+      <p><strong>Cool-season (fall, winter, early spring):</strong> cilantro, parsley and dill. Cilantro, a 2026
+      Texas Superstar, loves 60° days and bolts at 90°. It's ready in 35–45 days, takes light frost, and reseeds if
+      you let a few plants flower. Sow a little every few weeks.</p>
+      <p><strong>Warm-season:</strong> basil. Plant after frost; it dies at the first freeze. Sweet and Spicy Globe
+      are on AgriLife's North Central Texas list.</p>
+      <p><strong>Perennials:</strong> rosemary, oregano (including Mexican oregano), thyme and sage come back every
+      year but need sharp drainage. In clay, give them a raised bed; sage especially hates wet clay.</p>
+      <p><strong>Mint:</strong> keep it in a pot. It spreads underground and will take over a bed.</p>
+    </div>
+
+    <div class="card searchable" id="g-asparagus" data-keywords="asparagus perennial bed raised bed crowns Mary Washington Jersey Giant UC 157">
       <h3>🌿 Asparagus — a perennial bed, planned once</h3>
       <p>Unlike everything else on this page, asparagus is a perennial — plant it once and, if the bed is sized and
       sited well, it keeps producing for 15–20+ years. That also means it's worth getting the planning right up
@@ -945,23 +1117,265 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       better suited to asparagus than most of the rest of the state. It needs real winter cold to go properly
       dormant, and struggles more where summers are long and hot and winters stay mild — exactly the opposite of
       your climate.</p>
-      <p><strong>Sizing for a real harvest</strong> (not a token patch): aim for roughly 20–30 crowns, spaced
-      12–18 inches apart. A bed about 3–4 ft wide with two staggered rows, 12–20 ft long, comfortably fits that —
-      enough for regular meals during the harvest window rather than just a handful of spears.</p>
+      <p><strong>Sizing for a real harvest</strong> (not a token patch): AgriLife suggests 10–15 plants per person, so
+      plan on roughly 20–30 crowns for your family, spaced about 18 inches apart. A bed about 3–4 ft wide with two
+      staggered rows, 12–20 ft long, fits that comfortably.</p>
       <p><strong>Soil &amp; drainage:</strong> asparagus wants deep, well-drained soil — the single biggest way it
       fails is crown rot from sitting wet, a real risk in this area's clay. Build a raised bed with at least
       12–18 inches of good, compost-amended soil over loosened native ground.</p>
       <p><strong>Varieties:</strong> Mary Washington, Martha Washington, UC 157, or Jersey Giant all do well in
       Texas.</p>
-      <p><strong>Planting:</strong> set crowns in January or February, about 6–8 inches deep in a trench, using the
-      classic mound-and-backfill method — place the crown on a small mound at the trench bottom, spread the roots
-      down the sides, and gradually fill in the trench as shoots grow through the season.</p>
+      <p><strong>Planting:</strong> set crowns in late winter. AgriLife's table puts it 4–6 weeks before your last
+      frost, about late February to early March. Plant 6–8 inches deep in a trench using the mound-and-backfill
+      method: set each crown on a small mound at the trench bottom, spread the roots down the sides, and fill the
+      trench in gradually as shoots grow through the season.</p>
       <p><strong>Patience required:</strong> don't harvest at all the first year, harvest lightly the second, and let
       the bed reach full production by year three. After that, it's one of the lowest-effort things in the garden
       for well over a decade.</p>
       <p><span class="tag safe">🟢 naturally low histamine</span> Asparagus is eaten fresh rather than fermented,
       cured, or aged — the preparations that tend to raise histamine levels — so it's one of the better vegetable
       options for Riley's diet. It's also naturally gluten-free with nothing to swap or watch for.</p>
+    </div>
+
+    <div class="card searchable" id="g-strawberries" data-keywords="strawberries fall planted annual chandler raised beds">
+      <h3>🍓 Strawberries</h3>
+      <p><strong>Texas grows them as a fall-planted annual.</strong> Plant in October, harvest March–May, then pull the
+      plants. AgriLife calls this the best system for Texas; the northern "matted row" method isn't recommended here.
+      Order plants early, since they ship in late September.</p>
+      <p><strong>Layout:</strong> raised beds 2½–3 ft apart, two rows per bed 18 inches apart, plants 12 inches
+      apart.</p>
+      <p><strong>Varieties:</strong> Chandler (most common and well adapted), Sweet Charlie, Festival, Camarosa,
+      Camino Real.</p>
+      <p><strong>Care:</strong> cover with row cover on freezing nights once they bloom. Pick when the berries are at
+      least 75% red. They tolerate soil up to about pH 7.6.</p>
+    </div>
+
+    <div class="card searchable" id="g-blackberries" data-keywords="blackberries thornless natchez brazos kiowa trellis pruning">
+      <h3>🫐 Blackberries</h3>
+      <p>One of the most productive fruits for a homestead: first crop in year 2, then 5–10 lb per plant.</p>
+      <p><strong>Varieties:</strong> thornless Natchez, Ouachita, Arapaho, Apache. Thorny types produce more: Brazos
+      (earliest), Kiowa (largest berries), Rosborough, Chickasaw. Primocane types (Prime-Ark 45, Prime-Jim, Prime-Jan)
+      fruit on first-year canes.</p>
+      <p><strong>Soil:</strong> they struggle on alkaline soil and show iron chlorosis (yellow new leaves). Amend
+      heavily or use raised beds, and keep chelated iron on hand.</p>
+      <p><strong>Planting:</strong> mid-to-late winter, 2–3 ft apart in rows 8–12 ft apart. Trellis on two wires at
+      30 and 60 inches.</p>
+      <p><strong>Pruning:</strong> each cane dies after it fruits. Cut fruited canes to the ground right after
+      harvest, and tip new canes in summer so they branch.</p>
+    </div>
+
+    <div class="card searchable" id="g-blueberries" data-keywords="blueberries acid soil ph containers rabbiteye rainwater alkaline">
+      <h3>🫐 Blueberries — containers only here</h3>
+      <p>Blueberries need soil at pH 4.0–5.5. They won't thrive in your alkaline ground, and AgriLife says trying to
+      acidify native soil usually fails. Alkaline well water is a second problem, since its calcium bicarbonate and
+      sodium hurt them.</p>
+      <p><strong>The workaround AgriLife describes:</strong> 20–30 gallon containers of a peat moss and pine bark mix,
+      watered with rainwater or air-conditioner condensate. It works, but it's ongoing effort, and keeping enough
+      rainwater through a dry summer is the hard part.</p>
+      <p><strong>Varieties:</strong> rabbiteye types only — Tifblue, Climax, Premier, Brightwell, Powderblue, Austin.
+      Plant two varieties for better fruit set.</p>
+    </div>
+
+    <div class="card searchable" id="g-grapes" data-keywords="grapes pierces disease black spanish blanc du bois champanel muscadine">
+      <h3>🍇 Grapes</h3>
+      <p><strong>Pierce's disease is the big risk.</strong> It's a bacterial disease spread by sharpshooter insects,
+      and there was an outbreak across the West Cross Timbers (your neighborhood) in the late 1990s. European wine
+      grapes are high-risk here.</p>
+      <p><strong>Pierce's-tolerant grapes:</strong> Black Spanish (Lenoir) grows across Texas but watch for iron
+      chlorosis; Blanc du Bois (white); Victoria Red (table grape); Champanel (handles heavy clay, great for jelly);
+      Herbemont; Lomanto.</p>
+      <p><strong>Muscadines</strong> are a poor fit; they want pH around 6 and yellow on alkaline soil.</p>
+      <p><strong>Pruning:</strong> February–March, to a single cordon with spurs of 2–3 buds.</p>
+    </div>
+
+    <div class="card searchable" id="g-fruittrees" data-keywords="fruit trees chill hours peaches plums apples pears cherries cotton root rot bare root">
+      <h3>🍑 Fruit trees &amp; chill hours</h3>
+      <p><strong>Chill hours</strong> are the hours at or below 45°F a tree gets over winter. A variety needs about
+      its rated number to bloom and fruit properly. Too few chill hours and buds don't develop; a low-chill variety
+      blooms too early and gets frosted. Your area is estimated at <strong>around 800 chill hours</strong> (AgriLife's
+      North Central Texas list is built on 800–900) — confirm with the Callahan County Extension agent before you
+      buy. Pick varieties within about 150 hours of your number.</p>
+      <p><strong>Peaches</strong> (650–850 hour types): Junegold, Juneprince, Flavorich, Regal, Cary Mac, Dixiland,
+      Redskin, Harvester, Sentinel, Majestic, Redglobe, Cresthaven, Fireprince. Expect to lose about one crop in six
+      or seven to late frost. First crop in year 3–4; prune to an open center every winter.</p>
+      <p><strong>Plums:</strong> Methley (self-fruitful and pollinates others), Bruce (needs Methley nearby), Morris
+      (needs a pollinator and 800+ chill hours). Most plums need two varieties.</p>
+      <p><strong>Pears:</strong> West Texas has the lowest fire blight pressure in the state. Kieffer, Moonglow,
+      Orient, Warren, Ayers, Magness, Maxine, LeConte. Asian pears bear around year 4. On heavy, high-pH soil use
+      <em>Pyrus betulifolia</em> rootstock.</p>
+      <p><strong>Apples</strong> are harder here since they prefer slightly acidic soil. For your chill level:
+      Gala/Royal Gala, Fuji, Mollie's Delicious, Mutsu, Pink Lady on MM111 or EM7 rootstock. Plant two varieties for
+      pollination.</p>
+      <p><strong>Cherries are a poor bet.</strong> AgriLife says sweet cherries have performed poorly in Texas (high
+      chill needs, brown rot, birds). Montmorency tart cherry is only worth a trial.</p>
+      <p><strong>Cotton root rot</strong> is a soil fungus common in alkaline clay across this area. It kills fruit and
+      nut trees suddenly (pears are very susceptible) and there's no effective fungicide. Avoid spots where trees or
+      shrubs have died suddenly before.</p>
+      <p><strong>When to plant:</strong> bare-root trees December through early March while dormant; container trees
+      can go in most of the year. On high-pH soil AgriLife suggests nitrogen-only fertilizer plus chelated iron and
+      zinc as needed.</p>
+    </div>
+
+    <div class="card searchable" id="g-figs" data-keywords="figs celeste texas everbearing brown turkey alma freeze protection">
+      <h3>🟤 Figs</h3>
+      <p><strong>Varieties:</strong> Celeste is the most cold-hardy and your best bet. Texas Everbearing (sold as Brown
+      Turkey) is less hardy but fruits June through August. Alma is excellent but very frost-sensitive while
+      young.</p>
+      <p><strong>Cold:</strong> figs handle a sustained 17°F and survive the low teens with some damage, so your coldest
+      winters will nip them some years. Before a hard freeze, water deeply; mound hay 2–3 ft up the trunk of older
+      trees, and cage young plants and stuff the cage with hay or leaves. If one freezes to the ground, keep 5–6
+      strong new shoots as the new trunks.</p>
+    </div>
+
+    <div class="card searchable" id="g-pecans" data-keywords="pecans pawnee wichita caddo western zinc type I type II pollination">
+      <h3>🌰 Pecans</h3>
+      <p>A long game: expect few nuts for the first 5–7 years, and space trees 50–100 ft apart.</p>
+      <p><strong>Varieties</strong> (AgriLife's West region list): Pawnee, Caddo, Cheyenne, Lipan, Waco, Western
+      (Type I) and Hopi, Lakota, Wichita (Type II). Plant both types so they pollinate each other; about 15%
+      pollinator trees is enough. Callahan County sits near the edge of AgriLife's West, North and Central regions.</p>
+      <p><strong>Zinc is essential on alkaline soil.</strong> Spray zinc sulfate at 2 teaspoons per gallon: every 2
+      weeks April to early August on young trees, and at least 3 times between budbreak and early June on mature
+      trees. West-region trees also need irrigation for a good crop.</p>
+    </div>
+
+    <div class="card searchable" id="g-notsuited" data-keywords="rhubarb mango cherries not suited texas annual">
+      <h3>🚫 What won't thrive here (and workarounds)</h3>
+      <p><strong>Rhubarb:</strong> AgriLife says it doesn't grow well anywhere in Texas as a perennial; summer heat and
+      crown rot kill it. Grow it as a cool-season annual instead: start Victoria seed indoors in mid-to-late August,
+      transplant late September to early October, and harvest March–May. Eat only the stalks; the leaves are
+      toxic.</p>
+      <p><strong>Mango:</strong> leaves are damaged below 30°F, so in Texas it only grows outdoors in the Lower Rio
+      Grande Valley. Here it would have to be a container plant brought indoors for winter.</p>
+      <p><strong>Cherries and blueberries:</strong> see Fruit trees and Blueberries above.</p>
+    </div>
+
+    <div class="card">
+      <h3>📚 Where this comes from</h3>
+      <p class="muted-small" style="font-size:0.85rem;">Texas A&amp;M AgriLife Extension:
+      <a href="https://agrilifeextension.tamu.edu/library/gardening/texas-home-vegetable-gardening-guide/" target="_blank" rel="noopener">Texas Home Vegetable Gardening Guide</a>,
+      <a href="https://agrilifeextension.tamu.edu/browse/featured-solutions/gardening-landscaping/fall-vegetable-gardening-guide-for-texas/" target="_blank" rel="noopener">Fall Vegetable Gardening Guide for Texas</a>,
+      <a href="https://agrilifeextension.tamu.edu/wp-content/uploads/2023/08/how-to-grow-onions.pdf" target="_blank" rel="noopener">How to Grow Onions</a>,
+      <a href="https://aggie-horticulture.tamu.edu/wp-content/uploads/sites/10/2013/09/EHT-068.pdf" target="_blank" rel="noopener">Irish Potato</a>,
+      <a href="https://aggie-horticulture.tamu.edu/wp-content/uploads/sites/10/2020/08/EHT-133.pdf" target="_blank" rel="noopener">Tomatoes</a>,
+      <a href="https://agrilifeextension.tamu.edu/wp-content/uploads/2025/05/Growing-Strawberries.pdf" target="_blank" rel="noopener">Growing Strawberries</a>,
+      <a href="https://agrilifeextension.tamu.edu/wp-content/uploads/2025/07/Peaches.pdf" target="_blank" rel="noopener">Peaches</a>,
+      and the AgriLife Fruit &amp; Nut fact sheets for
+      <a href="https://aggie-horticulture.tamu.edu/fruit-nut/wp-content/uploads/sites/6/2015/04/pears_2015.pdf" target="_blank" rel="noopener">pears</a>,
+      <a href="https://aggie-horticulture.tamu.edu/fruit-nut/wp-content/uploads/sites/6/2015/04/figs_2015.pdf" target="_blank" rel="noopener">figs</a>,
+      <a href="https://aggie-horticulture.tamu.edu/fruit-nut/wp-content/uploads/sites/6/2015/04/blueberries_2015.pdf" target="_blank" rel="noopener">blueberries</a>,
+      <a href="https://aggie-horticulture.tamu.edu/fruit-nut/wp-content/uploads/sites/6/2015/04/blackberries_2015.pdf" target="_blank" rel="noopener">blackberries</a>,
+      <a href="https://aggie-horticulture.tamu.edu/fruit-nut/wp-content/uploads/sites/6/2015/04/pecans_improved_2015.pdf" target="_blank" rel="noopener">pecans</a>
+      and <a href="https://aggie-horticulture.tamu.edu/wp-content/uploads/sites/6/2010/10/Texas-Grape-Growers-PD-Management-Guide.pdf" target="_blank" rel="noopener">grapes</a>.
+      Variety names marked as North Central Texas come from AgriLife's Tarrant County list, the nearest regional list
+      available. For anything you're about to spend real money on (trees especially), the Callahan County Extension
+      office in Baird can confirm what does best locally.</p>
+    </div>
+  </div>
+
+  <!-- ===== Companion Planting ===== -->
+  <div class="subpane" id="garden-companion">
+    <div class="card searchable" id="c-intro" data-keywords="companion planting evidence folklore">
+      <h3>🤝 Companion planting: what's real and what's folklore</h3>
+      <p>Companion planting charts online mix real research with garden folklore. Each idea here is labeled so you
+      know which is which:
+      <span class="tag ev-good">✅ good evidence</span>
+      <span class="tag ev-some">🟡 some evidence</span>
+      <span class="tag ev-folk">⚪ folklore</span></p>
+      <p>The single practice with the strongest evidence isn't a pairing at all — it's <strong>crop rotation</strong>
+      (bottom of this page).</p>
+    </div>
+
+    <div class="card searchable" id="c-works" data-keywords="companion planting works three sisters sweet alyssum trap crop marigolds nematodes blue hubbard mustard harlequin">
+      <h3>✅ What actually works</h3>
+      <table>
+        <tr><th>Practice</th><th>How to do it</th><th>Evidence</th></tr>
+        <tr><td>Three Sisters (corn, pole beans, squash)</td><td>Corn holds up the beans; squash shades the soil and
+        holds moisture. Plant the beans a little after the corn so they're not shaded out. Each crop yields a bit less
+        than alone, but together they produce more food from the same space. Corn is thirsty, so irrigate in dry
+        years.</td><td><span class="tag ev-good">✅ good</span></td></tr>
+        <tr><td>Sweet alyssum strips</td><td>Give about 5% of a bed to sweet alyssum. It draws hoverflies, whose larvae
+        eat aphids up to about 50 ft away.</td><td><span class="tag ev-good">✅ good</span></td></tr>
+        <tr><td>Let some herbs flower</td><td>Dill, cilantro and buckwheat flowers feed parasitic wasps, lacewings and
+        hoverflies.</td><td><span class="tag ev-some">🟡 some</span></td></tr>
+        <tr><td>Blue Hubbard squash border</td><td>A ring of Blue Hubbard around summer squash pulled away up to 95% of
+        cucumber beetles and most squash vine borers in Connecticut trials. The catch: the border has to be sprayed or
+        hand-cleared regularly, or it just breeds more pests.</td><td><span class="tag ev-good">✅ good (takes work)</span></td></tr>
+        <tr><td>Mustard border for harlequin bugs</td><td>Mustard planted around collards or cabbage cut harlequin bug
+        damage about in half, no spray needed (Virginia study).</td><td><span class="tag ev-good">✅ good</span></td></tr>
+        <tr><td>Collards around cabbage</td><td>Collards draw diamondback moths off cabbage.</td><td><span class="tag ev-some">🟡 some</span></td></tr>
+        <tr><td>Sorghum or sunflowers for leaffooted &amp; stink bugs</td><td>Plant 2 weeks before the tomatoes, 6–10 ft
+        away, and stagger plantings. Research is from Alabama and Florida.</td><td><span class="tag ev-some">🟡 some</span></td></tr>
+        <tr><td>Marigolds for root-knot nematodes</td><td>Only works as a dense cover crop: French or African marigolds
+        planted solid, 7 inches apart, for at least 2 months in the bed <em>before</em> tomatoes. A few marigolds tucked
+        between vegetables don't help. Get a nematode test first, since marigolds can increase some other
+        nematodes.</td><td><span class="tag ev-good">✅ good (as a cover crop)</span></td></tr>
+        <tr><td>Radishes with carrots</td><td>Radishes sprout in days and mark the slow carrot row; you pull them before
+        the carrots need the room. A practical trick, not a plant interaction.</td><td><span class="tag ev-good">✅ good</span></td></tr>
+        <tr><td>Tall crops shading lettuce</td><td>Corn or a trellis on the west side gives lettuce and spinach afternoon
+        shade and slows bolting. They also compete for water.</td><td><span class="tag ev-some">🟡 some</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card searchable" id="c-folklore" data-keywords="companion planting myths folklore tomatoes basil onions garlic repel nasturtium">
+      <h3>⚪ Folklore: plant it for fun, not for results</h3>
+      <ul>
+        <li><strong>Basil makes tomatoes taste better:</strong> three years of blind taste tests found no
+        difference.</li>
+        <li><strong>Onions and garlic repel pests:</strong> no evidence as a general rule. Any mix of plants confuses
+        some pests a little; it isn't special to onions.</li>
+        <li><strong>"Carrots love tomatoes" and big companion charts:</strong> one horticulturist compares them to
+        horoscopes.</li>
+        <li><strong>Onions stunt beans and peas:</strong> no study or mechanism found.</li>
+        <li><strong>Nasturtiums as an aphid trap:</strong> they attract aphids, but no field study shows they protect a
+        crop.</li>
+        <li><strong>Fennel poisons its neighbors:</strong> weak evidence; shade and water competition are the likelier
+        explanation.</li>
+      </ul>
+    </div>
+
+    <div class="card searchable" id="c-apart" data-keywords="keep apart black walnut juglone tomatoes potatoes blight sunflower allelopathy">
+      <h3>🚧 Real reasons to keep things apart</h3>
+      <ul>
+        <li><strong>Black walnut:</strong> its roots release juglone, which harms tomatoes, potatoes, peppers,
+        eggplant and asparagus up to 50–60 ft from a mature tree. Black walnut isn't common in your area; pecans are
+        relatives but produce far less of it. <span class="tag ev-good">✅ good</span></li>
+        <li><strong>Tomatoes after potatoes</strong> (or any nightshade after another): they share early and late
+        blight. Side by side is fine; following one with the other in the same bed is the problem.
+        <span class="tag ev-good">✅ good</span></li>
+        <li><strong>Sunflower hulls:</strong> sunflower residue suppresses seedlings, so don't let seed hulls pile up in
+        beds (like under a bird feeder). <span class="tag ev-some">🟡 some</span></li>
+      </ul>
+    </div>
+
+    <div class="card searchable" id="c-rotation" data-keywords="crop rotation plant families nightshades brassicas cucurbits legumes four bed">
+      <h3>🔄 Crop rotation: the one with the strongest evidence</h3>
+      <p>Don't grow the same plant family in the same spot more than once every 3–4 years. Related crops share soil
+      diseases and pests, and rotation starves them out. It helps less against insects that fly in (squash bugs,
+      leaffooted bugs), and root-knot nematodes eat so many crops that rotation alone won't stop them; add
+      nematode-resistant (VFN) tomatoes and a marigold cover crop.</p>
+      <table>
+        <tr><th>Year</th><th>Bed A</th><th>Bed B</th><th>Bed C</th><th>Bed D</th></tr>
+        <tr><td>1</td><td>Nightshades</td><td>Legumes</td><td>Brassicas &amp; greens</td><td>Cucurbits &amp; corn</td></tr>
+        <tr><td>2</td><td>Legumes</td><td>Brassicas &amp; greens</td><td>Cucurbits &amp; corn</td><td>Nightshades</td></tr>
+        <tr><td>3</td><td>Brassicas &amp; greens</td><td>Cucurbits &amp; corn</td><td>Nightshades</td><td>Legumes</td></tr>
+        <tr><td>4</td><td>Cucurbits &amp; corn</td><td>Nightshades</td><td>Legumes</td><td>Brassicas &amp; greens</td></tr>
+      </table>
+      <p style="font-size:0.85rem;"><strong>Nightshades:</strong> tomatoes, peppers, potatoes, eggplant.
+      <strong>Legumes:</strong> beans and southern peas in summer, English peas in winter.
+      <strong>Brassicas &amp; greens:</strong> broccoli, cabbage, kale, collards, turnips, radishes, lettuce, spinach;
+      onions, garlic and root crops can share this cool-season bed. <strong>Cucurbits &amp; corn:</strong> squash,
+      cucumbers, melons, pumpkins, corn. With only three beds, combine the brassica and legume beds. Sweet potatoes
+      and okra are their own families and can slot in anywhere.</p>
+    </div>
+
+    <div class="card searchable" id="c-texaspests" data-keywords="texas pests leaffooted bugs harlequin bugs agrilife">
+      <h3>🐛 What AgriLife recommends for two Texas pests</h3>
+      <p><strong>Leaffooted bugs</strong> (tomatoes, fruit): scout often, hand-pick or vacuum them off, and clear tall
+      grass and weeds near the garden.</p>
+      <p><strong>Harlequin bugs</strong> (brassicas): hand-pick adults, crush the black-and-white barrel-shaped egg
+      clusters, and use insecticidal soap, neem or pyrethrin on the young nymphs.</p>
+      <p>The trap crops above come from research in neighboring states and are reasonable to try alongside these. See
+      the Pest &amp; Disease ID tab for more.</p>
     </div>
   </div>
 
@@ -979,6 +1393,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
         seedlings' outdoor time and direct sun exposure so they don't scorch or wilt from the shock of wind, sun,
         and temperature swings.</li>
       </ul>
+      <p>The Planting Calendar's "Start seeds indoors" column tells you when to start each crop.</p>
     </div>
   </div>
 
@@ -1186,6 +1601,13 @@ wireSubtabs('preserveTabs','preserve');
 wireSubtabs('gardenTabs','garden');
 wireSubtabs('referenceTabs','reference');
 
+function wrapTables(root){
+  (root||document).querySelectorAll('table').forEach(t=>{
+    if(t.parentElement && t.parentElement.classList.contains('table-wrap')) return;
+    const w = document.createElement('div'); w.className = 'table-wrap';
+    t.parentNode.insertBefore(w, t); w.appendChild(t);
+  });
+}
 function scrollToAnchor(id){
   if(!id) return;
   setTimeout(()=>{
@@ -1270,72 +1692,144 @@ function calcCure(){
 }
 
 /* ---------------- Planting calendar builder ---------------- */
+/* Planting data. Spring windows are days relative to the average last spring frost
+   (negative = before). Fall windows are days BEFORE the average first fall freeze
+   [earliest, latest]. Timing, days to harvest, spacing and per-person amounts come from
+   Texas A&M AgriLife's Texas Home Vegetable Gardening Guide (Tables 8 & 9) unless the
+   crop is marked src:"general" or noted otherwise. */
 const CROPS = [
-  {name:"Tomatoes", startIndoors:-56, transplant:14, direct:null, maturity:70, fall:false},
-  {name:"Peppers", startIndoors:-63, transplant:21, direct:null, maturity:75, fall:false},
-  {name:"Eggplant", startIndoors:-63, transplant:21, direct:null, maturity:70, fall:false},
-  {name:"Broccoli", startIndoors:-42, transplant:-21, direct:null, maturity:60, fall:true},
-  {name:"Cabbage", startIndoors:-42, transplant:-21, direct:null, maturity:70, fall:true},
-  {name:"Lettuce", startIndoors:-28, transplant:-14, direct:-21, maturity:50, fall:true},
-  {name:"Onions (from seed)", startIndoors:-70, transplant:-21, direct:null, maturity:100, fall:false},
-  {name:"Basil", startIndoors:-42, transplant:14, direct:null, maturity:68, fall:false},
-  {name:"Peas", startIndoors:null, transplant:null, direct:-28, maturity:60, fall:true},
-  {name:"Spinach", startIndoors:null, transplant:null, direct:-21, maturity:45, fall:true},
-  {name:"Carrots", startIndoors:null, transplant:null, direct:-14, maturity:70, fall:true},
-  {name:"Beets", startIndoors:null, transplant:null, direct:-14, maturity:55, fall:true},
-  {name:"Radishes", startIndoors:null, transplant:null, direct:-14, maturity:25, fall:true},
-  {name:"Turnips", startIndoors:null, transplant:null, direct:-14, maturity:55, fall:true},
-  {name:"Kale", startIndoors:-42, transplant:-21, direct:null, maturity:60, fall:true},
-  {name:"Green beans (bush)", startIndoors:null, transplant:null, direct:7, maturity:55, fall:true},
-  {name:"Corn", startIndoors:null, transplant:null, direct:7, maturity:75, fall:false},
-  {name:"Cucumbers", startIndoors:-21, transplant:14, direct:14, maturity:55, fall:true},
-  {name:"Summer squash/zucchini", startIndoors:-21, transplant:14, direct:14, maturity:50, fall:true},
-  {name:"Winter squash/pumpkin", startIndoors:-21, transplant:14, direct:14, maturity:95, fall:false},
-  {name:"Melons", startIndoors:-28, transplant:21, direct:21, maturity:85, fall:false},
-  {name:"Potatoes (seed potato)", startIndoors:null, transplant:null, direct:-14, maturity:90, fall:true},
+  {name:"Tomatoes", how:"Transplants", spring:[7,56], indoor:7, fall:[120,100], days:[70,90], fresh:"3–5 plants", keep:"5–10 plants", rows:"36–48", plants:"36–48", depth:"4–6", guide:"g-tomatoes", note:"Fall window comes from AgriLife's tomato guide (about 100–120 days before first frost)."},
+  {name:"Peppers", how:"Transplants", spring:[7,56], indoor:8, fall:[112,98], days:[60,90], fresh:"3–5 plants", keep:"3–5 plants", rows:"30–36", plants:"18–24", depth:"½", guide:"g-tomatoes"},
+  {name:"Eggplant", how:"Transplants", spring:[14,42], indoor:8, fall:[112,98], days:[80,90], fresh:"2–3 plants", keep:"2–3 plants", rows:"30–36", plants:"18–24", depth:"½", guide:"g-tomatoes"},
+  {name:"Broccoli", how:"Transplants", spring:[-42,-28], indoor:6, fall:[112,70], days:[60,80], fresh:"3–5 plants", keep:"5–6 plants", rows:"24–36", plants:"14–24", depth:"½", guide:"g-cool"},
+  {name:"Cabbage", how:"Transplants", spring:[-42,-28], indoor:6, fall:[112,70], days:[60,90], fresh:"3–4 plants", keep:"5–10 plants", rows:"24–36", plants:"14–24", depth:"½", guide:"g-cool"},
+  {name:"Cauliflower", how:"Transplants", spring:null, indoor:6, fall:[112,70], days:[70,90], fresh:"3–5 plants", keep:"8–12 plants", rows:"24–36", plants:"14–24", depth:"½", guide:"g-cool", note:"AgriLife doesn't recommend spring cauliflower in Texas — it's a fall crop."},
+  {name:"Lettuce", how:"Seed or transplants", spring:[-42,14], indoor:4, fall:[98,70], days:[40,80], fresh:"5–15 ft of row", keep:"—", rows:"18–24", plants:"2–3", depth:"½", guide:"g-cool"},
+  {name:"Spinach", how:"Seed", spring:[-56,-7], indoor:null, fall:[112,14], days:[40,60], fresh:"5–10 ft of row", keep:"10–15 ft of row", rows:"14–24", plants:"3–4", depth:"½", guide:"g-cool"},
+  {name:"Kale & collards", how:"Seed or transplants", spring:[-42,-14], indoor:5, fall:[84,56], days:[50,80], fresh:"5–10 ft of row", keep:"5–10 ft of row", rows:"18–36", plants:"6–12", depth:"½", guide:"g-cool"},
+  {name:"Swiss chard", how:"Seed", spring:[-42,-14], indoor:null, fall:[98,84], days:[45,55], fresh:"3–5 plants", keep:"8–12 plants", rows:"18–30", plants:"6", depth:"1", guide:"g-cool"},
+  {name:"Carrots", how:"Seed", spring:[-42,-28], indoor:null, fall:[98,84], days:[70,80], fresh:"5–10 ft of row", keep:"10–15 ft of row", rows:"14–24", plants:"2", depth:"½", guide:"g-cool"},
+  {name:"Beets", how:"Seed", spring:[-42,-28], indoor:null, fall:[70,56], days:[50,60], fresh:"5–10 ft of row", keep:"10–20 ft of row", rows:"14–24", plants:"2", depth:"1", guide:"g-cool"},
+  {name:"Radishes", how:"Seed", spring:[-42,28], indoor:null, fall:[56,7], days:[25,40], fresh:"3–5 ft of row", keep:"—", rows:"14–24", plants:"1", depth:"½", guide:"g-cool"},
+  {name:"Turnips", how:"Seed", spring:[-42,-14], indoor:null, fall:[84,14], days:[30,60], fresh:"5–10 ft of row", keep:"5–10 ft of row", rows:"14–24", plants:"2–3", depth:"½", guide:"g-cool"},
+  {name:"English peas", how:"Seed", spring:[-56,-14], indoor:null, fall:[84,14], days:[55,90], fresh:"15–20 ft of row", keep:"40–60 ft of row", rows:"18–36", plants:"1", depth:"2–3", guide:"g-cool"},
+  {name:"Onions (transplants)", how:"Transplants", spring:[-70,-28], indoor:null, fall:null, days:[80,120], fresh:"3–5 ft of row", keep:"30–50 ft of row", rows:"14–24", plants:"2–3", depth:"½–¾", guide:"g-onions", harvestNote:"May–July, as days lengthen", note:"Onions can also be started from seed in October–December — see the Onions card."},
+  {name:"Garlic", how:"Cloves", spring:null, indoor:null, fall:[42,1], days:null, fresh:"—", keep:"1–5 ft of row", rows:"14–24", plants:"2–4", depth:"1–2", guide:"g-garlic", harvestNote:"late May–June next year", note:"Fall window combines AgriLife's table (4–6 weeks before first freeze) and its fall guide (October)."},
+  {name:"Irish potatoes", how:"Seed pieces", spring:[-42,-28], indoor:null, fall:[112,98], days:[75,100], fresh:"50–100 ft of row", keep:"—", rows:"30–36", plants:"10–15", depth:"3–4", guide:"g-potatoes", note:"A fall crop is possible but marginal here — see the Potatoes card."},
+  {name:"Sweet potatoes", how:"Slips", spring:[14,56], indoor:null, fall:null, days:[100,130], fresh:"5–10 plants", keep:"10–20 plants", rows:"36–48", plants:"12–16", depth:"3–5", guide:"g-sweetpotatoes"},
+  {name:"Asparagus", how:"Crowns", spring:[-42,-28], indoor:null, fall:null, days:null, fresh:"10–15 plants", keep:"10–15 plants", rows:"36–48", plants:"18", depth:"6–8", guide:"g-asparagus", harvestNote:"light picking the 2nd spring, full harvest from the 3rd"},
+  {name:"Green beans (bush)", how:"Seed", spring:[7,28], indoor:null, fall:[70,56], days:[45,60], fresh:"15–16 ft of row", keep:"15–20 ft of row", rows:"30–36", plants:"3–4", depth:"1–1½"},
+  {name:"Southern peas", how:"Seed", spring:[14,70], indoor:null, fall:[84,70], days:[60,70], fresh:"10–15 ft of row", keep:"20–50 ft of row", rows:"24–36", plants:"4–6", depth:"2–3", guide:"g-okra", note:"Black-eyed, purple hull, cream and crowder peas."},
+  {name:"Sweet corn", how:"Seed", spring:[7,42], indoor:null, fall:[98,84], days:[70,90], fresh:"10–15 ft of row", keep:"30–50 ft of row", rows:"24–36", plants:"9–12", depth:"½", note:"Plant in a block of at least 4 short rows rather than one long row, so the wind can pollinate it."},
+  {name:"Cucumbers", how:"Seed", spring:[7,42], indoor:null, fall:[84,70], days:[50,70], fresh:"1–2 hills", keep:"3–5 hills", rows:"48–72", plants:"8–12", depth:"½"},
+  {name:"Summer squash/zucchini", how:"Seed", spring:[7,28], indoor:null, fall:[105,84], days:[50,60], fresh:"2–3 hills", keep:"2–3 hills", rows:"36–60", plants:"18–36", depth:"½", note:"A July replanting is the classic fix when squash vine borers kill the spring plants."},
+  {name:"Winter squash & pumpkin", how:"Seed", spring:[7,28], indoor:null, fall:[98,84], days:[85,100], fresh:"1–3 hills", keep:"1–3 hills", rows:"60–96", plants:"24–48", depth:"½"},
+  {name:"Cantaloupe", how:"Seed", spring:[7,42], indoor:null, fall:[112,98], days:[85,100], fresh:"3–5 hills", keep:"—", rows:"60–96", plants:"24–36", depth:"1"},
+  {name:"Watermelon", how:"Seed", spring:[7,42], indoor:null, fall:[112,98], days:[80,100], fresh:"2–4 hills", keep:"—", rows:"72–96", plants:"36–72", depth:"½"},
+  {name:"Okra", how:"Seed", spring:[14,42], indoor:null, fall:[112,84], days:[55,65], fresh:"4–6 ft of row", keep:"6–10 ft of row", rows:"36–42", plants:"12–24", depth:"½–1", guide:"g-okra", note:"Wait for warm soil (about 75°F); soak seed overnight."},
+  {name:"Strawberries", how:"Plants", spring:null, indoor:null, fall:[31,1], days:null, fresh:"—", keep:"—", rows:"30–36 (beds)", plants:"12", depth:"crown at soil level", guide:"g-strawberries", harvestNote:"March–May next spring", src:"AgriLife strawberry guide"},
+  {name:"Basil", how:"Transplants", spring:[7,42], indoor:6, fall:null, days:null, fresh:"1–2 plants", keep:"3–4 plants (pesto)", rows:"18–24", plants:"12–18", depth:"—", guide:"g-herbs", harvestNote:"pick leaves a few weeks after planting; dies at first frost", src:"general"},
+  {name:"Cilantro", how:"Seed", spring:[-56,-14], indoor:null, fall:[56,21], days:[35,45], fresh:"a few ft of row, resown every 3 weeks", keep:"—", rows:"12–18", plants:"2–4", depth:"¼", guide:"g-herbs", src:"general"},
+  {name:"Parsley", how:"Seed", spring:[-42,-7], indoor:null, fall:[112,42], days:[70,90], fresh:"1–3 ft of row", keep:"1–3 ft of row", rows:"14–24", plants:"2–4", depth:"⅛", guide:"g-herbs"},
 ];
+const DAY = 86400000;
 function fmtDate(d){
-  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
 }
-function buildCalendar(){
-  const lastVal = document.getElementById('lastFrost').value;
-  const firstVal = document.getElementById('firstFrost').value;
-  const out = document.getElementById('calendarOutput');
-  if(!lastVal){ out.innerHTML = "Please enter your average last spring frost date."; return; }
-  const lastFrost = new Date(lastVal + 'T00:00:00');
-
-  let html = '<h4 style="margin-bottom:0.3rem;">🌱 Spring planting</h4>';
-  html += '<table><tr><th>Crop</th><th>Start indoors</th><th>Transplant outside</th><th>Or direct-sow</th><th>Est. harvest</th></tr>';
-  CROPS.forEach(c=>{
-    const si = c.startIndoors!==null ? fmtDate(new Date(lastFrost.getTime()+c.startIndoors*86400000)) : "—";
-    const tp = c.transplant!==null ? fmtDate(new Date(lastFrost.getTime()+c.transplant*86400000)) : "—";
-    const ds = c.direct!==null ? fmtDate(new Date(lastFrost.getTime()+c.direct*86400000)) : "—";
-    // Anchor for harvest math: prefer transplant date, fall back to direct-sow date.
-    const anchorOffset = c.transplant!==null ? c.transplant : c.direct;
-    let harvest = "—";
-    if(anchorOffset!==null && c.maturity){
-      const anchorDate = new Date(lastFrost.getTime()+anchorOffset*86400000);
-      harvest = fmtDate(new Date(anchorDate.getTime()+c.maturity*86400000));
-    }
-    html += '<tr><td>'+c.name+'</td><td>'+si+'</td><td>'+tp+'</td><td>'+ds+'</td><td>'+harvest+'</td></tr>';
-  });
-  html += '</table><p style="font-family:Arial,sans-serif;font-size:0.8rem;color:var(--muted);">Dates are estimates based on typical weeks-from-frost timing and average days-to-maturity — adjust for your specific varieties and local microclimate. Negative "direct-sow" dates before last frost apply to cold-hardy crops that tolerate light frost.</p>';
-
-  if(firstVal){
-    const firstFrost = new Date(firstVal + 'T00:00:00');
-    const fallCrops = CROPS.filter(c=>c.fall);
-    html += '<h4 style="margin-bottom:0.3rem;">🍂 Fall planting (second round)</h4>';
-    html += '<p style="font-family:Arial,sans-serif;font-size:0.85rem;margin-top:0;">Cool-season crops that are worth a second, later-summer planting for a fall harvest before your first freeze. Sow-by dates build in a 2-week buffer since growth slows as days shorten.</p>';
-    html += '<table><tr><th>Crop</th><th>Sow/transplant by</th><th>Est. harvest before frost</th></tr>';
-    fallCrops.forEach(c=>{
-      const sowBy = new Date(firstFrost.getTime() - (c.maturity+14)*86400000);
-      html += '<tr><td>'+c.name+'</td><td>'+fmtDate(sowBy)+'</td><td>by ~'+fmtDate(firstFrost)+'</td></tr>';
-    });
-    html += '</table><p style="font-family:Arial,sans-serif;font-size:0.8rem;color:var(--muted);">Heat-loving, long-season crops (tomatoes, peppers, melons, winter squash, corn, onions, basil) aren\'t included here — in most climates there isn\'t enough frost-free time left after mid-summer to start a second round of these and finish before frost.</p>';
+function addDays(d, n){ return new Date(d.getTime() + n*DAY); }
+function dayOfYear(d){ return Math.floor((Date.UTC(2001, d.getMonth(), d.getDate()) - Date.UTC(2001,0,1))/DAY); }
+function inWindow(start, end, today){
+  const s = dayOfYear(start), e = dayOfYear(end), t = dayOfYear(today);
+  return s <= e ? (t >= s && t <= e) : (t >= s || t <= e);
+}
+function getFrostDates(){
+  const lastEl = document.getElementById('lastFrost'), firstEl = document.getElementById('firstFrost');
+  const last = (lastEl && lastEl.value) ? new Date(lastEl.value+'T00:00:00') : nextOccurrence(HOMESTEAD.lastFrostMonth, HOMESTEAD.lastFrostDay);
+  const first = (firstEl && firstEl.value) ? new Date(firstEl.value+'T00:00:00') : nextOccurrence(HOMESTEAD.firstFrostMonth, HOMESTEAD.firstFrostDay);
+  return {last, first};
+}
+// Works out every date for one crop from the frost dates.
+function cropDates(c, last, first){
+  const out = {};
+  if(c.spring){
+    out.springStart = addDays(last, c.spring[0]);
+    out.springEnd = addDays(last, c.spring[1]);
+    if(c.indoor) out.indoor = addDays(out.springStart, -c.indoor*7);
+    if(c.days) out.springHarvest = addDays(out.springStart, c.days[0]);
   }
-
-  out.innerHTML = html;
+  if(c.fall){
+    out.fallStart = addDays(first, -c.fall[0]);
+    out.fallEnd = addDays(first, -c.fall[1]);
+    if(c.days) out.fallHarvest = addDays(out.fallStart, c.days[0]);
+  }
+  return out;
 }
+function nowBadge(){ return ' <span class="tag safe">plant now</span>'; }
+function buildCalendar(){
+  const out = document.getElementById('calendarOutput');
+  const lastVal = document.getElementById('lastFrost').value;
+  if(!lastVal){ out.innerHTML = "Please enter your average last spring frost date."; return; }
+  const {last, first} = getFrostDates();
+  const hasFall = !!document.getElementById('firstFrost').value;
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // What's in its planting window right now, and what opens in the next 30 days
+  const nowList = [], soonList = [];
+  CROPS.forEach(c=>{
+    const d = cropDates(c, last, first);
+    const windows = [];
+    if(d.springStart) windows.push(['spring', d.springStart, d.springEnd]);
+    if(d.indoor) windows.push(['start seeds indoors', d.indoor, addDays(d.indoor, 14)]);
+    if(hasFall && d.fallStart) windows.push(['fall', d.fallStart, d.fallEnd]);
+    windows.forEach(([label, s, e])=>{
+      if(inWindow(s, e, today)) nowList.push(c.name+' <span class="muted-small">('+label+', through '+fmtDate(e)+')</span>');
+      else {
+        for(let i=1;i<=30;i++){ if(dayOfYear(addDays(today,i))===dayOfYear(s)){ soonList.push(c.name+' <span class="muted-small">('+label+', from '+fmtDate(s)+')</span>'); break; } }
+      }
+    });
+  });
+  let html = '<div class="plant-now"><h4>🗓️ Right now ('+fmtDate(today)+')</h4>';
+  html += nowList.length ? '<p><strong>In its planting window:</strong> '+nowList.join(', ')+'</p>' : '<p>Nothing is in its planting window today.</p>';
+  if(soonList.length) html += '<p><strong>Coming up in the next 30 days:</strong> '+soonList.join(', ')+'</p>';
+  html += '</div>';
+
+  html += '<h4 style="margin-bottom:0.3rem;">🌱 Spring planting</h4>';
+  html += '<table><tr><th>Crop</th><th>Plant as</th><th>Start seeds indoors</th><th>Plant outside</th><th>Days to harvest</th><th>First harvest about</th></tr>';
+  CROPS.filter(c=>c.spring).forEach(c=>{
+    const d = cropDates(c, last, first);
+    const now = inWindow(d.springStart, d.springEnd, today) ? nowBadge() : '';
+    const harvest = c.harvestNote ? c.harvestNote : (d.springHarvest ? fmtDate(d.springHarvest) : '—');
+    html += '<tr><td>'+c.name+now+'</td><td>'+c.how+'</td><td>'+(d.indoor?('around '+fmtDate(d.indoor)):'—')+'</td><td>'+fmtDate(d.springStart)+' – '+fmtDate(d.springEnd)+'</td><td>'+(c.days?(c.days[0]+'–'+c.days[1]):'—')+'</td><td>'+harvest+'</td></tr>';
+  });
+  html += '</table><p class="muted-small">Planting windows, days to harvest and spacing are from Texas A&amp;M AgriLife\'s Texas Home Vegetable Gardening Guide, figured from your frost dates (basil and cilantro use general timing). Earlier in a window is usually better for heat-sensitive crops like tomatoes. Cauliflower, garlic and strawberries are fall-only here.</p>';
+
+  if(hasFall){
+    html += '<h4 style="margin-bottom:0.3rem;">🍂 Fall planting</h4>';
+    html += '<p style="font-size:0.85rem;margin-top:0;">In Texas the fall garden is a full second season, not just leftovers. Many cool-season crops actually do <em>better</em> in fall, and tomatoes, peppers and eggplant get a second round from July transplants.</p>';
+    html += '<table><tr><th>Crop</th><th>Plant as</th><th>Plant between</th><th>First harvest about</th></tr>';
+    CROPS.filter(c=>c.fall).forEach(c=>{
+      const d = cropDates(c, last, first);
+      const now = inWindow(d.fallStart, d.fallEnd, today) ? nowBadge() : '';
+      const harvest = c.harvestNote ? c.harvestNote : (d.fallHarvest ? fmtDate(d.fallHarvest) : '—');
+      html += '<tr><td>'+c.name+now+'</td><td>'+c.how+'</td><td>'+fmtDate(d.fallStart)+' – '+fmtDate(d.fallEnd)+'</td><td>'+harvest+'</td></tr>';
+    });
+    html += '</table><p class="muted-small">Cold-hardy crops (broccoli, cabbage, kale, collards, spinach, turnips, carrots) handle light freezes, so their harvest keeps going past your first frost. Tender crops (tomatoes, peppers, beans, squash, melons, okra) stop at the first freeze. Sweet potatoes, onion transplants and asparagus aren\'t fall-planted.</p>';
+  }
+  out.innerHTML = html;
+  wrapTables(out);
+}
+// "How much to plant" table, built from the same data
+function renderHowMuch(){
+  const el = document.getElementById('howMuchTable');
+  if(!el) return;
+  let html = '<table><tr><th>Crop</th><th>For eating fresh</th><th>For freezing/canning</th><th>Spacing (rows × plants, inches)</th></tr>';
+  CROPS.forEach(c=>{
+    html += '<tr><td>'+c.name+(c.src==='general'?' *':'')+'</td><td>'+c.fresh+'</td><td>'+c.keep+'</td><td>'+c.rows+' × '+c.plants+'</td></tr>';
+  });
+  el.innerHTML = html + '</table>';
+  wrapTables(el);
+}
+renderHowMuch();
 
 /* ---------------- Homestead defaults (Cisco, TX area) ---------------- */
 const HOMESTEAD = { altitudeFt: 1600, lastFrostMonth: 4, lastFrostDay: 5, firstFrostMonth: 11, firstFrostDay: 1 };
@@ -1575,7 +2069,29 @@ const SEARCH_INDEX = [
   {anchor:"t-calendar", title:"Planting calendar builder", pane:"garden", sub:"calendar", kw:"frost date planting schedule tomatoes seed start transplant"},
   {anchor:"t-succession", title:"Succession planting", pane:"garden", sub:"calendar", kw:"succession lettuce radish continuous harvest"},
   {anchor:"t-howmuch", title:"How much to plant (per person quantities)", pane:"garden", sub:"calendar", kw:"how much plant quantity yield per person garden sizing"},
-  {anchor:"t-asparagus", title:"Asparagus — perennial bed", pane:"garden", sub:"calendar", kw:"asparagus perennial crowns raised bed mary washington jersey giant uc157 histamine gluten"},
+  {anchor:"g-asparagus", title:"Asparagus — perennial bed", pane:"garden", sub:"crops", kw:"asparagus perennial crowns raised bed mary washington jersey giant uc157 histamine gluten"},
+  {anchor:"g-before", title:"Before you plant: soil test, alkaline soil, water, wind", pane:"garden", sub:"crops", kw:"soil test alkaline iron chlorosis yellow leaves fertilizer mulch drip irrigation wind frost dates"},
+  {anchor:"g-tomatoes", title:"Tomatoes, peppers & eggplant in Texas heat", pane:"garden", sub:"crops", kw:"tomato pepper eggplant heat fruit set fall tomatoes varieties celebrity tycoon jalapeno"},
+  {anchor:"g-cool", title:"Cool-season crops: fall is your better season", pane:"garden", sub:"crops", kw:"broccoli cabbage cauliflower lettuce spinach kale collards chard carrots beets bolting fall garden"},
+  {anchor:"g-onions", title:"Onions: short-day varieties & timing", pane:"garden", sub:"crops", kw:"onion short day 1015 granex candy transplants bulb"},
+  {anchor:"g-garlic", title:"Garlic: fall planting & curing", pane:"garden", sub:"crops", kw:"garlic softneck hardneck cloves cure"},
+  {anchor:"g-potatoes", title:"Irish potatoes: seed pieces & hilling", pane:"garden", sub:"crops", kw:"potato seed potatoes cut cure hilling valentine"},
+  {anchor:"g-sweetpotatoes", title:"Sweet potatoes: slips & curing", pane:"garden", sub:"crops", kw:"sweet potato slips cure beauregard storage"},
+  {anchor:"g-okra", title:"Okra & southern peas", pane:"garden", sub:"crops", kw:"okra southern peas black eyed purple hull cream crowder"},
+  {anchor:"g-herbs", title:"Herbs: cilantro, basil, perennials", pane:"garden", sub:"crops", kw:"herbs cilantro parsley dill basil rosemary oregano thyme sage mint"},
+  {anchor:"g-strawberries", title:"Strawberries (fall-planted)", pane:"garden", sub:"crops", kw:"strawberry strawberries chandler fall planted"},
+  {anchor:"g-blackberries", title:"Blackberries", pane:"garden", sub:"crops", kw:"blackberry blackberries thornless natchez brazos kiowa trellis"},
+  {anchor:"g-blueberries", title:"Blueberries (containers only here)", pane:"garden", sub:"crops", kw:"blueberry blueberries acid ph containers rainwater rabbiteye"},
+  {anchor:"g-grapes", title:"Grapes & Pierce's disease", pane:"garden", sub:"crops", kw:"grape grapes pierces disease black spanish blanc du bois champanel muscadine"},
+  {anchor:"g-fruittrees", title:"Fruit trees & chill hours", pane:"garden", sub:"crops", kw:"fruit trees chill hours peach peaches plum plums apple apples pear pears cherry cherries cotton root rot bare root"},
+  {anchor:"g-figs", title:"Figs", pane:"garden", sub:"crops", kw:"fig figs celeste brown turkey freeze"},
+  {anchor:"g-pecans", title:"Pecans", pane:"garden", sub:"crops", kw:"pecan pecans nut trees zinc pawnee wichita"},
+  {anchor:"g-notsuited", title:"What won't thrive here (rhubarb, mango)", pane:"garden", sub:"crops", kw:"rhubarb mango not suited won't grow"},
+  {anchor:"c-intro", title:"Companion planting: what's real vs folklore", pane:"garden", sub:"companion", kw:"companion planting"},
+  {anchor:"c-works", title:"Companion planting that works: trap crops, alyssum, marigolds", pane:"garden", sub:"companion", kw:"companion trap crop three sisters alyssum marigold nematodes blue hubbard mustard harlequin"},
+  {anchor:"c-folklore", title:"Companion planting myths", pane:"garden", sub:"companion", kw:"companion myths folklore basil tomatoes onions repel nasturtium"},
+  {anchor:"c-rotation", title:"Crop rotation by plant family", pane:"garden", sub:"companion", kw:"crop rotation plant families beds nightshade brassica cucurbit legume"},
+  {anchor:"c-texaspests", title:"Leaffooted & harlequin bugs (Texas)", pane:"garden", sub:"companion", kw:"leaffooted bug harlequin bug texas pests"},
   {anchor:"t-seedstart", title:"Seed starting basics", pane:"garden", sub:"seedstart", kw:"seed depth light hardening off grow light transplant"},
   {anchor:"pestFilter", title:"Pest & disease identification", pane:"garden", sub:"pests", kw:"aphid hornworm squash bug beetle blight mildew tomato pepper"},
   {title:"Poultry care sheet", pane:"livestock", sub:"poultry", kw:"chicken duck goose turkey coop feed layer bumblefoot"},
@@ -1954,6 +2470,96 @@ const INGREDIENTS = [
       {jkey:"dehydrating", directions:"Slice thin and dry at 135°F until leathery — less common, best used ground into a tart seasoning.", histamine:"low"},
     ] },
 ];
+/* ---------------- Grow info for the Ingredient Finder ---------------- */
+const GUIDE_LABELS = {
+  "g-before":"Before you plant", "g-tomatoes":"Tomatoes & peppers guide", "g-cool":"Cool-season crops guide",
+  "g-onions":"Onions guide", "g-garlic":"Garlic guide", "g-potatoes":"Potatoes guide", "g-sweetpotatoes":"Sweet potatoes guide",
+  "g-okra":"Okra & southern peas guide", "g-herbs":"Herbs guide", "g-asparagus":"Asparagus guide",
+  "g-strawberries":"Strawberries guide", "g-blackberries":"Blackberries guide", "g-blueberries":"Blueberries guide",
+  "g-grapes":"Grapes guide", "g-fruittrees":"Fruit trees guide", "g-figs":"Figs guide", "g-pecans":"Pecans guide",
+  "g-notsuited":"Won't-thrive-here guide", "c-works":"Companion planting: trap crops"
+};
+const TREE_NOTE = "Plant bare-root trees December through early March while dormant; container trees can go in most of the year. Variety choice depends on chill hours — see the guide.";
+const GROW = {
+  "Tomatoes": {crops:["Tomatoes"]},
+  "Peppers": {crops:["Peppers"]},
+  "Eggplant": {crops:["Eggplant"]},
+  "Cucumbers": {crops:["Cucumbers"], guides:["c-works"]},
+  "Summer Squash & Zucchini": {crops:["Summer squash/zucchini"], guides:["c-works"]},
+  "Winter Squash & Pumpkin": {crops:["Winter squash & pumpkin"]},
+  "Green Beans": {crops:["Green beans (bush)"]},
+  "Dry Beans (Pinto, Black, etc.)": {crops:["Green beans (bush)","Southern peas"], text:"Pinto and black beans grow just like bush snap beans, but you leave the pods on the plant until they're dry and rattle (usually around 3 months). Southern peas like black-eyed peas are the heat-tough Texas option and can be dried the same way."},
+  "Corn": {crops:["Sweet corn"]},
+  "Onions & Garlic": {crops:["Onions (transplants)","Garlic"]},
+  "Carrots": {crops:["Carrots"]},
+  "Potatoes": {crops:["Irish potatoes"]},
+  "Sweet Potatoes": {crops:["Sweet potatoes"]},
+  "Beets": {crops:["Beets"]},
+  "Cabbage": {crops:["Cabbage"]},
+  "Broccoli & Cauliflower": {crops:["Broccoli","Cauliflower"]},
+  "Asparagus": {crops:["Asparagus"]},
+  "Peas (English/Shelling)": {crops:["English peas","Southern peas"]},
+  "Okra": {crops:["Okra"]},
+  "Radishes": {crops:["Radishes"]},
+  "Turnips": {crops:["Turnips"]},
+  "Leafy Greens (Spinach, Chard, Kale)": {crops:["Spinach","Swiss chard","Kale & collards"]},
+  "Herbs (Basil, Oregano, Thyme, etc.)": {crops:["Basil","Cilantro","Parsley"], text:"Oregano, thyme, rosemary and sage are perennials — plant them once in a well-drained spot (a raised bed in clay)."},
+  "Melons & Watermelon": {crops:["Cantaloupe","Watermelon"]},
+  "Strawberries": {crops:["Strawberries"]},
+  "Apples": {guides:["g-fruittrees"], text:TREE_NOTE+" Apples are harder here than pears or peaches because they prefer slightly acidic soil."},
+  "Peaches": {guides:["g-fruittrees"], text:TREE_NOTE+" Expect to lose about one peach crop in six or seven to late frost."},
+  "Pears": {guides:["g-fruittrees"], text:TREE_NOTE+" Pears are one of the better tree fruits for West Texas (low fire blight pressure), but very susceptible to cotton root rot."},
+  "Plums": {guides:["g-fruittrees"], text:TREE_NOTE+" Most plums need two varieties; Methley is self-fruitful and pollinates others."},
+  "Cherries": {guides:["g-fruittrees"], text:"A poor bet here: AgriLife says sweet cherries have performed poorly in Texas. Montmorency tart cherry is only worth a trial."},
+  "Figs": {guides:["g-figs"], text:"Celeste is the most cold-hardy fig and your best bet. Expect some freeze damage in the coldest winters."},
+  "Grapes": {guides:["g-grapes"], text:"Choose Pierce's-disease-tolerant varieties (Black Spanish, Blanc du Bois, Champanel). Prune in February–March."},
+  "Pecans & Nuts": {guides:["g-pecans"], text:TREE_NOTE+" Pecans take 5–7 years to bear and need zinc sprays on alkaline soil."},
+  "Blueberries": {guides:["g-blueberries"], text:"Only in containers of acid peat/pine bark mix watered with rainwater — your alkaline soil and well water won't work."},
+  "Rhubarb": {guides:["g-notsuited"], text:"Doesn't survive Texas summers as a perennial. Grow it as a cool-season annual: start seed in August, transplant late September–October, harvest March–May."},
+  "Mangoes": {guides:["g-notsuited"], text:"Not hardy here — leaves are damaged below 30°F. Only as a container plant brought indoors for winter."},
+};
+function cropByName(n){ return CROPS.find(c=>c.name===n); }
+function renderGrowDetail(ingName){
+  const g = GROW[ingName]; if(!g) return '';
+  const {last, first} = getFrostDates();
+  const today = new Date(); today.setHours(0,0,0,0);
+  let html = '<div class="ing-detail">';
+  if(g.text) html += '<p>'+g.text+'</p>';
+  const guides = new Set(g.guides || []);
+  (g.crops||[]).forEach(n=>{
+    const c = cropByName(n); if(!c) return;
+    if(c.guide) guides.add(c.guide);
+    const d = cropDates(c, last, first);
+    let rows = '';
+    if(d.springStart){
+      const now = inWindow(d.springStart, d.springEnd, today) ? nowBadge() : '';
+      rows += '<li><strong>Spring:</strong> plant '+c.how.toLowerCase()+' outside '+fmtDate(d.springStart)+' – '+fmtDate(d.springEnd)+now+(d.indoor?' (start seeds indoors around '+fmtDate(d.indoor)+')':'')+'</li>';
+    } else {
+      rows += '<li><strong>Spring:</strong> not a spring crop here</li>';
+    }
+    if(d.fallStart){
+      const now = inWindow(d.fallStart, d.fallEnd, today) ? nowBadge() : '';
+      rows += '<li><strong>Fall:</strong> plant '+fmtDate(d.fallStart)+' – '+fmtDate(d.fallEnd)+now+'</li>';
+    } else {
+      rows += '<li><strong>Fall:</strong> not fall-planted</li>';
+    }
+    rows += '<li><strong>Harvest:</strong> '+(c.harvestNote ? c.harvestNote : (c.days ? c.days[0]+'–'+c.days[1]+' days after planting' : '—'))+'</li>';
+    rows += '<li><strong>Per person:</strong> '+c.fresh+' for fresh eating'+(c.keep && c.keep!=='—' ? '; '+c.keep+' if you also freeze or can' : '')+'</li>';
+    rows += '<li><strong>Spacing:</strong> rows '+c.rows+' in apart, plants '+c.plants+' in apart'+(c.depth && c.depth!=='—' ? '; '+c.depth+(/^[\d½¼⅛¾]/.test(c.depth)?' in deep':'') : '')+'</li>';
+    if(c.note) rows += '<li>'+c.note+'</li>';
+    html += '<div class="grow-crop"><div class="grow-name">'+c.name+'</div><ul>'+rows+'</ul></div>';
+  });
+  if((g.crops||[]).length){
+    html += '<a class="jumplink ing-jump" data-pane="garden" data-sub="calendar" data-anchor="t-calendar">Open planting calendar →</a> ';
+  }
+  guides.forEach(id=>{
+    const sub = id.startsWith('c-') ? 'companion' : 'crops';
+    html += '<a class="jumplink ing-jump" data-pane="garden" data-sub="'+sub+'" data-anchor="'+id+'">Open '+(GUIDE_LABELS[id]||'guide')+' →</a> ';
+  });
+  html += '<p class="muted-small" style="margin-top:6px;">Dates come from your frost dates on the Planting Calendar (Texas A&amp;M AgriLife timing).</p>';
+  return html + '</div>';
+}
+
 function matchIngredients(q){
   return INGREDIENTS.filter(ing => ing.name.toLowerCase().includes(q) || ing.aliases.some(a=>a.includes(q)));
 }
@@ -1969,10 +2575,12 @@ function renderIngredientBlock(ing){
     const j = JUMP[m.jkey];
     const isActive = activeIngName===ing.name && activeMethodKey===m.jkey;
     return '<button type="button" class="ing-chip'+(isActive?' active':'')+'" data-ing="'+ing.name+'" data-method="'+m.jkey+'">'+j.label+'</button>';
-  }).join('');
+  }).join('') + (GROW[ing.name] ? '<button type="button" class="ing-chip grow-chip'+(activeIngName===ing.name && activeMethodKey==='grow'?' active':'')+'" data-ing="'+ing.name+'" data-method="grow">🌱 Grow</button>' : '');
   let detail = '';
   const activeMethod = ing.methods.find(m=>m.jkey===activeMethodKey);
-  if(activeIngName===ing.name && activeMethod){
+  if(activeIngName===ing.name && activeMethodKey==='grow'){
+    detail = renderGrowDetail(ing.name);
+  } else if(activeIngName===ing.name && activeMethod){
     const j = JUMP[activeMethod.jkey];
     let recipeHtml = '';
     if(activeMethod.recipe){
@@ -2043,6 +2651,7 @@ searchResults.addEventListener('click', (e)=>{
   const jump = e.target.closest('.ing-jump');
   if(jump){
     goTo(jump.dataset.pane, jump.dataset.sub);
+    scrollToAnchor(jump.dataset.anchor);
     searchResults.classList.remove('show');
     searchInput.value = '';
     activeIngName = null; activeMethodKey = null;
@@ -2062,6 +2671,10 @@ searchResults.addEventListener('click', (e)=>{
     searchInput.value = '';
     scrollToAnchor(r.dataset.anchor);
   }, 50);
+});
+wrapTables(document);
+document.querySelectorAll('.guide-nav button').forEach(b=>{
+  b.addEventListener('click', ()=>scrollToAnchor(b.dataset.anchor));
 });
 </script>
 </body>
