@@ -393,6 +393,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 .tag.ev-good{background:#dcebd8; color:var(--green-dark);}
 .tag.ev-some{background:#fdf3d8; color:#7a5714;}
 .tag.ev-folk{background:#ececec; color:#555;}
+.ing-food{font-family:Arial,sans-serif; font-size:0.8rem; margin:2px 0 8px; color:var(--ink); line-height:1.45;}
 .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%;}
 .table-wrap > table{margin-top:0;}
 @media (max-width:640px){ .table-wrap table{font-size:0.8rem;} .table-wrap th, .table-wrap td{padding:5px 6px;} }
@@ -452,8 +453,10 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
   <div class="callout histamine" style="border-left-color: var(--green); background:#eef4ec;">
     <strong style="color:var(--green-dark);">Family dietary flags:</strong> since some of you eat gluten-free and low-histamine,
-    look-alike tags mark relevant spots throughout Preserving: <span class="tag histamine">🔴 histamine</span>
+    tags mark relevant spots throughout Preserving and the search results: <span class="tag histamine">🔴 histamine</span>
     <span class="tag histamine-mod">🟡 moderate histamine</span> <span class="tag gluten">🌾 gluten swap</span>.
+    In search, each food also shows how the food <em>itself</em> rates for histamine, since some foods (tomatoes,
+    spinach, eggplant, strawberries) are flagged no matter how they're preserved.
     See <a class="jumplink" data-goto="reference|dietary">Reference → Dietary Notes</a> for the full explanation and swap list.
   </div>
   <div class="home-grid">
@@ -661,6 +664,8 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       formed. Freeze meat, fish, poultry, and cooked leftovers within 1–2 hours of cooking or harvest for the
       low-histamine plate, rather than after they've sat out or spent a day or more in the fridge (refrigerated
       high-protein leftovers keep gaining histamine over 24–48 hours even though they stay perfectly food-safe).
+      Freezing can't lower a food that's high on its own, though: frozen tomatoes, spinach, eggplant and
+      strawberries are still flagged.
     </div>
     <div class="card searchable" data-keywords="freezing basics blanching packaging freezer burn">
       <h3>Freezing basics</h3>
@@ -1507,7 +1512,9 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 
   <div class="subpane" id="reference-dietary">
     <div class="callout searchable" id="t-dietary" data-keywords="dietary flags legend gluten free low histamine key">
-      <strong>How the flags work:</strong> throughout the Preserving tabs you'll see three tags — <span class="tag histamine">🔴 histamine</span>
+      <strong>How the flags work:</strong> histamine is flagged two ways. Each <em>food</em> in the search results
+      shows its own rating from the SIGHI list (below), and each <em>preserving method</em> shows how much that
+      method adds. The tag on a method is whichever is higher. Throughout the Preserving tabs you'll see three tags — <span class="tag histamine">🔴 histamine</span>
       for methods/foods that are classic high-histamine offenders, <span class="tag histamine-mod">🟡 moderate</span> for foods
       commonly flagged but where reactions vary more by person, and <span class="tag gluten">🌾 gluten swap</span> wherever an
       ingredient (usually a sauce, vinegar, or filler) commonly hides gluten and has an easy swap. None of this replaces your
@@ -1532,14 +1539,48 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
         <li><strong>Fermented, cured, aged, and smoked foods are inherently high-histamine</strong> — the bacteria
         doing the preserving work is the same bacteria producing histamine as a byproduct. This is true no matter
         how carefully or safely it's made.</li>
-        <li><strong>A few fresh foods are commonly flagged too</strong> — independent of preservation method,
-        tomatoes, spinach, eggplant, citrus, strawberries, pineapple, and vinegar itself show up on most
-        low-histamine avoid-lists. Something can be "safe" by every food-safety measure in this guide and still be
-        worth watching for a histamine-sensitive kiddo.</li>
+        <li><strong>Some foods are flagged no matter how they're preserved.</strong> Tomatoes, spinach, eggplant,
+        strawberries, egg whites, dried beans and wine vinegar are rated high on their own; freezing keeps them from
+        getting worse but can't make them low. See the food ratings card below.</li>
       </ul>
       <p style="margin-top:10px;"><strong>None of this means skipping fermenting, curing, or dehydrating for the
       family</strong> — just treat those batches as "not for the low-histamine plate," the same way you'd set aside
       a separate, smaller portion before it's fermented/cured/smoked for anyone in the house who needs it.</p>
+    </div>
+
+    <div class="card searchable" id="t-foodhist" data-keywords="histamine food ratings sighi list tomatoes spinach eggplant strawberries eggs beans tolerated">
+      <h3>🔍 How the foods themselves rate</h3>
+      <p>These ratings come from the SIGHI Food Compatibility List (Swiss Interest Group Histamine Intolerance), the
+      most widely used low-histamine list. It rates each food 0–3: <strong>0</strong> well tolerated,
+      <strong>1</strong> use with care, <strong>2</strong> usually avoided, <strong>3</strong> very poorly
+      tolerated. Here's how the foods in this guide land:</p>
+      <table>
+        <tr><th>Rating</th><th>Foods in this guide</th></tr>
+        <tr><td><span class="tag safe">🟢 0</span></td><td>Fresh chicken, turkey, duck, quail and beef; fish caught or
+        frozen fresh; egg yolk; milk, sweet-cream butter, ricotta and cream cheese; cucumbers, bell peppers, zucchini
+        and squash, pumpkin, corn, carrots, potatoes, sweet potatoes, beets, cabbage, broccoli, cauliflower,
+        asparagus, radishes; basil, oregano, thyme; apples, peaches, blueberries, cherries, grapes, cantaloupe and
+        honeydew; honey; distilled white vinegar (sparingly)</td></tr>
+        <tr><td><span class="tag histamine-mod">🟡 1</span></td><td>Game such as venison, fresh pork, onions, garlic,
+        green beans, green peas, Swiss chard, mango, pears, plums, figs, watermelon, rhubarb, cider vinegar,
+        cultured butter</td></tr>
+        <tr><td><span class="tag histamine">🔴 2–3</span></td><td>Tomatoes, spinach, eggplant, strawberries, hot chili
+        peppers, whole eggs and egg whites, dried beans, lentils, chickpeas and soy, walnuts, sausages of all kinds,
+        salami and smoked meats, smoked fish and tuna, aged cheese, sauerkraut and pickles, wine and balsamic
+        vinegar</td></tr>
+        <tr><td><span class="tag ev-folk">⚪ not listed</span></td><td>Goat, lamb, rabbit, goose, okra, kale, turnips,
+        pecans</td></tr>
+      </table>
+      <p><strong>Freshness counts as much as the food.</strong> Fresh meat and fish are rated 0 only when they've
+      been kept cold from butchering to plate. Histamine climbs with every day in the fridge, so freeze
+      promptly, thaw quickly and eat right away.</p>
+      <p><strong>Riley's provider has the final word.</strong> Low-histamine lists disagree with each other a lot,
+      and SIGHI was written for adults. SIGHI itself says no list fits everyone and recommends cutting foods out,
+      then testing them back in one at a time with a dietitian. Use this as a starting point to talk through with
+      her provider, not a rulebook.</p>
+      <p class="muted-small">Sources: <a href="https://www.mastzellaktivierung.info/downloads/foodlist/21_FoodList_EN_alphabetic_withCateg.pdf" target="_blank" rel="noopener">SIGHI Food Compatibility List</a>,
+      <a href="https://www.histaminintoleranz.ch/downloads/SIGHI-Leaflet_HistamineEliminationDiet.pdf" target="_blank" rel="noopener">SIGHI elimination diet leaflet</a>,
+      <a href="https://www.bda.uk.com/resource/histamine-intolerance-and-the-low-histamine-diet.html" target="_blank" rel="noopener">British Dietetic Association</a>.</p>
     </div>
 
     <div class="card searchable" data-keywords="gluten free swaps soy sauce vinegar worcestershire sausage filler">
@@ -2106,6 +2147,7 @@ const SEARCH_INDEX = [
   {anchor:"t-shelflife", title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
   {anchor:"t-conversions", title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
   {anchor:"t-glossary", title:"Glossary of terms", pane:"reference", sub:"glossary", kw:"headspace hot pack raw pack brine glossary definition"},
+  {anchor:"t-foodhist", title:"Histamine ratings for the foods themselves", pane:"reference", sub:"dietary", kw:"histamine food ratings sighi tolerated avoid tomatoes spinach eggplant strawberries eggs beans list riley"},
   {anchor:"t-dietary", title:"Dietary flags: low-histamine & gluten-free", pane:"reference", sub:"dietary", kw:"histamine gluten free swap soy sauce vinegar leftovers freeze tomatoes fermented cured aged"},
 ];
 
@@ -2255,7 +2297,7 @@ const INGREDIENTS = [
     methods:[
       {jkey:"freezing", directions:"Hull, open-freeze on a tray, then bag — the best-quality method for strawberries by far.", histamine:"low"},
       {jkey:"canningwb", directions:"Jam or preserves, water bath canned per a tested recipe (usually needs added pectin since strawberries are low in natural pectin).", histamine:"low"},
-      {jkey:"dehydrating", directions:"Slice thin, dry at 135°F until pliable, no moisture (8-14 hrs).", histamine:"moderate", histNote:"Dried fruit shows up on many low-histamine lists, though tolerance varies more by person than with dried meat — fresh or frozen is the safer default."},
+      {jkey:"dehydrating", directions:"Slice thin, dry at 135°F until pliable, no moisture (8-14 hrs).", histamine:"moderate", histNote:"Dried fruit shows up on many low-histamine lists, though tolerance varies more by person than with dried meat — and strawberries are flagged on their own, fresh or frozen."},
     ] },
   { name:"Blueberries", aliases:["blueberry","blueberries"],
     methods:[
@@ -2269,7 +2311,7 @@ const INGREDIENTS = [
       {jkey:"freezing", directions:"Peel, cube, and open-freeze on a tray, then bag.", histamine:"low"},
       {jkey:"canningwb", directions:"Chutney (with vinegar and spices), water bath canned per a tested recipe.", histamine:"moderate", histNote:"Vinegar-forward chutney carries the same moderate flag as other vinegar preserves.", gluten:true, glutenNote:"Check any soy sauce or spice blend in a chutney recipe for hidden wheat."},
     ] },
-  { name:"Milk & Dairy", aliases:["milk","dairy","cream"],
+  { name:"Milk & Dairy", aliases:["milk","dairy","cream","butter","cheese"],
     methods:[
       {jkey:"dairy", directions:"See the Dairy & Cheese tab for full butter and fresh chevre-style cheese directions.", histamine:"low", histNote:"Fresh butter and quick unaged soft cheese are much lower-histamine than aged/hard cheese — serve fresh rather than letting cheese age further if histamine is a concern."},
       {jkey:"freezing", directions:"Milk and cream can be frozen, though texture separates on thawing — better shaken/blended back together and used in cooking/baking rather than drinking plain.", histamine:"low"},
@@ -2311,13 +2353,13 @@ const INGREDIENTS = [
     note:"⚠️ Fish is the ingredient where speed matters most for histamine: ice or chill it within 2 hours of catching, no exceptions — histamine forms in fish flesh faster than in any other homestead protein, even before you decide how to preserve it." },
   { name:"Eggs", aliases:["egg","eggs"],
     methods:[
-      {jkey:"freezing", directions:"Whisk whole eggs until fully blended and freeze in a container or ice cube tray (great for portioning); freeze whites plain, and whisk yolks with a pinch of salt or sugar first so they don't gel. Keeps about 12 months. Thaw in the fridge and cook to 160°F.", histamine:"low", histNote:"Freezing is the go-to way to preserve extra eggs for a low-histamine diet — do not freeze eggs in the shell."},
+      {jkey:"freezing", directions:"Whisk whole eggs until fully blended and freeze in a container or ice cube tray (great for portioning); freeze whites plain, and whisk yolks with a pinch of salt or sugar first so they don't gel. Keeps about 12 months. Thaw in the fridge and cook to 160°F.", histamine:"low", histNote:"Freezing adds no histamine and is the best way to keep extra eggs, but the egg rating above still applies (egg whites are flagged on their own). Never freeze eggs in the shell."},
       {jkey:"dehydrating", directions:"Powdered/dried eggs are a real thing (scramble thin, dry at low heat, then grind) but require careful, fast handling since raw egg is a higher-risk food to dry at home — many homesteaders prefer freeze-drying (a different, specialized process) over a standard dehydrator for eggs.", histamine:"moderate", histNote:"Slow-dried eggs sit in a warm environment for hours, similar to other slow-dried proteins — moderate histamine caution applies."},
     ],
     note:"⚠️ There's no tested-safe home method for pressure- or water-bath canning eggs — don't attempt it. Freezing (above) or refrigerator pickling (vinegar-brine pickled eggs, kept cold and eaten within a few weeks — not shelf-stable) are the safe routes." },
   { name:"Sausage", aliases:["sausage","snack sticks","bratwurst","brats","breakfast sausage"],
     methods:[
-      {jkey:"freezing", directions:"Raw patties or links freeze well for months — separate with parchment before freezing so you can pull out just what you need. Cooked sausage also freezes well.", histamine:"low", histNote:"Freshly made and promptly frozen sausage is the lowest-histamine way to enjoy it."},
+      {jkey:"freezing", directions:"Raw patties or links freeze well for months — separate with parchment before freezing so you can pull out just what you need. Cooked sausage also freezes well.", histamine:"low", histNote:"If sausage is on Riley's plate at all, freshly made and promptly frozen is the lowest-histamine way to keep it."},
       {jkey:"canning", directions:"Only plain fresh (uncured) sausage — no cheese pieces or cured/specialty varieties. Lightly brown patties or 1-4 inch pieces first (raw pack isn't allowed), drain the fat, pack with added liquid (broth, water, or tomato juice) and 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"moderate", histNote:"Canned sausage carries the same moderate flag as any canned meat."},
       {jkey:"curing", directions:"The classic use — mix ground meat (often part pork fat for moisture) with Cure #1 at your package's rate plus your spice blend, stuff into casings, and hot-smoke to 160°F internal for links, or dry-cure for weeks with Cure #2 for a shelf-stable snack stick.", recipe:{title:"Basic Breakfast Sausage Spice Blend (per 5 lbs ground pork)", lines:["3 tbsp kosher salt","1 tbsp black pepper","1 tbsp rubbed sage","2 tsp brown sugar","1 tsp red pepper flakes","1/2 tsp nutmeg","No Cure #1 needed — this is a fresh, cook-and-eat sausage, not a cured one"]},
         histamine:"high", histNote:"Cured/smoked sausage and snack sticks are inherently high-histamine.", gluten:true, glutenNote:"Some casings and commercial spice blends carry hidden gluten (fillers, anti-caking wheat starch) — check labels, or mix your own blend from single-ingredient spices like the recipe here."},
@@ -2459,7 +2501,7 @@ const INGREDIENTS = [
     ] },
   { name:"Pecans & Nuts", aliases:["pecan","pecans","nuts","walnuts","almonds"],
     methods:[
-      {jkey:"freezing", directions:"Shelled nuts keep far longer in the freezer than the pantry — their oils turn rancid at room temperature within months but stay fresh for a year or more frozen.", histamine:"low", histNote:"Freezing is genuinely the best way to keep nuts fresh, no histamine downside at all."},
+      {jkey:"freezing", directions:"Shelled nuts keep far longer in the freezer than the pantry — their oils turn rancid at room temperature within months but stay fresh for a year or more frozen.", histamine:"low", histNote:"Freezing is the best way to keep nuts fresh and adds no histamine, but see the walnut rating above."},
       {jkey:"dehydrating", directions:"Fresh-harvested (in-shell) pecans need a 1-2 week air-dry/cure in a single layer in a warm, airy spot before long-term storage — this isn't the same as dehydrating cooked food, just removing excess moisture from the shell and meat.", histamine:"low"},
       {jkey:"cellar", directions:"Shelled nuts keep a few months in a cool, dry pantry; in-shell nuts keep longer than shelled.", histamine:"low"},
     ] },
@@ -2560,6 +2602,92 @@ function renderGrowDetail(ingName){
   return html + '</div>';
 }
 
+/* ---------------- Food-level histamine ratings ----------------
+   From the SIGHI (Swiss Interest Group Histamine Intolerance) Food Compatibility List:
+   0 = well tolerated, 1 = use with care, 2 = usually avoided, 3 = very poorly tolerated.
+   Mapped to: low (0), moderate (1), high (2–3), varies (mixed entry), unrated (not on the list).
+   These rate the FOOD itself; the method tags rate what preserving does on top of that. */
+const FRESH = " Spoils quickly, so freshness matters: chill fast and freeze or eat promptly.";
+const FOOD_HIST = {
+  "Venison (Deer)": {level:"moderate", note:"Game is rated 1 (use with care), mostly because store-bought game is usually aged. Your own deer, chilled fast and frozen promptly, is closer to other fresh meat."},
+  "Chicken (Poultry)": {level:"low", note:"Fresh chicken is rated 0 (well tolerated)."+FRESH},
+  "Goat": {level:"unrated", note:"Not on the SIGHI list. Treat it like other fresh meat: freshness is what matters."},
+  "Sheep (Lamb/Mutton)": {level:"unrated", note:"Not on the SIGHI list. Treat it like other fresh meat: freshness is what matters."},
+  "Beef (Cattle)": {level:"low", note:"Fresh beef is rated 0 (well tolerated)."+FRESH},
+  "Pork (Pig)": {level:"moderate", note:"Fresh pork is rated 1 (use with care). SIGHI calls it controversial: often tolerated, but very perishable."},
+  "Rabbit": {level:"unrated", note:"Not on the SIGHI list. Treat it like other fresh meat: freshness is what matters."},
+  "Turkey": {level:"low", note:"Fresh turkey is rated 0 (well tolerated)."+FRESH},
+  "Duck": {level:"low", note:"Fresh duck is rated 0 (well tolerated)."+FRESH},
+  "Goose": {level:"unrated", note:"Not on the SIGHI list. Treat it like other fresh poultry: freshness is what matters."},
+  "Quail": {level:"low", note:"Fresh quail and quail eggs are rated 0 (well tolerated)."+FRESH},
+  "Fish": {level:"low", note:"Rated 0 only when freshly caught or frozen right away; it depends heavily on freshness and species. Tuna and any smoked fish are rated 3 (very poorly tolerated)."},
+  "Eggs": {level:"high", note:"Whole eggs and egg whites are rated 2 (usually avoided), even cooked. The yolk alone is rated 0."},
+  "Sausage": {level:"high", note:"SIGHI rates sausages of all kinds 3 (very poorly tolerated). Fresh homemade sausage, frozen right away, isn't rated separately; ask Riley's provider before including it."},
+  "Milk & Dairy": {level:"varies", byTerm:{"butter":"low","milk":"low","ricotta":"low","aged":"high","cheddar":"high"}, note:"Milk, sweet-cream butter and fresh cheeses (ricotta, cream cheese) are rated 0. Cultured butter is rated 1, and aged or hard cheeses are rated 3."},
+  "Tomatoes": {level:"high", note:"Tomatoes are rated 2 (usually avoided). Freezing keeps histamine from rising, but it can't remove what the tomato already has."},
+  "Cucumbers": {level:"low", note:"Fresh cucumbers are rated 0 (well tolerated); pickles are rated 2."},
+  "Peppers": {level:"varies", byTerm:{"jalapeno":"high","chili":"high","hot":"high","serrano":"high","bell":"low"}, note:"Sweet bell peppers are rated 0 (well tolerated). Hot chili peppers are rated 2, since the heat is irritating."},
+  "Summer Squash & Zucchini": {level:"low", note:"Zucchini and squash are rated 0 (well tolerated)."},
+  "Green Beans": {level:"moderate", note:"Green beans are rated 1 (use with care); some people tolerate them well."},
+  "Corn": {level:"low", note:"Sweet corn is rated 0 (well tolerated)."},
+  "Onions & Garlic": {level:"moderate", note:"Onions and garlic are rated 1: small amounts, cooked, are usually fine; large amounts can be a problem."},
+  "Carrots": {level:"low", note:"Carrots are rated 0 (well tolerated)."},
+  "Apples": {level:"low", note:"Apples are rated 0 (well tolerated)."},
+  "Peaches": {level:"low", note:"Peaches are rated 0 (well tolerated)."},
+  "Strawberries": {level:"high", note:"Strawberries are rated 2 (usually avoided), however they're preserved."},
+  "Blueberries": {level:"low", note:"Blueberries are rated 0 (well tolerated)."},
+  "Mangoes": {level:"moderate", note:"Mango is rated 1 (use with care); SIGHI notes it's often well tolerated."},
+  "Potatoes": {level:"low", note:"Potatoes are rated 0 (well tolerated)."},
+  "Sweet Potatoes": {level:"low", note:"Sweet potatoes are rated 0 (well tolerated)."},
+  "Beets": {level:"low", note:"Beets are rated 0 (well tolerated)."},
+  "Cabbage": {level:"low", note:"Fresh cabbage is rated 0 (well tolerated); sauerkraut is rated 3."},
+  "Broccoli & Cauliflower": {level:"low", note:"Broccoli and cauliflower are rated 0 (well tolerated)."},
+  "Asparagus": {level:"low", note:"Asparagus is rated 0 (well tolerated)."},
+  "Peas (English/Shelling)": {level:"moderate", note:"Green peas are rated 1 (use with care)."},
+  "Okra": {level:"unrated", note:"Okra isn't on the SIGHI list."},
+  "Winter Squash & Pumpkin": {level:"low", note:"Pumpkin and winter squash are rated 0 (well tolerated)."},
+  "Radishes": {level:"low", note:"Radishes are rated 0 (well tolerated)."},
+  "Turnips": {level:"unrated", note:"Turnips aren't rated on the SIGHI list."},
+  "Dry Beans (Pinto, Black, etc.)": {level:"high", note:"Dried beans and other pulses (lentils, chickpeas, soybeans) are rated 2 (usually avoided)."},
+  "Leafy Greens (Spinach, Chard, Kale)": {level:"varies", byTerm:{"spinach":"high","chard":"moderate","kale":"unrated"}, note:"Spinach is rated 2 (usually avoided), Swiss chard 1 (use with care), and kale isn't on the list. Freezing won't lower spinach's rating."},
+  "Eggplant": {level:"high", note:"Eggplant is rated 2 (usually avoided), however it's preserved."},
+  "Herbs (Basil, Oregano, Thyme, etc.)": {level:"low", note:"Basil, oregano and thyme are rated 0 (well tolerated)."},
+  "Pears": {level:"moderate", note:"Pears are rated 1 (use with care)."},
+  "Plums": {level:"moderate", note:"Plums are rated 1 (use with care)."},
+  "Cherries": {level:"low", note:"Cherries are rated 0, though SIGHI calls them controversial."},
+  "Grapes": {level:"low", note:"Grapes are rated 0 (well tolerated)."},
+  "Melons & Watermelon": {level:"varies", byTerm:{"watermelon":"moderate","cantaloupe":"low","honeydew":"low","muskmelon":"low"}, note:"Cantaloupe and honeydew are rated 0; watermelon is rated 1 (use with care)."},
+  "Figs": {level:"moderate", note:"Figs are rated 1 (use with care)."},
+  "Pecans & Nuts": {level:"varies", byTerm:{"walnut":"high","pecan":"unrated"}, note:"Walnuts are rated 3 (very poorly tolerated). Pecans aren't on the list."},
+  "Rhubarb": {level:"moderate", note:"Rhubarb is rated 1 (use with care); SIGHI notes it's often tolerated."},
+};
+const HIST_RANK = {low:0, moderate:1, varies:1, high:2};
+function foodHistTag(level){
+  if(level==="varies") return '<span class="tag histamine-mod">🟡 varies by food</span>';
+  if(level==="unrated") return '<span class="tag ev-folk">⚪ not rated</span>';
+  if(level==="high") return '<span class="tag histamine">🔴 food itself</span>';
+  if(level==="moderate") return '<span class="tag histamine-mod">🟡 food itself</span>';
+  return '<span class="tag safe">🟢 food itself</span>';
+}
+// For mixed entries (e.g. leafy greens), use the specific food the person searched for when we can tell.
+function foodLevel(ingName){
+  const f = FOOD_HIST[ingName]; if(!f) return null;
+  if(f.byTerm){
+    const q = (document.getElementById('globalSearch').value || '').toLowerCase();
+    for(const k in f.byTerm){ if(q.includes(k)) return f.byTerm[k]; }
+  }
+  return f.level;
+}
+// The tag shown on a method is whichever is higher: the method's risk or the food's own rating.
+function effectiveHist(methodLevel, ingName){
+  const lvl = foodLevel(ingName);
+  if(!lvl || !(lvl in HIST_RANK)) return {level:methodLevel, raised:false};
+  const m = HIST_RANK[methodLevel] ?? 0;
+  const fr = HIST_RANK[lvl];
+  if(fr > m) return {level: fr===2 ? 'high' : 'moderate', raised:true};
+  return {level:methodLevel, raised:false};
+}
+
 function matchIngredients(q){
   return INGREDIENTS.filter(ing => ing.name.toLowerCase().includes(q) || ing.aliases.some(a=>a.includes(q)));
 }
@@ -2587,11 +2715,13 @@ function renderIngredientBlock(ing){
       recipeHtml = '<div class="ing-recipe"><strong>'+activeMethod.recipe.title+'</strong><ul>'+
         activeMethod.recipe.lines.map(l=>'<li>'+l+'</li>').join('')+'</ul></div>';
     }
-    let flagsHtml = '<div class="ing-flags">'+histTag(activeMethod.histamine);
+    const eff = effectiveHist(activeMethod.histamine, ing.name);
+    let flagsHtml = '<div class="ing-flags">'+histTag(eff.level);
     if(activeMethod.gluten) flagsHtml += ' <span class="tag gluten">🌾 gluten swap</span>';
     flagsHtml += '</div>';
     let notesHtml = '';
-    if(activeMethod.histNote) notesHtml += '<p class="ing-note histamine-text">'+activeMethod.histNote+'</p>';
+    if(eff.raised) notesHtml += '<p class="ing-note histamine-text"><strong>Flagged because of the food itself</strong> (see its rating above), not because of this method.</p>';
+    if(activeMethod.histNote) notesHtml += '<p class="ing-note histamine-text">'+(eff.raised?'<strong>About this method:</strong> ':'')+activeMethod.histNote+'</p>';
     if(activeMethod.glutenNote) notesHtml += '<p class="ing-note gluten-text">'+activeMethod.glutenNote+'</p>';
     detail = '<div class="ing-detail">'+
       '<p>'+activeMethod.directions+'</p>'+
@@ -2600,8 +2730,10 @@ function renderIngredientBlock(ing){
       '</div>';
   }
   const noteHtml = ing.note ? '<div class="ing-note-callout">'+ing.note+'</div>' : '';
+  const fh = FOOD_HIST[ing.name];
+  const foodHtml = fh ? '<div class="ing-food">'+foodHistTag(foodLevel(ing.name))+' '+fh.note+'</div>' : '';
   return '<div class="ing-block"><div class="ing-name">🍽️ '+ing.name+'</div>'+
-    noteHtml +
+    foodHtml + noteHtml +
     '<div class="ing-chips">'+chips+'</div>'+detail+'</div>';
 }
 
