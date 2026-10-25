@@ -397,6 +397,10 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 .table-wrap{overflow-x:auto; -webkit-overflow-scrolling:touch; max-width:100%;}
 .table-wrap > table{margin-top:0;}
 @media (max-width:640px){ .table-wrap table{font-size:0.8rem;} .table-wrap th, .table-wrap td{padding:5px 6px;} }
+.book-hit{background:var(--paper); border:1px solid var(--tan); border-radius:8px; padding:8px 10px; margin:6px 0;}
+.book-title{font-weight:bold; font-size:0.9rem; margin-bottom:4px;}
+.book-hit ul{margin:2px 0 0; padding-left:18px; font-size:0.9rem;}
+#searchResults .book-hit{margin:6px 8px;}
 </style>
 </head>
 <body>
@@ -415,6 +419,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   <button data-pane="home" class="active">🏡 Home</button>
   <button data-pane="preserve">🫙 Preserving</button>
   <button data-pane="garden">🌱 Garden</button>
+  <button data-pane="apothecary">🌿 Apothecary</button>
   <button data-pane="livestock">🐐 Livestock</button>
   <button data-pane="reference">📋 Reference</button>
 </nav>
@@ -438,7 +443,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   <div class="card searchable" data-keywords="homestead location cisco texas zone elevation altitude frost dates">
     <h3>📍 Your Homestead</h3>
     <div class="grid2">
-      <div><h5>Location</h5><p>32°23'12"N 99°09'05"W — Callahan County, TX, near Putnam</p></div>
+      <div><h5>Location</h5><p>Callahan County, TX, near Putnam</p></div>
       <div><h5>USDA Hardiness Zone</h5><p>8a (10–15°F minimum)</p></div>
       <div><h5>Approx. elevation</h5><p>~1,600 ft</p></div>
       <div><h5>Avg. last spring frost</h5><p>~April 5</p></div>
@@ -468,6 +473,8 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     <div class="home-card" data-goto="preserve|cellar"><span class="emoji">🥔</span><h3>Root Cellar &amp; Storage</h3><p>Best conditions by crop, shelf life</p></div>
     <div class="home-card" data-goto="preserve|dairy"><span class="emoji">🧀</span><h3>Dairy &amp; Cheese</h3><p>Butter, chevre, and basic dairy safety</p></div>
     <div class="home-card" data-goto="garden|calendar"><span class="emoji">📅</span><h3>Planting Calendar</h3><p>Enter your frost date, get a custom schedule</p></div>
+    <div class="home-card" data-goto="apothecary|bookshelf"><span class="emoji">📚</span><h3>Family Bookshelf</h3><p>What's wrong? Find the book pages and our own remedies</p></div>
+    <div class="home-card" data-goto="apothecary|cabinet"><span class="emoji">🌿</span><h3>Home Apothecary</h3><p>Remedies, tinctures &amp; salves, Jess's homeopathy kit, the medicine bed</p></div>
     <div class="home-card" data-goto="garden|pests"><span class="emoji">🐛</span><h3>Pest &amp; Disease ID</h3><p>Quick identification &amp; organic-first fixes</p></div>
     <div class="home-card" data-goto="livestock|poultry"><span class="emoji">🐓</span><h3>Livestock Care Sheets</h3><p>Poultry, goats, sheep, cattle, pigs, rabbits</p></div>
     <div class="home-card" data-goto="livestock|breeding"><span class="emoji">🐣</span><h3>Breeding &amp; Incubation</h3><p>Gestation lengths, incubation temps &amp; days</p></div>
@@ -1111,6 +1118,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <p><strong>Perennials:</strong> rosemary, oregano (including Mexican oregano), thyme and sage come back every
       year but need sharp drainage. In clay, give them a raised bed; sage especially hates wet clay.</p>
       <p><strong>Mint:</strong> keep it in a pot. It spreads underground and will take over a bed.</p>
+      <p><strong>Medicine herbs</strong> (calendula, chamomile, echinacea, elderberry, lemon balm and more) have their own page: <a class="jumplink" data-goto="apothecary|bed">Apothecary → Medicine Bed</a>.</p>
     </div>
 
     <div class="card searchable" id="g-asparagus" data-keywords="asparagus perennial bed raised bed crowns Mary Washington Jersey Giant UC 157">
@@ -1408,6 +1416,431 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 </section>
 
+<!-- ============ APOTHECARY ============ -->
+<section class="pane" id="pane-apothecary">
+  <h2 class="section-title">Home Apothecary</h2>
+  <nav class="subtabs" id="apothecaryTabs">
+    <button data-sub="bookshelf" class="active">📚 Bookshelf</button>
+    <button data-sub="cabinet">Remedy Cabinet</button>
+    <button data-sub="making">Making Medicine</button>
+    <button data-sub="homeopathy">Homeopathy Kit</button>
+    <button data-sub="bed">Medicine Bed</button>
+  </nav>
+
+  <!-- ===== Bookshelf ===== -->
+  <div class="subpane active" id="apothecary-bookshelf">
+    <div class="callout searchable" id="a-firstline" data-keywords="apothecary home remedies first line when to get help prescription">
+      <strong>How this section fits:</strong> home remedies are the first line for the small stuff: sniffles, tummy
+      trouble, scrapes, a rough night's sleep. The doctor's prescriptions cover the big stuff, and the
+      <a href="https://roped-in-ready.roperwtxb.workers.dev" target="_blank" rel="noopener">Roped In &amp; Ready</a>
+      medical cards cover emergencies. Every remedy here still has to pass the family's four diet rules
+      (see the <a class="jumplink" data-goto="reference|dietary">Dietary Notes</a>).
+    </div>
+
+    <div class="tool-box searchable" id="a-lookup" data-keywords="bookshelf book lookup page numbers prescription for natural cures balch what page">
+      <h4>📚 Family Bookshelf Lookup</h4>
+      <p style="margin-top:0;font-size:0.85rem;">Type what's wrong, in your own words ("tummy ache," "can't sleep,"
+      "the crud"), and it tells you which of our books cover it and on what pages, plus anything in our own
+      Remedy Cabinet and Homeopathy Kit that fits. Page numbers only: grab the book for the details.</p>
+      <input type="text" id="bookQuery" class="filter-input" placeholder="What's going on? (e.g. cough, sunburn, earache)" autocomplete="off">
+      <div id="bookResults" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="card searchable" id="a-shelf" data-keywords="books shelf library gladstar green romm cummings ullman where there is no doctor">
+      <h3>📖 What's on the shelf</h3>
+      <div id="shelfList"></div>
+      <p class="muted-small" style="margin-top:10px;">To add a book: snap photos of its contents pages and send them to
+      Claude. Each new book gets added to the lookup above.</p>
+    </div>
+
+    <div class="callout">
+      <strong>When the book isn't enough:</strong> some everyday problems aren't in <em>Prescription for Natural
+      Cures</em> at all (sore throat on its own, cuts and scrapes, vomiting, pink eye, lice, teething, tick and
+      spider bites, nosebleeds). The lookup will say so. For those, check the Remedy Cabinet here and the medical
+      cards in Roped In &amp; Ready.
+    </div>
+  </div>
+
+  <!-- ===== Remedy Cabinet ===== -->
+  <div class="subpane" id="apothecary-cabinet">
+    <div class="callout histamine searchable" id="a-gethelp" data-keywords="when to get help fever dehydration breathing emergency escalate stop">
+      <strong>Stop the home remedies and get help if:</strong>
+      <ul style="margin:6px 0 0;">
+        <li>A baby under 3 months has a fever of 100.4°F or higher.</li>
+        <li>A baby 3–6 months old with a fever over 102°F, or any fever with unusual fussiness or sluggishness.</li>
+        <li>An adult at 103°F or higher, anyone at 104°F, any fever lasting more than 3 days, or a fever with a seizure.</li>
+        <li>Someone is working hard to breathe, wheezing, or turning blue or gray around the lips.</li>
+        <li>Signs of dehydration: a baby with no wet diaper in 3 hours or fewer than 6 a day; an older child or adult
+        with very little or no pee in 8 hours; dry mouth, no tears, sunken eyes or a sunken soft spot; very sleepy or
+        hard to wake. Also: diarrhea for 24 hours or more in a child, can't keep even small sips down, or bloody or
+        black stool.</li>
+        <li>A stiff neck with fever, confusion, or a rash that doesn't fade when you press a clear glass on it.</li>
+        <li>A burn bigger than the person's palm; any burn on the face, hands, feet, groin, buttocks or a major joint,
+        or one that wraps all the way around an arm or leg; a burn from electricity or chemicals; a burn that looks
+        white, leathery or charred; or any blistered burn on a baby.</li>
+        <li>Swelling of the lips, tongue or throat, or hives with trouble breathing (that's the emergency card in
+        Roped In &amp; Ready, right now).</li>
+        <li>Anything that's getting worse instead of better, or your gut says "this isn't the usual."</li>
+      </ul>
+    </div>
+
+    <div class="callout searchable" id="a-interact" data-keywords="herb drug interactions prescription medicine pharmacist safety pregnancy kids dosing">
+      <strong>Herbs are real medicine, so they can tangle with real medicine.</strong> Several common herbs can
+      change how prescriptions work, especially seizure medicines, blood thinners, heart and blood-pressure
+      medicines, diabetes medicines, thyroid medicine and anything that makes you sleepy. For anyone in the family
+      on a daily prescription, take this list to the pharmacist once and ask, "Anything here we should avoid?" It
+      takes five minutes and they're glad to do it. Same goes for pregnancy and nursing. And stop garlic, ginger, chamomile and other herb supplements about
+      2 weeks before surgery or dental work, and tell the surgeon.
+      <br><br><strong>Up high or locked away:</strong> alcohol tinctures, essential oils and anything with herbal
+      arnica are real poisoning risks for little ones. Child-resistant bottles, top shelf.
+      <br><br><strong>Kids aren't small adults.</strong> Use kid-specific products or a kid-specific reference for
+      amounts (Aviva Romm's book, once it's on the shelf). Don't eyeball an adult dose down.
+    </div>
+
+    <p class="muted-small">Evidence tags are honest ones: <span class="tag ev-good">✅ good evidence</span> means real
+    studies back it, <span class="tag ev-some">🟡 some evidence</span> means promising but mixed, and
+    <span class="tag ev-folk">⚪ tradition</span> means generations of use, not much research either way.</p>
+
+    <div class="card searchable" id="a-honey" data-keywords="honey raw cough sore throat night cough kids">
+      <h3>🍯 Raw honey</h3>
+      <p><span class="tag ev-good">✅ good evidence</span> <span class="tag risk">never under age 1</span></p>
+      <p><strong>Good for:</strong> coughs (especially the nighttime kind) and sore throats. A spoonful at bedtime
+      has held up surprisingly well in studies of kids' coughs, about as well as the drugstore cough syrups.</p>
+      <p><strong>How:</strong> straight off a spoon, or stirred into warm (not boiling) tea.</p>
+      <p><strong>Keeps:</strong> basically forever if sealed. Crystallized honey is fine; set the jar in warm water.</p>
+      <p><strong>Watch out:</strong> <em>never</em> give honey to a baby under 12 months (infant botulism). It's
+      still sugar, so it counts against the low-sugar rule; keep it to "medicine" amounts.</p>
+    </div>
+
+    <div class="card searchable" id="a-ginger" data-keywords="ginger nausea motion sickness upset stomach car sick throwing up">
+      <h3>🫚 Ginger</h3>
+      <p><span class="tag ev-good">✅ good evidence</span> for morning sickness <span class="tag ev-some">🟡 mixed</span> for motion sickness</p>
+      <p><strong>Good for:</strong> nausea, motion sickness and a queasy stomach.</p>
+      <p><strong>How:</strong> tea from a few thin slices of fresh root simmered 10 minutes, or capsules. For car
+      trips it's worth a try, but the studies on motion sickness are mixed.</p>
+      <p><strong>Keeps:</strong> fresh root a few weeks in the fridge, months in the freezer (grate it frozen, no
+      peeling needed). Dried powder about 1–2 years.</p>
+      <p><strong>Watch out:</strong> large amounts can add to the effect of blood thinners. Pregnant? Check with the doctor or midwife first.
+      Candied ginger is mostly sugar.</p>
+    </div>
+
+    <div class="card searchable" id="a-peppermint" data-keywords="peppermint mint tummy ache gas cramps headache congestion stuffy nose steam">
+      <h3>🌿 Peppermint</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> tummy cramps and gas, tension headaches, and stuffy noses (a bowl of steam with a few leaves, for adults and older kids only, since it's a scald risk).</p>
+      <p><strong>How:</strong> tea from the leaves; for headaches, a little diluted peppermint oil rubbed on the
+      temples (adults).</p>
+      <p><strong>Keeps:</strong> dried leaf about a year at its best. Easy to grow (in a pot!).</p>
+      <p><strong>Watch out:</strong> can make heartburn and reflux worse. Never put peppermint oil on or near the face of a baby or young child; breathing in the menthol can cause
+      serious breathing problems.</p>
+    </div>
+
+    <div class="card searchable" id="a-chamomile" data-keywords="chamomile sleep calm nerves upset stomach colic tea">
+      <h3>🌼 Chamomile</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span> for calm <span class="tag ev-folk">⚪ tradition</span> for sleep <span class="tag safe">✓ Diet Guide approved</span></p>
+      <p><strong>Good for:</strong> winding down for sleep, nerves, and mild tummy upset.</p>
+      <p><strong>How:</strong> tea, steeped covered for 5–10 minutes. Already a bedtime favorite in the Diet Guide.</p>
+      <p><strong>Keeps:</strong> dried flowers about a year at their best. Grows great here in the cool season.</p>
+      <p><strong>Watch out:</strong> it's in the daisy family, so anyone allergic to ragweed can react; it's uncommon, but
+      reactions can be serious. It can add to the effect of blood thinners (like warfarin) and sedatives, and may
+      affect birth-control pills.</p>
+    </div>
+
+    <div class="card searchable" id="a-elderberry" data-keywords="elderberry syrup cold flu immune winter crud">
+      <h3>🫐 Elderberry</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> cold and flu season. A few small studies found it shortened flu symptoms; others
+      found less. Best started at the first sniffle.</p>
+      <p><strong>How:</strong> syrup (see Making Medicine), or gummies and lozenges.</p>
+      <p><strong>Keeps:</strong> homemade syrup about 2–3 months in the fridge, or freeze it in ice-cube trays.
+      Dried berries 2–3 years. Toss any syrup that's fizzy, moldy or smells off.</p>
+      <p><strong>Watch out:</strong> <em>always cook the berries.</em> Raw or unripe berries, and the leaves, stems and bark,
+      contain cyanide-producing substances that cause nausea, vomiting and severe diarrhea; large amounts can cause
+      serious illness. Store-bought syrups are often loaded with sugar, so read the label against the
+      Diet Guide. Anyone with an autoimmune condition should ask their doctor first.</p>
+    </div>
+
+    <div class="card searchable" id="a-calendula" data-keywords="calendula salve scrapes cuts minor burns rash diaper rash dry skin eczema skin">
+      <h3>🧡 Calendula</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> scrapes, minor burns (after they've cooled), rashes, chapped and dry skin.</p>
+      <p><strong>How:</strong> infused oil or salve made from the dried flowers (see Making Medicine), or a cooled tea
+      as a wash.</p>
+      <p><strong>Keeps:</strong> salve 1–2 years, oil about a year. One of the easiest medicine plants to grow here.</p>
+      <p><strong>Watch out:</strong> clean wounds well first, and don't seal a salve over a deep cut or a puncture
+      (like a nail or a goat horn); those need to drain and may need a doctor. Check that everyone's tetanus shot is current; a dirty puncture
+      needs a booster if it's been 5 years or more. Daisy family, so ragweed-allergic
+      folks may react.</p>
+    </div>
+
+    <div class="card searchable" id="a-aloe" data-keywords="aloe vera burns sunburn minor burn gel plant">
+      <h3>🪴 Aloe vera</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> sunburn and small kitchen burns, once they're cooled under running water.</p>
+      <p><strong>How:</strong> snap a leaf from the plant and use the clear inner gel.</p>
+      <p><strong>Keeps:</strong> the plant lives for years in a pot. Bottled gel: check that it isn't mostly alcohol
+      and dye.</p>
+      <p><strong>Watch out:</strong> don't eat it. The yellow layer just under the skin is a strong laxative. Not for
+      deep or blistered burns. Aloe is toxic to dogs, so keep the pot up high.</p>
+    </div>
+
+    <div class="card searchable" id="a-lemonbalm" data-keywords="lemon balm calm anxiety sleep cold sore nerves">
+      <h3>🍋 Lemon balm</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> calming down, sleep, and (as a cream or cooled tea dabbed on) cold sores.</p>
+      <p><strong>How:</strong> tea from fresh or dried leaves. Nice mixed with chamomile.</p>
+      <p><strong>Keeps:</strong> dried leaf loses its punch fast, so use within about 6–12 months.</p>
+      <p><strong>Watch out:</strong> can add to sleepy medicines, and may affect thyroid medicine. Ask the
+      pharmacist if anyone takes either.</p>
+    </div>
+
+    <div class="card searchable" id="a-garlic" data-keywords="garlic cold flu immune food">
+      <h3>🧄 Garlic</h3>
+      <p><span class="tag ev-some">🟡 some evidence</span></p>
+      <p><strong>Good for:</strong> cold season, as a food. Easiest "remedy" on the list: cook with lots of it.</p>
+      <p><strong>Keeps:</strong> cured bulbs several months in a cool, dry spot (see the
+      <a class="jumplink" data-goto="garden|crops">Garlic</a> card).</p>
+      <p><strong>Watch out:</strong> garlic in oil is a botulism risk unless it's kept in the fridge and used fast
+      (see Making Medicine). Large amounts add to the effect of blood thinners.</p>
+    </div>
+
+    <div class="card searchable" id="a-electrolyte" data-keywords="electrolytes oral rehydration stomach bug vomiting diarrhea dehydration ors salt sugar">
+      <h3>💧 Homemade electrolyte drink (oral rehydration)</h3>
+      <p><span class="tag ev-good">✅ good evidence</span></p>
+      <p><strong>Good for:</strong> stomach bugs, vomiting, diarrhea, and heat. This is the single most useful
+      remedy on this page: it's the same treatment doctors and the WHO use for mild to moderate dehydration. If someone can't keep even
+      small sips down, they need a doctor (they may need IV fluids).</p>
+      <p><strong>Recipe (the WHO home version):</strong> 1 liter (about 4¼ cups) of clean water, 6 level teaspoons
+      of sugar, ½ level teaspoon of salt. Stir until dissolved. Measure carefully; too much salt can be dangerous.</p>
+      <p><strong>How:</strong> small sips often, a spoonful every few minutes if someone's throwing up. Make a fresh
+      batch every 24 hours.</p>
+      <p><strong>About the sugar:</strong> here the sugar is the medicine. It's what pulls the salt and water into
+      the body, so this is one place the low-sugar rule steps aside. Don't swap in honey or another sweetener: it
+      changes the balance, and honey is never for babies under 1. <strong>For babies, use store-bought oral
+      rehydration solution and keep breastfeeding.</strong> Store-bought powder packets (Pedialyte-style) keep for a
+      long time and belong in the prep kit too.</p>
+      <p><strong>Watch out:</strong> see the dehydration signs in the red box above.</p>
+    </div>
+  </div>
+
+  <!-- ===== Making Medicine ===== -->
+  <div class="subpane" id="apothecary-making">
+    <div class="callout histamine searchable" id="a-oilsafety" data-keywords="botulism infused oil garlic in oil fresh herbs safety">
+      <strong>The one rule that matters most (again): botulism likes oil.</strong> Fresh herbs and garlic carry
+      water and soil, and in oil they make the same airless, low-acid setup that makes bad canning dangerous.
+      Make infused oils from <strong>dried</strong> herbs. Oils for <strong>skin</strong> (salves, rubs) made from
+      dried herbs keep about a year. Any oil meant for <strong>eating</strong>, whether the herbs are fresh or dried,
+      goes in the fridge and gets used within 4 days, or frozen.
+    </div>
+
+    <div class="card searchable" id="a-teas" data-keywords="tea infusion decoction how to make herbal tea steep simmer roots">
+      <h3>☕ Teas: infusions and decoctions</h3>
+      <p><strong>Infusion (leaves and flowers):</strong> pour just-boiled water over the herb, <em>cover it</em> so
+      the good oils don't steam away, and steep 5–15 minutes. Chamomile, mint, lemon balm.</p>
+      <p><strong>Decoction (roots, bark, berries, seeds):</strong> tough parts need simmering, 15–30 minutes in a
+      covered pot. Ginger, elderberries.</p>
+      <p><strong>Keeps:</strong> about 24 hours in the fridge. Make it fresh.</p>
+    </div>
+
+    <div class="card searchable" id="a-tincture" data-keywords="tincture how to make alcohol vodka folk method glycerite glycerin kids">
+      <h3>🫙 Tinctures</h3>
+      <p><strong>Folk method:</strong> fill a clean jar about halfway with chopped dried herb (or about
+      three-quarters with fresh). Pour in 80–100 proof vodka until it's covered by an inch. Lid, label, and park it
+      in a dark cupboard for 4–6 weeks, shaking it whenever you think of it. Strain through cheesecloth, squeeze
+      out every drop, and bottle in dark glass with a dropper.</p>
+      <p><strong>Keeps:</strong> many years. The alcohol is the preservative.</p>
+      <p><strong>For kids:</strong> a dose of tincture holds very little alcohol, and many families stir it into a little tea (that doesn't remove much of the alcohol, but it helps it go down). The other option is a <strong>glycerite</strong>, made the same way with food-grade
+      vegetable glycerin (cut with some water for dried herbs) instead of vodka. Glycerites taste sweet and keep
+      about a year or two, but glycerin is a sugar alcohol, so check it against the Diet Guide.</p>
+      <p><em>The Herbal Medicine-Maker's Handbook</em> (on the shelf) covers ratios and the more precise
+      weight-and-measure method.</p>
+    </div>
+
+    <div class="card searchable" id="a-oils" data-keywords="infused oil how to make calendula oil olive oil double boiler">
+      <h3>🫒 Infused oils</h3>
+      <p><strong>Slow way:</strong> fill a jar loosely with <strong>dried</strong> herb, cover with olive oil by an
+      inch, lid it, and leave it somewhere warm (not sunny-window hot) for 4–6 weeks.</p>
+      <p><strong>Quick way:</strong> herb and oil in a double boiler on the lowest heat, warm but never simmering,
+      for a few hours.</p>
+      <p>Either way, strain very well. Any water or plant bits left behind are what spoil an oil.</p>
+      <p><strong>Keeps:</strong> skin-use oils from dried herbs, about a year, cool and dark. If it smells like old
+      crayons, it's gone rancid. Oils for cooking or eating: fridge, 4 days, or freeze.</p>
+    </div>
+
+    <div class="card searchable" id="a-salve" data-keywords="salve how to make beeswax balm calendula salve tins">
+      <h3>🐝 Salves</h3>
+      <p>A salve is just an infused oil thickened with beeswax.</p>
+      <ol>
+        <li>Warm 1 cup of strained infused oil gently in a double boiler.</li>
+        <li>Stir in about 1 ounce (by weight) of beeswax until melted.</li>
+        <li>Test: dip a cold spoon, let it set for a minute in the freezer. Too soft? Add a little wax. Too hard?
+        Add a little oil.</li>
+        <li>Pour into tins or small jars, let it set uncovered, then lid and label.</li>
+      </ol>
+      <p><strong>Keeps:</strong> 1–2 years. It lasts as long as the oil does.</p>
+    </div>
+
+    <div class="card searchable" id="a-syrup" data-keywords="elderberry syrup recipe how to make honey syrup">
+      <h3>🍯 Elderberry syrup</h3>
+      <ol>
+        <li>Simmer 1 cup dried elderberries (or 2 cups fresh, stems removed) in 4 cups water, uncovered, until it's
+        cooked down by about half (around 45 minutes). Some families add a few slices of ginger.</li>
+        <li>Mash the berries, then strain and press out all the liquid.</li>
+        <li>Let it cool until just warm, then stir in about 1 cup of raw honey.</li>
+        <li>Bottle, label, refrigerate.</li>
+      </ol>
+      <p><strong>Keeps:</strong> about 2–3 months in the fridge; freeze extra in ice-cube trays.
+      <span class="tag risk">honey: not under age 1</span></p>
+    </div>
+
+    <div class="card searchable" id="a-storage" data-keywords="herb storage drying labeling jars dark glass shelf life how long">
+      <h3>🏷️ Drying, storing and labeling</h3>
+      <p><strong>Drying:</strong> hang small bundles or spread on screens somewhere warm, dark and airy, or use the
+      dehydrator at its lowest herb setting (see <a class="jumplink" data-goto="preserve|dehydrating">Dehydrating</a>).
+      Done when leaves crumble and stems snap.</p>
+      <p><strong>Storing:</strong> airtight glass jars, out of the light, away from the stove and the sunny window.
+      Heat, light and air are what fade herbs. If a dried herb doesn't smell like much anymore, it won't do much
+      either.</p>
+      <p><strong>Label everything:</strong> what it is, what's in it (herb and liquid), the date made, and for
+      anything for kids, that it's kid-safe. Six months from now, nobody remembers which brown jar is which.</p>
+      <table>
+        <thead><tr><th>What</th><th>About how long</th></tr></thead>
+        <tbody>
+          <tr><td>Dried leaves and flowers</td><td>1 year at best, up to 2</td></tr>
+          <tr><td>Dried roots, bark, berries</td><td>2–3 years</td></tr>
+          <tr><td>Alcohol tinctures</td><td>Many years</td></tr>
+          <tr><td>Glycerites</td><td>About 1–2 years</td></tr>
+          <tr><td>Infused oils for skin (dried herbs)</td><td>About 1 year</td></tr>
+          <tr><td>Salves</td><td>1–2 years</td></tr>
+          <tr><td>Honey syrups (fridge)</td><td>2–3 months</td></tr>
+          <tr><td>Any herb or garlic oil for eating (fridge)</td><td>4 days, or freeze</td></tr>
+          <tr><td>Teas, electrolyte drink (fridge)</td><td>24 hours</td></tr>
+        </tbody>
+      </table>
+      <p class="muted-small">Bought remedies (tubes, bottles, capsules) go by the date on the package. Track them in
+      the Roped In &amp; Ready inventory so they rotate like everything else.</p>
+    </div>
+  </div>
+
+  <!-- ===== Homeopathy ===== -->
+  <div class="subpane" id="apothecary-homeopathy">
+    <div class="card searchable" id="a-homeo" data-keywords="homeopathy homeopathic boiron pellets tubes 30c how to take">
+      <h3>💊 Jess's Homeopathy Kit</h3>
+      <p>Homeopathic remedies, like the Boiron tubes, are tiny pellets made from very diluted plant or mineral
+      sources. The "30C" or "6C" on the tube tells you how diluted it is.</p>
+      <p><strong>How to take them:</strong> follow the tube. Let the pellets melt under the tongue rather than
+      chewing or swallowing them, ideally away from meals and toothpaste. Many tubes list a kids' dose right on the
+      label.</p>
+      <p><strong>Keeps:</strong> check the date on each tube; they last a good while. Store them like the herbs:
+      cool, dry, out of the sun.</p>
+    </div>
+
+    <div class="callout">
+      <strong>An honest word, so the plan stays solid:</strong> good studies haven't found homeopathic remedies
+      working better than a placebo. High dilutions like 30C are very low-risk in themselves. Low "X" strengths made from poisonous sources
+      (Nux vomica, Arsenicum and Gelsemium all are) aren't for kids without asking the doctor. The
+      real risk is <em>waiting on them</em> too long, so every remedy here gets the same "when to get help" line as
+      the herbs (see the red box in the <a class="jumplink" data-goto="apothecary|cabinet">Remedy Cabinet</a>).
+    </div>
+
+    <div class="callout histamine-mod searchable" id="a-pellets" data-keywords="boiron pellets sugar lactose sucrose dairy gaps diet">
+      <strong>Diet check:</strong> Boiron's pellets are made of sugar (sucrose) and lactose (milk sugar). It's a
+      very small amount per dose, but the family's GAPS and dairy rules count it, so it's worth a look in the Diet
+      Guide for whoever's taking them. Liquid and gel versions may skip it.
+    </div>
+
+    <div class="card searchable" id="a-homeokit" data-keywords="arnica oscillococcinum nux vomica apis chamomilla gelsemium ignatia arsenicum coldcalm calendula homeopathic remedies kit">
+      <h3>The common kit</h3>
+      <p class="muted-small" style="margin-top:0;">What each one is traditionally used for. The tube's own label is
+      the final word on what it's for and how much to take.</p>
+      <table>
+        <thead><tr><th>Remedy</th><th>Traditionally used for</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Arnica montana</strong></td><td>Bruises, bumps, sore muscles after a fall or a hard day's work</td></tr>
+          <tr><td><strong>Oscillococcinum</strong></td><td>The first signs of flu: achy, chilly, run down</td></tr>
+          <tr><td><strong>Coldcalm</strong></td><td>Sneezing, runny nose, the start of a cold</td></tr>
+          <tr><td><strong>Nux vomica</strong></td><td>Indigestion and overdoing it at the table</td></tr>
+          <tr><td><strong>Arsenicum album</strong></td><td>Upset stomach from something you ate</td></tr>
+          <tr><td><strong>Apis mellifica</strong></td><td>Bee stings and bug bites that puff up (never instead of an EpiPen or 911 for a sting allergy)</td></tr>
+          <tr><td><strong>Chamomilla</strong></td><td>Crankiness and irritability (labeled for teething too, but see the teething note below)</td></tr>
+          <tr><td><strong>Gelsemium</strong></td><td>Pre-event jitters; flu with heavy, droopy tiredness</td></tr>
+          <tr><td><strong>Ignatia amara</strong></td><td>Stress, grief, emotional upsets</td></tr>
+          <tr><td><strong>Calendula</strong> (cream or gel)</td><td>Minor cuts, scrapes and burns</td></tr>
+        </tbody>
+      </table>
+      <p class="muted-small">Jess: tell Claude which of these are already in your kit (and anything that isn't
+      listed), and they'll get marked here and added to the Roped In &amp; Ready inventory.</p>
+    </div>
+
+    <div class="callout histamine searchable" id="a-arnica" data-keywords="arnica cream gel herbal arnica toxic broken skin">
+      <strong>Two kinds of arnica, two different rules.</strong> Homeopathic Arnica <em>pellets</em> are the
+      diluted kind meant to go under the tongue. Arnica <em>creams, gels and oils</em> are for bumps and bruises on
+      <strong>unbroken skin only</strong> (the label says so). Herbal arnica that isn't homeopathic (tinctures,
+      oils, the plant itself) is poisonous if swallowed.
+    </div>
+
+    <div class="callout histamine searchable" id="a-brands" data-keywords="homeopathic teething tablets gels belladonna fda warning babies">
+      <strong>Skip homeopathic teething products for babies, entirely.</strong> In September 2016 the FDA told
+      parents to stop using all homeopathic teething tablets and gels after reports of seizures and other serious
+      harm. In January 2017 FDA testing found inconsistent, sometimes elevated, amounts of belladonna (a poisonous
+      plant) in Hyland's teething tablets, a big-name brand, which were then pulled from US stores. The American
+      Academy of Pediatrics agrees: avoid them. And teething doesn't cause fever, so a feverish, miserable baby
+      gets a call to the doctor.
+    </div>
+  </div>
+
+  <!-- ===== Medicine Bed ===== -->
+  <div class="subpane" id="apothecary-bed">
+    <div class="card searchable" id="a-bedintro" data-keywords="medicine bed medicinal herb garden what to plant callahan county">
+      <h3>🌱 The Medicine Bed</h3>
+      <p>The cabinet restocks itself if we grow the easy stuff. Most of these are tough, a few need babying in
+      July, and two (calendula and chamomile) actually prefer our winters. Calendula and chamomile are also in the
+      <a class="jumplink" data-goto="garden|calendar">Planting Calendar</a>. The kitchen herbs are on the
+      <a class="jumplink" data-goto="garden|crops">Herbs card</a>.</p>
+      <p><strong>Ranch safety first:</strong> plant elderberry where the goats and other livestock can't browse
+      it (the leaves and stems are toxic to them). Most of the rest of this bed (aloe, lavender, chamomile, mint,
+      yarrow, garlic) can upset dogs, cats and horses if they eat much of it, so fence the bed or keep pots up high.</p>
+    </div>
+
+    <div class="card searchable" id="a-bed-cool" data-keywords="calendula chamomile cool season fall planting winter blooms">
+      <h3>❄️ Cool-season annuals: plant in fall</h3>
+      <p><strong>Calendula.</strong> Sow seed or set transplants in September–October. It blooms from fall into spring (cover it on hard-freeze nights below about 25°F) and quits when the summer
+      heat arrives. Pick flowers often (more pick, more bloom) and dry them well;
+      they're sticky with resin, which is the good stuff.</p>
+      <p><strong>German chamomile.</strong> Sow in fall, or in late winter. The seed is tiny and needs light to
+      sprout, so press it onto the surface and don't bury it. Blooms in spring; pick the flowers when fully open.
+      Let a few go to seed and it'll come back on its own.</p>
+    </div>
+
+    <div class="card searchable" id="a-bed-perennial" data-keywords="echinacea purple coneflower yarrow lavender lemon balm peppermint perennial">
+      <h3>🌿 Perennials: plant once</h3>
+      <p><strong>Purple coneflower (echinacea).</strong> Tough, drought-hardy, full sun, and its cousins are native
+      to Texas prairies. Roots are harvested from plants at least 3 years old; leaves and flowers can be used
+      sooner. Plant in spring or fall.</p>
+      <p><strong>Yarrow.</strong> A native that thrives on neglect and poor soil. Traditionally used on minor cuts.
+      Daisy family.</p>
+      <p><strong>Lavender.</strong> Calming, great in sleep sachets. Goodwin Creek Grey and Spanish lavender
+      handle our heat best. It <em>must</em> have sharp drainage: raised bed, gravelly mix, never in wet clay.</p>
+      <p><strong>Peppermint and lemon balm.</strong> In pots, with afternoon shade and steady water in summer. Mint
+      in the ground takes over everything.</p>
+    </div>
+
+    <div class="card searchable" id="a-bed-other" data-keywords="elderberry shrub aloe ginger holy basil tulsi container">
+      <h3>🪴 The rest</h3>
+      <p><strong>Elderberry.</strong> American elderberry is native to Central and East Texas creek edges, grows into a 6–12 ft shrub, and wants
+      moisture: a low spot, near a stock tank or on drip. Berries ripen in summer; beat the birds to them. Remember:
+      cook the berries, and keep it out of livestock reach.</p>
+      <p><strong>Aloe.</strong> In a pot. Bring it inside when nights drop below about 40°F. Bright light, very
+      little water.</p>
+      <p><strong>Ginger.</strong> Plant a plump store-bought organic root in a big pot in spring, keep it in
+      part shade and evenly moist, and dig it in fall before frost.</p>
+      <p><strong>Holy basil (tulsi).</strong> A calming tea herb that grows exactly like regular basil: plant after
+      frost, done at the first freeze.</p>
+    </div>
+  </div>
+</section>
+
+
 <!-- ============ LIVESTOCK ============ -->
 <section class="pane" id="pane-livestock">
   <h2 class="section-title">Livestock &amp; Poultry</h2>
@@ -1641,6 +2074,7 @@ function wireSubtabs(navId, paneprefix){
 wireSubtabs('preserveTabs','preserve');
 wireSubtabs('gardenTabs','garden');
 wireSubtabs('referenceTabs','reference');
+wireSubtabs('apothecaryTabs','apothecary');
 
 function wrapTables(root){
   (root||document).querySelectorAll('table').forEach(t=>{
@@ -1664,7 +2098,7 @@ function scrollToAnchor(id){
 function goTo(pane, sub){
   showPane(pane);
   setTimeout(()=>{
-    const navMap = {preserve:'preserveTabs', garden:'gardenTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+    const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', reference:'referenceTabs'};
     const nav = document.getElementById(navMap[pane]);
     if(nav){
       const btn = nav.querySelector('button[data-sub="'+sub+'"]');
@@ -1771,6 +2205,8 @@ const CROPS = [
   {name:"Strawberries", how:"Plants", spring:null, indoor:null, fall:[31,1], days:null, fresh:"—", keep:"—", rows:"30–36 (beds)", plants:"12", depth:"crown at soil level", guide:"g-strawberries", harvestNote:"March–May next spring", src:"AgriLife strawberry guide"},
   {name:"Basil", how:"Transplants", spring:[7,42], indoor:6, fall:null, days:null, fresh:"1–2 plants", keep:"3–4 plants (pesto)", rows:"18–24", plants:"12–18", depth:"—", guide:"g-herbs", harvestNote:"pick leaves a few weeks after planting; dies at first frost", src:"general"},
   {name:"Cilantro", how:"Seed", spring:[-56,-14], indoor:null, fall:[56,21], days:[35,45], fresh:"a few ft of row, resown every 3 weeks", keep:"—", rows:"12–18", plants:"2–4", depth:"¼", guide:"g-herbs", src:"general"},
+  {name:"Calendula", how:"Seed or transplants", spring:[-42,-14], indoor:6, fall:[55,14], days:[45,60], fresh:"4–6 plants", keep:"8–12 plants (for drying)", rows:"12–18", plants:"10–12", depth:"¼", guide:"g-herbs", harvestNote:"pick flowers every few days; quits in summer heat", note:"A medicine-bed flower: see Apothecary → Medicine Bed. Fall-planted calendula blooms fall into spring; cover it on hard-freeze nights.", src:"general"},
+  {name:"Chamomile (German)", how:"Seed", spring:[-56,-21], indoor:null, fall:[50,14], days:[60,70], fresh:"a 3–4 ft patch", keep:"a 3–4 ft patch", rows:"12–18", plants:"6–8", depth:"surface (needs light)", guide:"g-herbs", harvestNote:"pick flowers when fully open, spring", note:"A medicine-bed herb: see Apothecary → Medicine Bed. Press seed onto the soil; don't bury it.", src:"general"},
   {name:"Parsley", how:"Seed", spring:[-42,-7], indoor:null, fall:[112,42], days:[70,90], fresh:"1–3 ft of row", keep:"1–3 ft of row", rows:"14–24", plants:"2–4", depth:"⅛", guide:"g-herbs"},
 ];
 const DAY = 86400000;
@@ -2143,6 +2579,33 @@ const SEARCH_INDEX = [
   {title:"Rabbit care sheet", pane:"livestock", sub:"rabbits", kw:"rabbit hutch kit doe kindling"},
   {title:"Gestation & incubation reference", pane:"livestock", sub:"breeding", kw:"gestation incubation days temperature humidity chicken goat sheep cattle pig hatch"},
   {title:"General livestock first aid kit", pane:"livestock", sub:"firstaid", kw:"first aid kit vet emergency wound thermometer"},
+  {anchor:"a-lookup", title:"Family Bookshelf lookup (book pages by ailment)", pane:"apothecary", sub:"bookshelf", kw:"bookshelf book page natural cures balch library what page"},
+  {anchor:"a-gethelp", title:"When to stop home remedies and get help", pane:"apothecary", sub:"cabinet", kw:"fever dehydration breathing emergency get help doctor"},
+  {anchor:"a-interact", title:"Herbs & prescriptions: interactions, kids, pregnancy", pane:"apothecary", sub:"cabinet", kw:"interactions prescription pharmacist pregnancy kids dose"},
+  {anchor:"a-honey", title:"Raw honey (coughs, sore throat)", pane:"apothecary", sub:"cabinet", kw:"honey cough sore throat"},
+  {anchor:"a-ginger", title:"Ginger (nausea, motion sickness)", pane:"apothecary", sub:"cabinet", kw:"ginger nausea car sick motion sickness"},
+  {anchor:"a-peppermint", title:"Peppermint (tummy, headache, stuffy nose)", pane:"apothecary", sub:"cabinet", kw:"peppermint mint tummy headache congestion"},
+  {anchor:"a-chamomile", title:"Chamomile (sleep, calm, tummy)", pane:"apothecary", sub:"cabinet", kw:"chamomile sleep calm"},
+  {anchor:"a-elderberry", title:"Elderberry (cold & flu season)", pane:"apothecary", sub:"cabinet", kw:"elderberry cold flu immune"},
+  {anchor:"a-calendula", title:"Calendula (scrapes, rashes, minor burns)", pane:"apothecary", sub:"cabinet", kw:"calendula salve scrape rash skin"},
+  {anchor:"a-aloe", title:"Aloe vera (sunburn, small burns)", pane:"apothecary", sub:"cabinet", kw:"aloe burn sunburn"},
+  {anchor:"a-lemonbalm", title:"Lemon balm (calm, sleep, cold sores)", pane:"apothecary", sub:"cabinet", kw:"lemon balm calm sleep cold sore"},
+  {anchor:"a-electrolyte", title:"Homemade electrolyte drink (stomach bugs)", pane:"apothecary", sub:"cabinet", kw:"electrolyte rehydration vomiting diarrhea stomach bug dehydration"},
+  {anchor:"a-oilsafety", title:"Infused oil & garlic-in-oil botulism safety", pane:"apothecary", sub:"making", kw:"botulism infused oil garlic fresh herbs"},
+  {anchor:"a-teas", title:"Herbal teas: infusions & decoctions", pane:"apothecary", sub:"making", kw:"tea infusion decoction steep"},
+  {anchor:"a-tincture", title:"Making tinctures & glycerites", pane:"apothecary", sub:"making", kw:"tincture vodka alcohol glycerite glycerin"},
+  {anchor:"a-oils", title:"Making infused oils", pane:"apothecary", sub:"making", kw:"infused oil olive oil calendula oil"},
+  {anchor:"a-salve", title:"Making salves", pane:"apothecary", sub:"making", kw:"salve beeswax balm"},
+  {anchor:"a-syrup", title:"Elderberry syrup recipe", pane:"apothecary", sub:"making", kw:"elderberry syrup recipe honey"},
+  {anchor:"a-storage", title:"Drying, storing & labeling herbs (shelf-life chart)", pane:"apothecary", sub:"making", kw:"herb storage drying jars label shelf life"},
+  {anchor:"a-homeo", title:"Jess's Homeopathy Kit (how to take Boiron remedies)", pane:"apothecary", sub:"homeopathy", kw:"homeopathy homeopathic boiron pellets"},
+  {anchor:"a-homeokit", title:"Homeopathic remedies: Arnica, Oscillococcinum & more", pane:"apothecary", sub:"homeopathy", kw:"arnica oscillococcinum coldcalm nux vomica apis chamomilla gelsemium ignatia arsenicum"},
+  {anchor:"a-arnica", title:"Arnica: pellets vs creams vs herbal", pane:"apothecary", sub:"homeopathy", kw:"arnica cream gel broken skin"},
+  {anchor:"a-pellets", title:"Boiron pellets: sugar & lactose diet check", pane:"apothecary", sub:"homeopathy", kw:"pellets sugar lactose gaps"},
+  {anchor:"a-bedintro", title:"The Medicine Bed: what to grow", pane:"apothecary", sub:"bed", kw:"medicine bed medicinal herbs garden grow"},
+  {anchor:"a-bed-cool", title:"Calendula & chamomile: plant in fall", pane:"apothecary", sub:"bed", kw:"calendula chamomile plant fall"},
+  {anchor:"a-bed-perennial", title:"Echinacea, yarrow, lavender, mint & lemon balm", pane:"apothecary", sub:"bed", kw:"echinacea coneflower yarrow lavender mint lemon balm"},
+  {anchor:"a-bed-other", title:"Elderberry, aloe, ginger & holy basil", pane:"apothecary", sub:"bed", kw:"elderberry aloe ginger tulsi holy basil"},
   {anchor:"t-spoilage", title:"Botulism & spoilage warning signs", pane:"reference", sub:"safety", kw:"botulism spoilage throw out mold bulging lid"},
   {anchor:"t-shelflife", title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
   {anchor:"t-conversions", title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
@@ -2754,7 +3217,13 @@ function doSearch(){
       '<div class="result" data-pane="'+m.pane+'" data-sub="'+m.sub+'" data-anchor="'+(m.anchor||'')+'"><div class="rtitle">'+m.title+'</div><div class="rpath">'+m.pane+' → '+m.sub+'</div></div>'
     ).join('');
   }
-  if(!ingMatches.length && !topicMatches.length){
+  const bookRes = bookLookup(q);
+  const bookHtml = (bookRes.pages.length || bookRes.cabinet.length) ? renderBookResults(bookRes, q, true) : '';
+  if(bookHtml){
+    if(ingMatches.length || topicMatches.length) html += '<div class="result-divider">📚 From the Bookshelf</div>';
+    html += bookHtml;
+  }
+  if(!ingMatches.length && !topicMatches.length && !bookHtml){
     html = '<div class="result">No matches yet for that ingredient/topic — try a different word, or tell me to add it.</div>';
   }
   searchResults.innerHTML = html;
@@ -2769,7 +3238,7 @@ document.addEventListener('click', (e)=>{
 });
 searchResults.addEventListener('click', (e)=>{
   e.stopPropagation();
-  const chip = e.target.closest('.ing-chip');
+  const chip = e.target.closest('.ing-chip:not(.cab-chip)');
   if(chip){
     const ing = chip.dataset.ing, method = chip.dataset.method;
     if(activeIngName===ing && activeMethodKey===method){
@@ -2778,6 +3247,13 @@ searchResults.addEventListener('click', (e)=>{
       activeIngName = ing; activeMethodKey = method;
     }
     doSearch();
+    return;
+  }
+  const cab = e.target.closest('.cab-chip');
+  if(cab){
+    searchResults.classList.remove('show');
+    searchInput.value = '';
+    goApothecary(cab.dataset.sub, cab.dataset.anchor);
     return;
   }
   const jump = e.target.closest('.ing-jump');
@@ -2792,7 +3268,7 @@ searchResults.addEventListener('click', (e)=>{
   const r = e.target.closest('.result');
   if(!r || !r.dataset.pane) return;
   showPane(r.dataset.pane);
-  const navMap = {preserve:'preserveTabs', garden:'gardenTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+  const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', reference:'referenceTabs'};
   setTimeout(()=>{
     const nav = document.getElementById(navMap[r.dataset.pane]);
     if(nav){
@@ -2808,6 +3284,112 @@ wrapTables(document);
 document.querySelectorAll('.guide-nav button').forEach(b=>{
   b.addEventListener('click', ()=>scrollToAnchor(b.dataset.anchor));
 });
+
+/* ---------------- Home Apothecary: Family Bookshelf ---------------- */
+/* Page numbers come from the contents pages of the family's own copies. No book text is copied. */
+const BOOKS = [{"book": "Prescription for Natural Cures", "authors": "James F. Balch, M.D., and Mark Stengler, N.D.", "source": "Sean's own copy, table of contents pp. v-vi", "note": "Page numbers only, from the contents. 'end' is the page before the next chapter starts.", "entries": [{"title": "Abscesses and Boils", "part": "Conditions", "start": 7, "end": 10}, {"title": "Acne", "part": "Conditions", "start": 11, "end": 16}, {"title": "Aging", "part": "Conditions", "start": 17, "end": 22}, {"title": "AIDS and HIV", "part": "Conditions", "start": 23, "end": 28}, {"title": "Allergies", "part": "Conditions", "start": 29, "end": 32}, {"title": "Alzheimer's Disease", "part": "Conditions", "start": 33, "end": 40}, {"title": "Anemia", "part": "Conditions", "start": 41, "end": 45}, {"title": "Anxiety", "part": "Conditions", "start": 46, "end": 51}, {"title": "Arthritis", "part": "Conditions", "start": 52, "end": 58}, {"title": "Asthma", "part": "Conditions", "start": 59, "end": 64}, {"title": "Athlete's Foot", "part": "Conditions", "start": 65, "end": 67}, {"title": "Attention Deficit Hyperactivity Disorder", "part": "Conditions", "start": 68, "end": 73}, {"title": "Back Pain", "part": "Conditions", "start": 74, "end": 80}, {"title": "Bad Breath (Halitosis)", "part": "Conditions", "start": 81, "end": 83}, {"title": "Bee Stings", "part": "Conditions", "start": 84, "end": 85}, {"title": "Bladder Infection (Cystitis)", "part": "Conditions", "start": 86, "end": 90}, {"title": "Blood Pressure, High", "part": "Conditions", "start": 91, "end": 96}, {"title": "Bone Fractures", "part": "Conditions", "start": 97, "end": 101}, {"title": "Bronchitis", "part": "Conditions", "start": 102, "end": 106}, {"title": "Bruises", "part": "Conditions", "start": 107, "end": 109}, {"title": "Burns (including Sunburn)", "part": "Conditions", "start": 110, "end": 112}, {"title": "Cancer", "part": "Conditions", "start": 113, "end": 124}, {"title": "Candidiasis (Thrush and Yeast Infection)", "part": "Conditions", "start": 125, "end": 129}, {"title": "Cardiovascular Disease", "part": "Conditions", "start": 130, "end": 138}, {"title": "Carpal Tunnel Syndrome (CTS)", "part": "Conditions", "start": 139, "end": 142}, {"title": "Cataracts", "part": "Conditions", "start": 143, "end": 146}, {"title": "Cholesterol, High", "part": "Conditions", "start": 147, "end": 153}, {"title": "Chronic Fatigue Syndrome (CFS)", "part": "Conditions", "start": 154, "end": 160}, {"title": "Common Cold", "part": "Conditions", "start": 161, "end": 165}, {"title": "Constipation", "part": "Conditions", "start": 166, "end": 170}, {"title": "Cough", "part": "Conditions", "start": 171, "end": 175}, {"title": "Crohn's Disease", "part": "Conditions", "start": 176, "end": 181}, {"title": "Depression", "part": "Conditions", "start": 182, "end": 188}, {"title": "Diabetes", "part": "Conditions", "start": 189, "end": 195}, {"title": "Diarrhea", "part": "Conditions", "start": 196, "end": 201}, {"title": "Dizziness", "part": "Conditions", "start": 202, "end": 205}, {"title": "Ear Infection", "part": "Conditions", "start": 206, "end": 211}, {"title": "Eating Disorders (Anorexia Nervosa and Bulimia)", "part": "Conditions", "start": 212, "end": 217}, {"title": "Eczema", "part": "Conditions", "start": 218, "end": 222}, {"title": "Endometriosis", "part": "Conditions", "start": 223, "end": 228}, {"title": "Fever", "part": "Conditions", "start": 229, "end": 231}, {"title": "Fibroids, Uterine", "part": "Conditions", "start": 232, "end": 236}, {"title": "Fibromyalgia", "part": "Conditions", "start": 237, "end": 244}, {"title": "Flu", "part": "Conditions", "start": 245, "end": 250}, {"title": "Food Allergies/Sensitivities", "part": "Conditions", "start": 251, "end": 256}, {"title": "Food Poisoning", "part": "Conditions", "start": 257, "end": 261}, {"title": "Gallbladder Problems", "part": "Conditions", "start": 262, "end": 267}, {"title": "Glaucoma", "part": "Conditions", "start": 268, "end": 272}, {"title": "Gout", "part": "Conditions", "start": 273, "end": 277}, {"title": "Hair Loss", "part": "Conditions", "start": 278, "end": 282}, {"title": "Headache", "part": "Conditions", "start": 283, "end": 289}, {"title": "Hearing Loss", "part": "Conditions", "start": 290, "end": 294}, {"title": "Hemorrhoids", "part": "Conditions", "start": 295, "end": 299}, {"title": "Hepatitis", "part": "Conditions", "start": 300, "end": 305}, {"title": "Herpes", "part": "Conditions", "start": 306, "end": 309}, {"title": "Hiatal Hernia and Acid Reflux Disease", "part": "Conditions", "start": 310, "end": 314}, {"title": "Hives", "part": "Conditions", "start": 315, "end": 319}, {"title": "Hypothyroidism (Underactive Thyroid)", "part": "Conditions", "start": 320, "end": 325}, {"title": "Impotence", "part": "Conditions", "start": 326, "end": 331}, {"title": "Infertility", "part": "Conditions", "start": 332, "end": 336}, {"title": "Insomnia", "part": "Conditions", "start": 337, "end": 343}, {"title": "Irritable Bowel Syndrome", "part": "Conditions", "start": 344, "end": 348}, {"title": "Kidney Stones", "part": "Conditions", "start": 349, "end": 353}, {"title": "Lupus", "part": "Conditions", "start": 354, "end": 360}, {"title": "Macular Degeneration", "part": "Conditions", "start": 361, "end": 364}, {"title": "Memory Problems", "part": "Conditions", "start": 365, "end": 369}, {"title": "Menopause", "part": "Conditions", "start": 370, "end": 376}, {"title": "Motion Sickness", "part": "Conditions", "start": 377, "end": 379}, {"title": "Multiple Sclerosis", "part": "Conditions", "start": 380, "end": 386}, {"title": "Muscle Aches and Cramps", "part": "Conditions", "start": 387, "end": 389}, {"title": "Obesity", "part": "Conditions", "start": 390, "end": 397}, {"title": "Osteoporosis", "part": "Conditions", "start": 398, "end": 403}, {"title": "Parasites (Intestinal)", "part": "Conditions", "start": 404, "end": 407}, {"title": "Parkinson's Disease", "part": "Conditions", "start": 408, "end": 413}, {"title": "Poisoning", "part": "Conditions", "start": 414, "end": 417}, {"title": "Pregnancy-Related Problems", "part": "Conditions", "start": 418, "end": 437}, {"title": "Premenstrual Syndrome (PMS)", "part": "Conditions", "start": 438, "end": 444}, {"title": "Prostate Enlargement (Benign Prostatic Hyperplasia)", "part": "Conditions", "start": 445, "end": 449}, {"title": "Prostatitis", "part": "Conditions", "start": 450, "end": 454}, {"title": "Psoriasis", "part": "Conditions", "start": 455, "end": 459}, {"title": "Rosacea", "part": "Conditions", "start": 460, "end": 465}, {"title": "Seasonal Affective Disorder (SAD)", "part": "Conditions", "start": 466, "end": 471}, {"title": "Shingles (Herpes Zoster)", "part": "Conditions", "start": 472, "end": 475}, {"title": "Sinusitis", "part": "Conditions", "start": 476, "end": 481}, {"title": "Sprains and Strains", "part": "Conditions", "start": 482, "end": 485}, {"title": "Stroke", "part": "Conditions", "start": 486, "end": 491}, {"title": "Substance Abuse (Drug and Alcohol Addiction)", "part": "Conditions", "start": 492, "end": 497}, {"title": "Syndrome X", "part": "Conditions", "start": 498, "end": 501}, {"title": "TMJ (Temporomandibular Joint) Syndrome", "part": "Conditions", "start": 502, "end": 506}, {"title": "Ulcers", "part": "Conditions", "start": 507, "end": 512}, {"title": "Vaginitis", "part": "Conditions", "start": 513, "end": 517}, {"title": "Varicose Veins", "part": "Conditions", "start": 518, "end": 522}, {"title": "Warts", "part": "Conditions", "start": 523, "end": 528}, {"title": "Diet and Nutrition", "part": "Essentials of Natural Medicine", "start": 529, "end": 546}, {"title": "Fasting", "part": "Essentials of Natural Medicine", "start": 547, "end": 549}, {"title": "Nutritional Supplements", "part": "Essentials of Natural Medicine", "start": 550, "end": 592}, {"title": "Herbal Medicine", "part": "Essentials of Natural Medicine", "start": 593, "end": 624}, {"title": "Homeopathy", "part": "Essentials of Natural Medicine", "start": 625, "end": 647}, {"title": "Bach Flower Remedies", "part": "Essentials of Natural Medicine", "start": 648, "end": 650}, {"title": "Aromatherapy", "part": "Essentials of Natural Medicine", "start": 651, "end": 660}, {"title": "Traditional Chinese Medicine: Acupuncture and Acupressure", "part": "Essentials of Natural Medicine", "start": 661, "end": 675}, {"title": "Hydrotherapy", "part": "Essentials of Natural Medicine", "start": 676, "end": 678}, {"title": "Natural Hormones", "part": "Essentials of Natural Medicine", "start": 679, "end": 683}, {"title": "Bodywork", "part": "Essentials of Natural Medicine", "start": 684, "end": 687}, {"title": "Exercise and Stress Reduction", "part": "Essentials of Natural Medicine", "start": 688, "end": 694}, {"title": "A Natural Health-Care Modalities and Resource Guide", "part": "Appendix", "start": 695, "end": 698}, {"title": "Glossary", "part": "Appendix", "start": 699, "end": 704}, {"title": "Index", "part": "Appendix", "start": 705, "end": 723}], "see_also": {"Alcoholism": "Substance Abuse (Drug and Alcohol Addiction)", "Angina": "Cardiovascular Disease", "Anorexia Nervosa": "Eating Disorders (Anorexia Nervosa and Bulimia)", "Arteriosclerosis": "Cardiovascular Disease", "Bulimia": "Eating Disorders (Anorexia Nervosa and Bulimia)", "Cystitis": "Bladder Infection (Cystitis)", "Drug Addiction": "Substance Abuse (Drug and Alcohol Addiction)", "Gastritis": "Ulcers", "Halitosis": "Bad Breath (Halitosis)", "Heart Attack and Heart Disease": "Cardiovascular Disease", "Herpes Zoster": "Shingles (Herpes Zoster)", "High Blood Pressure": "Blood Pressure, High", "High Cholesterol": "Cholesterol, High", "HIV": "AIDS and HIV", "Influenza": "Flu", "Thrush": "Candidiasis (Thrush and Yeast Infection)", "Underactive Thyroid": "Hypothyroidism (Underactive Thyroid)", "Uterine Fibroids": "Fibroids, Uterine", "Yeast Infection": "Candidiasis (Thrush and Yeast Infection)"}, "family_words": {"heartburn": ["Hiatal Hernia and Acid Reflux Disease"], "stomach bug": ["Diarrhea", "Food Poisoning"], "throwing up": ["Food Poisoning", "Motion Sickness"], "car sick": ["Motion Sickness"], "can't sleep": ["Insomnia"], "stuffy nose": ["Sinusitis", "Common Cold"], "the crud": ["Common Cold", "Flu", "Cough"], "chest cold": ["Bronchitis", "Cough"], "earache": ["Ear Infection"], "rash": ["Hives", "Eczema"], "sunburn": ["Burns (including Sunburn)"], "wasp sting": ["Bee Stings"], "fire ant": ["Bee Stings"], "UTI": ["Bladder Infection (Cystitis)"], "rolled ankle": ["Sprains and Strains"], "sore muscles": ["Muscle Aches and Cramps"], "leg cramps": ["Muscle Aches and Cramps"], "worms": ["Parasites (Intestinal)"], "boil": ["Abscesses and Boils"], "cold sore": ["Herpes"], "fungus": ["Athlete's Foot", "Candidiasis (Thrush and Yeast Infection)"], "nerves": ["Anxiety"], "migraine": ["Headache"], "sinus infection": ["Sinusitis"], "tincture": ["Herbal Medicine"], "essential oils": ["Aromatherapy"], "Boiron": ["Homeopathy"], "homeopathic": ["Homeopathy"]}, "not_covered": ["sore throat (see Common Cold / Flu)", "cuts and scrapes", "vomiting on its own", "pink eye", "lice", "teething", "tick and spider bites", "nosebleeds"]}];
+/* Books we own or have ordered. indexed:true means their pages are in the lookup. */
+const SHELF = [
+  {title:"Prescription for Natural Cures", by:"James F. Balch, M.D. & Mark Stengler, N.D.", status:"indexed"},
+  {title:"Medicinal Herbs: A Beginner's Guide", by:"Rosemary Gladstar", status:"coming", why:"33 herbs: how to grow them and make remedies from them"},
+  {title:"The Herbal Medicine-Maker's Handbook", by:"James Green", status:"coming", why:"the how-to for tinctures, salves and oils"},
+  {title:"Naturally Healthy Babies and Children", by:"Aviva Jill Romm", status:"coming", why:"kid-specific remedies and amounts"},
+  {title:"Everybody's Guide to Homeopathic Medicines", by:"Stephen Cummings, M.D. & Dana Ullman, MPH", status:"coming", why:"which homeopathic remedy for which symptom"},
+  {title:"Where There Is No Doctor", by:"David Werner (Hesperian)", status:"free", why:"free download from Hesperian; covers the everyday gaps"}
+];
+/* Our own cabinet: which cards and kit entries fit which everyday words. */
+const CABINET = [
+  {id:"a-honey", name:"🍯 Raw honey", sub:"cabinet", words:["cough","sore throat","throat","the crud","cold","chest cold"]},
+  {id:"a-ginger", name:"🫚 Ginger", sub:"cabinet", words:["nausea","queasy","car sick","motion sickness","throwing up","vomit","stomach bug","upset stomach","tummy"]},
+  {id:"a-peppermint", name:"🌿 Peppermint", sub:"cabinet", words:["tummy","stomach ache","gas","cramps","headache","migraine","stuffy nose","congestion","sinus"]},
+  {id:"a-chamomile", name:"🌼 Chamomile", sub:"cabinet", words:["can't sleep","cant sleep","sleep","insomnia","nerves","anxiety","calm","tummy","upset stomach","colic"]},
+  {id:"a-elderberry", name:"🫐 Elderberry", sub:"cabinet", words:["cold","flu","influenza","the crud","immune","sniffle"]},
+  {id:"a-calendula", name:"🧡 Calendula", sub:"cabinet", words:["scrape","cut","burn","rash","diaper rash","dry skin","chapped","eczema","skin"]},
+  {id:"a-aloe", name:"🪴 Aloe vera", sub:"cabinet", words:["burn","sunburn","skin"]},
+  {id:"a-lemonbalm", name:"🍋 Lemon balm", sub:"cabinet", words:["can't sleep","cant sleep","sleep","nerves","anxiety","calm","cold sore","herpes"]},
+  {id:"a-garlic", name:"🧄 Garlic", sub:"cabinet", words:["cold","flu","the crud","immune"]},
+  {id:"a-electrolyte", name:"💧 Electrolyte drink", sub:"cabinet", words:["stomach bug","throwing up","vomit","diarrhea","dehydrat","food poisoning","heat"]},
+  {id:"a-homeokit", name:"💊 Arnica (homeopathy kit)", sub:"homeopathy", words:["bruise","bump","sore muscles","muscle","sprain","fall"]},
+  {id:"a-homeokit", name:"💊 Oscillococcinum / Coldcalm (homeopathy kit)", sub:"homeopathy", words:["flu","influenza","cold","the crud","sniffle"]},
+  {id:"a-homeokit", name:"💊 Nux vomica / Arsenicum (homeopathy kit)", sub:"homeopathy", words:["indigestion","upset stomach","food poisoning","overate","heartburn"]},
+  {id:"a-homeokit", name:"💊 Apis (homeopathy kit)", sub:"homeopathy", words:["sting","bee","wasp","bug bite","fire ant"]},
+  {id:"a-homeokit", name:"💊 Chamomilla (homeopathy kit)", sub:"homeopathy", words:["teething","cranky"]},
+  {id:"a-homeokit", name:"💊 Gelsemium / Ignatia (homeopathy kit)", sub:"homeopathy", words:["nerves","anxiety","stress","grief","jitters"]}
+];
+function bookNorm(s){ return (s||'').toLowerCase().replace(/[’']/g,"'").trim(); }
+function bookLookup(q){
+  q = bookNorm(q);
+  if(q.length < 2) return {pages:[], cabinet:[], gaps:[]};
+  const pages = [];
+  const seen = new Set();
+  const add = (book, title, via) => {
+    const key = book.book+'|'+title; if(seen.has(key)) return;
+    const e = book.entries.find(x=>x.title===title); if(!e) return;
+    seen.add(key); pages.push({book:book.book, title:e.title, start:e.start, end:e.end, part:e.part, via:via});
+  };
+  BOOKS.forEach(book=>{
+    book.entries.forEach(e=>{ if(bookNorm(e.title).includes(q)) add(book, e.title, null); });
+    Object.keys(book.see_also||{}).forEach(k=>{ if(bookNorm(k).includes(q)) add(book, book.see_also[k], k); });
+    Object.keys(book.family_words||{}).forEach(k=>{
+      const nk = bookNorm(k);
+      if(nk.includes(q) || (q.length>=4 && q.includes(nk))) book.family_words[k].forEach(t=>add(book, t, k));
+    });
+  });
+  const cabinet = [];
+  const cseen = new Set();
+  CABINET.forEach(c=>{
+    if(cseen.has(c.name)) return;
+    if(c.words.some(w=>{ const nw=bookNorm(w); return nw.includes(q) || (q.length>=4 && q.includes(nw)); }) || bookNorm(c.name).includes(q)){
+      cseen.add(c.name); cabinet.push(c);
+    }
+  });
+  const gaps = [];
+  BOOKS.forEach(book=>(book.not_covered||[]).forEach(g=>{ if(bookNorm(g).includes(q)) gaps.push({book:book.book, gap:g}); }));
+  return {pages, cabinet, gaps};
+}
+function pageText(p){ return p.start===p.end ? 'p. '+p.start : 'pp. '+p.start+'–'+p.end; }
+function renderBookResults(res, q, compact){
+  let html = '';
+  if(res.pages.length){
+    const byBook = {};
+    res.pages.forEach(p=>{ (byBook[p.book] = byBook[p.book] || []).push(p); });
+    Object.keys(byBook).forEach(b=>{
+      html += '<div class="book-hit"><div class="book-title">📖 '+b+'</div><ul>'+
+        byBook[b].map(p=>'<li><strong>'+p.title+'</strong>, '+pageText(p)+(p.via && bookNorm(p.via)!==bookNorm(p.title) ? ' <span class="muted-small">(for "'+p.via+'")</span>' : '')+'</li>').join('')+
+        '</ul></div>';
+    });
+  }
+  if(res.cabinet.length){
+    html += '<div class="book-hit"><div class="book-title">🌿 In our apothecary</div><div class="ing-chips">'+
+      res.cabinet.map(c=>'<button type="button" class="ing-chip cab-chip" data-sub="'+c.sub+'" data-anchor="'+c.id+'">'+c.name+'</button>').join('')+
+      '</div></div>';
+  }
+  if(res.gaps.length){
+    html += '<div class="book-hit muted-small">Not in '+res.gaps[0].book+': '+res.gaps.map(g=>g.gap).join('; ')+
+      '. Check the Remedy Cabinet and the Roped In &amp; Ready medical cards.</div>';
+  }
+  if(!html && !compact){
+    html = '<p class="muted-small">Nothing on the shelf for "'+q+'" yet. Try another word (the book\'s name for it, like "insomnia" or "sinusitis"), check the Remedy Cabinet, or ask Claude to add it.</p>';
+  }
+  return html;
+}
+function goApothecary(sub, anchor){
+  goTo('apothecary', sub);
+  scrollToAnchor(anchor);
+}
+(function initBookshelf(){
+  const input = document.getElementById('bookQuery');
+  const out = document.getElementById('bookResults');
+  const run = ()=>{ const q = input.value.trim(); out.innerHTML = q.length<2 ? '' : renderBookResults(bookLookup(q), q, false); };
+  input.addEventListener('input', run);
+  out.addEventListener('click', e=>{
+    const chip = e.target.closest('.cab-chip'); if(!chip) return;
+    goApothecary(chip.dataset.sub, chip.dataset.anchor);
+  });
+  const statusTag = {indexed:'<span class="tag safe">✓ in the lookup</span>', coming:'<span class="tag ev-some">📦 on its way</span>', free:'<span class="tag ev-folk">free download</span>'};
+  document.getElementById('shelfList').innerHTML = '<ul style="padding-left:18px;margin:0;">'+SHELF.map(b=>
+    '<li style="margin-bottom:6px;"><strong><em>'+b.title+'</em></strong>, '+b.by+' '+statusTag[b.status]+(b.why ? '<br><span class="muted-small">'+b.why+'</span>' : '')+'</li>').join('')+'</ul>';
+})();
 </script>
 </body>
 </html>
