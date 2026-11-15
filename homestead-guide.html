@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Homestead Kitchen &amp; Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#33472d">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 :root{
   --cream:#faf6ee;
@@ -3600,6 +3603,8 @@ function goApothecary(sub, anchor){
   /* Roped In & Ready links here as ...homestead-guide.html#bookshelf */
   if(location.hash==='#bookshelf'){ goApothecary('bookshelf','a-lookup'); setTimeout(()=>input.focus(),300); }
 })();
+/* Offline support: keeps a copy of the guide on the phone (see sw.js). */
+if ('serviceWorker' in navigator) window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script>
 </body>
 </html>
