@@ -2011,10 +2011,8 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     <button data-sub="dogs">Dogs</button>
     <button data-sub="horses">Horses</button>
     <button data-sub="poultry">Poultry</button>
-    <button data-sub="sheep">Sheep</button>
-    <button data-sub="cattle">Cattle</button>
     <button data-sub="pigs">Pigs</button>
-    <button data-sub="rabbits">Rabbits</button>
+    <button data-sub="other">Other livestock</button>
     <button data-sub="breeding">Breeding &amp; Incubation</button>
     <button data-sub="firstaid">First Aid Basics</button>
   </nav>
@@ -2790,7 +2788,8 @@ const SPECIES = {
     feed: "Complete hog feed appropriate to age/stage (starter, grower, finisher, or gestation/lactation for breeding stock); pigs also do well on garden scraps and dairy surplus as a supplement, not the base diet.",
     health: "Watch for coughing (respiratory issues spread fast in pigs), lameness, and skin condition. Sunburn is a real risk for light-skinned pigs without wallow access.",
     firstaid: "Kit basics: iodine for navel care on newborn piglets, iron supplement for piglets raised without soil access, thermometer (normal ~101.5-103.5°F).",
-    breeding: "Gestation ~114 days (3 months, 3 weeks, 3 days). See Breeding tab for the full table."
+    breeding: "Gestation ~114 days (3 months, 3 weeks, 3 days). See Breeding tab for the full table.",
+    extra: "<div class='card searchable' id='l-pig-breeding'><h3>🐖 Breeding &amp; farrowing</h3><ul> <li><strong>Gilts</strong> are usually first bred around 7–8 months and 250–300 lb. Sows and gilts come into heat about every 21 days and stand for 2–3 days; breed on the second day of standing heat. A sow usually comes back into heat 4–7 days after her piglets are weaned.</li> <li><strong>The boar:</strong> keep him separate between breedings; boars get big and can be dangerous. Bringing in new blood every few generations avoids inbreeding.</li> <li><strong>Farrowing:</strong> a clean, dry pen with guard rails or a creep area so the sow doesn't lie on piglets. Heat lamps are a common barn-fire cause: hang them with chain, not the clamp, well clear of bedding.</li> <li><strong>Piglets:</strong> iron shot at about 3 days if they're on concrete or bare dirt without rooting; castrate boars meant for meat by 2 weeks (less stress, and no boar taint in the meat); wean at 6–8 weeks.</li></ul></div> <div class='card searchable' id='l-pig-rotation'><h3>🔁 Sell / butcher rotation</h3><ul> <li>Feeder pigs reach butcher weight (about 250–280 lb) around 6 months on full feed.</li> <li><strong>Selling meat in Texas:</strong> pork sold by the cut or package has to be processed at an inspected plant. The common homestead route is selling a live hog (or a half or whole share) to the buyer, who then has it custom-processed for their own use. Check the current Texas rules before you advertise.</li> <li>Log births with Record Farrowing, and log sales and butchering in the Roped In Ranch app so the Money view adds them up.</li></ul></div> <div class='callout histamine searchable' id='l-feral'><strong>⚠️ Keep feral hogs away.</strong> Texas feral hogs can carry pseudorabies and swine brucellosis, which can spread to your pigs (and pseudorabies is deadly to dogs). Tight, sturdy fencing, ideally doubled or with a hot wire where pens face open land, and no nose-to-nose contact through the fence.</div>"
   },
   rabbits: {
     title: "Rabbits",
@@ -2839,9 +2838,18 @@ function renderSpecies(sub){
     <p><strong>Call the vet, don't wait, for:</strong> heavy bleeding, an animal down and unable to rise, difficult/prolonged labor, bloat with visible distension, or any sudden collapse. Homestead first aid is for minor wounds and monitoring — not a substitute for veterinary care on anything serious.</p></div>
     `;
   } else {
+    if(sub === 'other'){
+      container.innerHTML = '<div class="callout tip">Animals we don\'t keep right now (Harry has rabbits and ducks). Kept here for the day we do. Ducks are under Poultry.</div>' +
+        ['sheep','cattle','rabbits'].map(k=>speciesCard(SPECIES[k])).join('');
+      return;
+    }
     const s = SPECIES[sub];
     if(!s) return;
-    container.innerHTML = `<div class="species-card">
+    container.innerHTML = speciesCard(s);
+  }
+}
+function speciesCard(s){
+    return `<div class="species-card">
       <h3>${s.title}</h3>
       <div class="grid2">
         <div><h5>Housing</h5><p>${s.housing}</p></div>
@@ -2852,7 +2860,6 @@ function renderSpecies(sub){
       <p><strong>Breeding:</strong> ${s.breeding}</p>
       ${s.extra||''}
     </div>`;
-  }
 }
 document.getElementById('livestockTabs').querySelectorAll('button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -2912,10 +2919,13 @@ const SEARCH_INDEX = [
   {anchor:"pestFilter", title:"Pest & disease identification", pane:"garden", sub:"pests", kw:"aphid hornworm squash bug beetle blight mildew tomato pepper"},
   {title:"Poultry care sheet", pane:"livestock", sub:"poultry", kw:"chicken duck goose turkey coop feed layer bumblefoot"},
   {title:"Goat care sheet", pane:"livestock", sub:"goats", kw:"goat kidding hoof famacha mineral"},
-  {title:"Sheep care sheet", pane:"livestock", sub:"sheep", kw:"sheep wool foot rot copper mineral"},
-  {title:"Cattle care sheet", pane:"livestock", sub:"cattle", kw:"cattle cow calf pasture vaccinate"},
+  {title:"Sheep care sheet", pane:"livestock", sub:"other", kw:"sheep wool foot rot copper mineral"},
+  {title:"Cattle care sheet", pane:"livestock", sub:"other", kw:"cattle cow calf pasture vaccinate"},
   {title:"Pig care sheet", pane:"livestock", sub:"pigs", kw:"pig hog piglet wallow feed"},
-  {title:"Rabbit care sheet", pane:"livestock", sub:"rabbits", kw:"rabbit hutch kit doe kindling"},
+  {title:"Pig breeding & farrowing", pane:"livestock", sub:"pigs", kw:"pig breeding farrowing gilt sow boar heat piglets iron castrate wean"},
+  {title:"Pig sell / butcher rotation (Texas rules)", pane:"livestock", sub:"pigs", kw:"pig sell butcher hog share custom processing feeder"},
+  {title:"Feral hogs: keep them away from your pigs", pane:"livestock", sub:"pigs", kw:"feral hog pseudorabies brucellosis fence"},
+  {title:"Rabbit care sheet", pane:"livestock", sub:"other", kw:"rabbit hutch kit doe kindling"},
   {title:"Gestation & incubation reference", pane:"livestock", sub:"breeding", kw:"gestation incubation days temperature humidity chicken goat sheep cattle pig hatch"},
   {title:"General livestock first aid kit", pane:"livestock", sub:"firstaid", kw:"first aid kit vet emergency wound thermometer"},
   {anchor:"a-lookup", title:"Family Bookshelf lookup (book pages by ailment)", pane:"apothecary", sub:"bookshelf", kw:"bookshelf book page natural cures balch library what page"},
