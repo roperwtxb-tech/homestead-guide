@@ -2,7 +2,7 @@
    Bump VERSION whenever homestead-guide.html (or any file below) changes, then push.
    How it works: the guide opens from the phone's saved copy right away, even with no signal,
    and quietly fetches the newest version in the background for next time. */
-const VERSION = 'fg-v1-2026-11-15';
+const VERSION = 'fg-v2-2026-11-21';
 const FILES = ['homestead-guide.html', 'index.html', 'manifest.webmanifest',
                'icon-192.png', 'icon-512.png', 'maskable-512.png', 'apple-touch-icon.png'];
 const PAGE = 'homestead-guide.html';

@@ -412,7 +412,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 <div class="sticky-top">
 <header class="top">
   <h1>🌾 Homestead Kitchen &amp; Field Guide</h1>
-  <p class="tagline">A companion reference to Roped In Ranch — preserving, gardening &amp; livestock know-how</p>
+  <p class="tagline">A companion reference to Roped In Ranch — preserving, gardening, livestock &amp; household know-how</p>
   <div class="search-wrap">
     <input type="text" id="globalSearch" placeholder="Search everything (e.g. &quot;jerky&quot;, &quot;tomatoes&quot;, &quot;goat kidding&quot;, &quot;altitude&quot;)...">
     <div id="searchResults"></div>
@@ -425,6 +425,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   <button data-pane="garden">🌱 Garden</button>
   <button data-pane="apothecary">🌿 Apothecary</button>
   <button data-pane="livestock">🐐 Livestock</button>
+  <button data-pane="household">🧽 Household</button>
   <button data-pane="reference">📋 Reference</button>
 </nav>
 </div>
@@ -482,6 +483,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     <div class="home-card" data-goto="garden|pests"><span class="emoji">🐛</span><h3>Pest &amp; Disease ID</h3><p>Quick identification &amp; organic-first fixes</p></div>
     <div class="home-card" data-goto="livestock|poultry"><span class="emoji">🐓</span><h3>Livestock Care Sheets</h3><p>Poultry, goats, sheep, cattle, pigs, rabbits</p></div>
     <div class="home-card" data-goto="livestock|breeding"><span class="emoji">🐣</span><h3>Breeding &amp; Incubation</h3><p>Gestation lengths, incubation temps &amp; days</p></div>
+    <div class="home-card" data-goto="household|furniture"><span class="emoji">🧽</span><h3>Natural Household</h3><p>Fragrance-free cleaners, carpet &amp; dog accidents, leather, laundry</p></div>
     <div class="home-card" data-goto="reference|safety"><span class="emoji">⚠️</span><h3>Food Safety Reference</h3><p>Spoilage signs, botulism risk, shelf-life chart</p></div>
   </div>
 </section>
@@ -1499,7 +1501,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <br><br><strong>Up high or locked away:</strong> alcohol tinctures, essential oils and anything with herbal
       arnica are real poisoning risks for little ones. Child-resistant bottles, top shelf.
       <br><br><strong>Kids aren't small adults.</strong> Use kid-specific products or a kid-specific reference for
-      amounts (Aviva Romm's book, once it's on the shelf). Don't eyeball an adult dose down.
+      amounts (Aviva Romm's book on the Bookshelf). Don't eyeball an adult dose down.
     </div>
 
     <div class="card searchable" id="a-oils-safety" data-keywords="who should skip what avoid list why seizure epilepsy asthma eczema babies kids pregnancy blood thinners essential oils eucalyptus rosemary camphor sage wormwood vicks tea tree wintergreen poison">
@@ -1810,6 +1812,14 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
       <p><strong>Keeps:</strong> 1–2 years. It lasts as long as the oil does.</p>
     </div>
 
+    <div class="card searchable" id="a-udder" data-keywords="udder balm hand balm calendula goats milking chapped">
+      <h3>🐐 Udder &amp; hand balm</h3>
+      <p>The salve recipe above with calendula oil: 1 part beeswax to about 4 parts calendula-infused oil, plus a spoon of
+      coconut oil for softness if you like. Use on udders after milking and on chapped hands.</p>
+      <p><strong>Watch out:</strong> wipe udders clean before the next milking. Calendula is daisy family, so stop if any
+      goat (or person) gets a rash.</p>
+    </div>
+
     <div class="card searchable" id="a-syrup" data-keywords="elderberry syrup recipe how to make honey syrup">
       <h3>🍯 Elderberry syrup</h3>
       <ol>
@@ -2009,6 +2019,134 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   <div id="species-container"></div>
 </section>
 
+<!-- ============ HOUSEHOLD ============ -->
+<section class="pane" id="pane-household">
+  <h2 class="section-title">Natural Household</h2>
+  <nav class="subtabs" id="householdTabs">
+    <button data-sub="furniture" class="active">Furniture &amp; Leather</button>
+    <button data-sub="kitchen">Kitchen &amp; House</button>
+    <button data-sub="carpet">Carpet &amp; Dogs</button>
+    <button data-sub="laundry">Laundry</button>
+    <button data-sub="nevermix">⚠️ Never Mix</button>
+  </nav>
+
+  <div class="subpane active" id="household-furniture">
+    <div class="callout tip searchable" data-keywords="natural cleaners no chemicals fragrance free test hidden spot">
+      <strong>House rule:</strong> nothing harsh, nothing perfumed. Every recipe here is pantry stuff. Always test on a
+      hidden spot first, and see <a class="jumplink" data-goto="household|nevermix">Never Mix</a> before combining anything.
+    </div>
+    <div class="card searchable" id="h-wood" data-keywords="wood cleaner furniture castile soap finished wood dusting">
+      <h3>🪑 Wood cleaner (finished / newer furniture)</h3>
+      <ul><li>2 cups warm water</li><li>½ tsp unscented liquid castile soap</li></ul>
+      <p>Mix in a spray bottle. Mist the <em>cloth</em>, not the wood. Wipe with the grain, then dry right away with a
+      second cloth. For everyday dusting, a barely damp microfiber is enough.</p>
+      <p class="muted-small">No vinegar in this one: vinegar and castile soap cancel each other out and leave an oily film.
+      Skip oil or wax on newer finishes; it just gets greasy.</p>
+    </div>
+    <div class="card searchable" id="h-polish" data-keywords="wood polish beeswax jojoba unfinished oiled old furniture">
+      <h3>🐝 Wood polish (unfinished or oiled pieces)</h3>
+      <ul><li>1 part beeswax</li><li>3–4 parts jojoba oil or fractionated coconut oil</li></ul>
+      <p>Melt gently in a double boiler, pour into a tin, let it set. Rub a thin coat in with the grain, wait 15 minutes,
+      buff off. Jojoba and fractionated coconut don't go rancid like olive or vegetable oil.</p>
+    </div>
+    <div class="card searchable" id="h-leather" data-keywords="leather cleaner conditioner saddle tack boots beeswax shea cocoa butter">
+      <h3>🤠 Leather cleaner &amp; conditioner (furniture, boots, saddles, tack)</h3>
+      <p><strong>Clean:</strong> 1 cup warm water + a few drops castile soap. Wipe with a well-wrung cloth, then dry.</p>
+      <p><strong>Condition (every 6–12 months):</strong> 1 part beeswax melted with 2 parts shea or cocoa butter. Rub a
+      thin layer in, let it soak, buff.</p>
+      <p class="muted-small">Don't use olive oil on leather: it can go rancid and darken it.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="household-kitchen">
+    <div class="card searchable" id="h-allpurpose" data-keywords="all purpose spray counters bathroom castile granite stone">
+      <h3>🧴 All-purpose spray (counters, bathrooms, most surfaces)</h3>
+      <ul><li>2 cups warm water</li><li>1 Tbsp unscented castile soap</li><li>Optional: 10 drops lemon essential oil</li></ul>
+      <p>Spray, wipe, rinse the cloth now and then. Safe on granite and stone.</p>
+    </div>
+    <div class="card searchable" id="h-vinegar" data-keywords="bathroom hard water soap scum vinegar citrus peel spray glass mirror">
+      <h3>🚿 Bathroom &amp; hard-water spray</h3>
+      <p>Equal parts white vinegar and water, with citrus peels steeped in the vinegar for about a week first (so it
+      doesn't smell like a pickle). For tubs, faucets, soap scum.</p>
+      <p><strong>Glass &amp; mirrors:</strong> 1 cup vinegar + 1 cup water, dry microfiber.</p>
+      <p class="muted-small">Keep vinegar off granite, marble, natural stone and grout sealer; use the all-purpose spray there.</p>
+    </div>
+    <div class="card searchable" id="h-scrub" data-keywords="soft scrub baking soda paste sink tub stovetop">
+      <h3>🧽 Soft scrub</h3>
+      <p>½ cup baking soda + about 2 Tbsp castile soap to a paste. Sinks, tubs, stovetops. Rinse well; mix small batches.</p>
+    </div>
+    <div class="card searchable" id="h-bioenzyme" data-keywords="citrus bio enzyme cleaner homemade ferment peels brown sugar">
+      <h3>🍊 Citrus "bio-enzyme" cleaner (homemade)</h3>
+      <ul><li>3 parts citrus peels</li><li>1 part brown sugar or molasses</li><li>10 parts water</li><li>Optional: a pinch of bread yeast</li></ul>
+      <p><strong>Plastic bottle only</strong>, never glass: fermenting gas can burst a jar. Leave headroom and loosen the cap
+      daily the first week. Ready in 2–3 weeks with yeast, about 3 months without. Strain; use 1 part to 10 parts water.</p>
+      <p class="muted-small">Great on grease, counters, trash cans and drains. It works mostly like mild vinegar, so it's not a
+      substitute for a store enzyme cleaner on dog pee, and it stays off stone.</p>
+    </div>
+    <div class="card searchable" id="h-wood-kitchen" data-keywords="cutting board butter wooden spoon beeswax coconut cast iron care">
+      <h3>🥄 Cutting boards, spoons &amp; cast iron</h3>
+      <p><strong>Board butter:</strong> 1 part beeswax + 4 parts coconut oil, melted together. Rub into clean, dry wood,
+      leave overnight, buff.</p>
+      <p><strong>Cast iron:</strong> scrub with coarse salt and a little water, dry on a warm burner, wipe a thin coat of oil
+      while warm. Rust spot? Steel wool, re-oil, heat.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="household-carpet">
+    <div class="card searchable" id="h-shark" data-keywords="carpet cleaner shark carpetxpert vinegar machine shampoo">
+      <h3>🧹 Carpet machine (Shark CarpetXpert)</h3>
+      <ul><li>1 gallon hot tap water</li><li>1 cup white vinegar, no stronger</li><li><strong>No soap</strong>: it foams in the
+      machine and leaves sticky residue that pulls dirt back in</li></ul>
+      <ol><li>Vacuum first.</li><li>Pre-treat accident spots by hand and let them dry.</li><li>Clean with the vinegar water.</li>
+      <li>Finish with Quick Dry mode.</li><li>Run plain water through for 30 seconds to flush the pump.</li>
+      <li>Empty both tanks before putting it away.</li></ol>
+      <p class="muted-small">Shark says to use only its formula and no vinegar. We use vinegar anyway; diluting and flushing
+      helps the pump last. Keep Eco-88, XO and enzyme sprays out of the tank.</p>
+    </div>
+    <div class="card searchable" id="h-accident" data-keywords="dog pee urine accident enzyme bac-out eco-88 peroxide stain">
+      <h3>🐕 Dog accident routine</h3>
+      <ol><li>Blot up as much as you can.</li><li>Soak (don't mist) with an enzyme cleaner (Bac-Out Free &amp; Clear) or
+      Eco-88.</li><li><strong>Let it dry completely</strong>, overnight is best. Shampooing too soon washes it out before it
+      finishes, and that's why spots come back.</li><li>Then go over it with the Shark.</li></ol>
+      <p class="muted-small">Stubborn spot: 3% hydrogen peroxide, tested first (it can lighten carpet). Never use vinegar or
+      peroxide at the same time as an enzyme cleaner; they kill the enzymes.</p>
+    </div>
+    <div class="card searchable" id="h-products" data-keywords="bac-out biokleen eco-88 xo odor neutralizer jeffers products we use">
+      <h3>🏷️ Products we use</h3>
+      <p><strong>Bac-Out Free &amp; Clear (Biokleen):</strong> unscented, plant-based, live enzymes. Best for fresh pee and
+      poop. Contains a small amount of preservative.</p>
+      <p><strong>Eco-88:</strong> enzyme-free, fragrance-free. Spray and walk away; let it dry before shampooing. Ingredients
+      aren't listed.</p>
+      <p><strong>XO Odor Neutralizer Plus (Jeffers):</strong> no enzymes or oxidizers, no scent left behind. Concentrated;
+      follow the bottle. Dog beds, crates, blankets, couches, stalls, trailer.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="household-laundry">
+    <div class="card searchable" id="h-laundry" data-keywords="laundry stain paste whitening peroxide sun baking soda">
+      <h3>👕 Stain paste &amp; sunshine whitening</h3>
+      <p><strong>Stain paste:</strong> baking soda + a little castile soap. Rub in, wait 30 minutes, wash as usual.</p>
+      <p><strong>Whites:</strong> spray stains with 3% hydrogen peroxide and hang in direct sun. The Texas sun does a lot of
+      the work. Peroxide can lighten colors, so test first.</p>
+    </div>
+  </div>
+
+  <div class="subpane" id="household-nevermix">
+    <div class="callout searchable" id="h-nevermix" data-keywords="never mix safety vinegar peroxide bleach ammonia castile stone tea tree dogs">
+      <strong>Natural doesn't always mean harmless together.</strong>
+      <ul style="margin:6px 0 0;">
+        <li><strong>Vinegar + hydrogen peroxide in one bottle:</strong> makes an irritating acid. One after the other is fine.</li>
+        <li><strong>Vinegar + castile soap:</strong> they cancel out and leave an oily film.</li>
+        <li><strong>Vinegar, citrus or any acid on granite, marble or stone:</strong> it etches.</li>
+        <li><strong>Enzyme cleaners + vinegar or peroxide together:</strong> kills the enzymes.</li>
+        <li><strong>Tea tree oil around dogs or cats:</strong> toxic to them. (See the Apothecary's "Who should skip what" for people.)</li>
+        <li><strong>Fermenting cleaners in glass:</strong> gas can burst the jar.</li>
+        <li><strong>If bleach ever comes in the house:</strong> never with vinegar or ammonia. Toxic gas.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ REFERENCE ============ -->
 <section class="pane" id="pane-reference">
   <h2 class="section-title">Reference</h2>
@@ -2043,8 +2181,8 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
     <table class="searchable" id="t-shelflife" data-keywords="shelf life chart canned dehydrated frozen best quality">
       <caption>General shelf life by preservation method (quality, not strict safety cutoffs)</caption>
       <tr><th>Method</th><th>Best quality window</th></tr>
-      <tr><td>Home-canned, high-acid (jam, pickles, fruit)</td><td>12–18 months</td></tr>
-      <tr><td>Home-canned, low-acid (vegetables, meat)</td><td>2–3 years</td></tr>
+      <tr><td>Home-canned, high-acid (jam, pickles, fruit)</td><td>Best within 1 year; use within 18 months (USDA)</td></tr>
+      <tr><td>Home-canned, low-acid (vegetables, meat)</td><td>Best within 1 year; use within 18 months (USDA)</td></tr>
       <tr><td>Dehydrated fruit/vegetables</td><td>6–12 months room temp; 1–2 yrs frozen</td></tr>
       <tr><td>Jerky</td><td>1–2 months room temp; up to 1 yr frozen</td></tr>
       <tr><td>Frozen produce</td><td>8–12 months</td></tr>
@@ -2227,6 +2365,7 @@ wireSubtabs('preserveTabs','preserve');
 wireSubtabs('gardenTabs','garden');
 wireSubtabs('referenceTabs','reference');
 wireSubtabs('apothecaryTabs','apothecary');
+wireSubtabs('householdTabs','household');
 
 function wrapTables(root){
   (root||document).querySelectorAll('table').forEach(t=>{
@@ -2250,7 +2389,7 @@ function scrollToAnchor(id){
 function goTo(pane, sub){
   showPane(pane);
   setTimeout(()=>{
-    const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+    const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', household:'householdTabs', reference:'referenceTabs'};
     const nav = document.getElementById(navMap[pane]);
     if(nav){
       const btn = nav.querySelector('button[data-sub="'+sub+'"]');
@@ -2585,11 +2724,12 @@ const SPECIES = {
   },
   goats: {
     title: "Goats",
-    housing: "3-ft covered shelter minimum per goat, sturdy fencing (goats are escape artists) — woven wire or field fence at least 4 ft high.",
+    housing: "About 15–20 sq ft of dry, draft-free covered shelter per goat (less for Nigerian Dwarfs), sturdy fencing (goats are escape artists) — woven wire or field fence at least 4 ft high.",
     feed: "Good quality grass hay free-choice, a mineral supplement formulated for goats (not sheep — copper differs), grain only for milkers/pregnant does in moderation.",
     health: "Check body condition, coat quality, and manure consistency regularly. Common issues: internal parasites (check FAMACHA eyelid score), hoof overgrowth (trim every 6-8 weeks), bloat.",
     firstaid: "Kit basics: thermometer (normal temp ~101.5-103.5°F), Blu-Kote, hoof trimmers, CD&T vaccine on schedule, molasses/electrolytes for a sick or off-feed goat.",
-    breeding: "Gestation ~150 days (about 5 months). Watch for signs of labor: restlessness, pawing, separating from the herd, discharge. See Breeding tab for the full table."
+    breeding: "Gestation ~150 days (about 5 months). Watch for signs of labor: restlessness, pawing, separating from the herd, discharge. See Breeding tab for the full table.",
+    extra: "<div class='callout tip searchable' id='l-flyspray'><strong>Natural fly spray:</strong> 2 cups apple cider vinegar, 1 cup water, 10–15 drops each of citronella, lavender and eucalyptus essential oil. Shake before each use; mist body and legs, never the face or eyes, and not on udders right before milking. Test a small spot and reapply after rain. No tea tree oil if the dogs are around.</div>"
   },
   sheep: {
     title: "Sheep",
@@ -2664,6 +2804,7 @@ function renderSpecies(sub){
         <div><h5>First aid</h5><p>${s.firstaid}</p></div>
       </div>
       <p><strong>Breeding:</strong> ${s.breeding}</p>
+      ${s.extra||''}
     </div>`;
   }
 }
@@ -2761,6 +2902,21 @@ const SEARCH_INDEX = [
   {anchor:"a-bed-cool", title:"Calendula & chamomile: plant in fall", pane:"apothecary", sub:"bed", kw:"calendula chamomile plant fall"},
   {anchor:"a-bed-perennial", title:"Echinacea, yarrow, lavender, mint & lemon balm", pane:"apothecary", sub:"bed", kw:"echinacea coneflower yarrow lavender mint lemon balm"},
   {anchor:"a-bed-other", title:"Elderberry, aloe, ginger & holy basil", pane:"apothecary", sub:"bed", kw:"elderberry aloe ginger tulsi holy basil"},
+  {anchor:"a-udder", title:"Udder & hand balm (calendula)", pane:"apothecary", sub:"making", kw:"udder balm hand balm calendula goat milking chapped"},
+  {title:"Goat fly spray (natural)", pane:"livestock", sub:"goats", kw:"fly spray flies goats vinegar citronella essential oil"},
+  {anchor:"h-wood", title:"Wood cleaner (finished furniture)", pane:"household", sub:"furniture", kw:"wood cleaner furniture castile dust natural cleaner"},
+  {anchor:"h-polish", title:"Wood polish (beeswax)", pane:"household", sub:"furniture", kw:"wood polish beeswax jojoba"},
+  {anchor:"h-leather", title:"Leather cleaner & conditioner (saddles, boots)", pane:"household", sub:"furniture", kw:"leather saddle tack boots conditioner cleaner"},
+  {anchor:"h-allpurpose", title:"All-purpose spray (castile)", pane:"household", sub:"kitchen", kw:"all purpose cleaner spray counters bathroom natural cleaner"},
+  {anchor:"h-vinegar", title:"Bathroom, hard-water & glass spray", pane:"household", sub:"kitchen", kw:"vinegar bathroom soap scum glass mirror windows hard water"},
+  {anchor:"h-scrub", title:"Soft scrub (baking soda)", pane:"household", sub:"kitchen", kw:"scrub baking soda sink tub stove"},
+  {anchor:"h-bioenzyme", title:"Citrus bio-enzyme cleaner (homemade)", pane:"household", sub:"kitchen", kw:"citrus enzyme cleaner homemade peels"},
+  {anchor:"h-wood-kitchen", title:"Cutting board butter & cast iron care", pane:"household", sub:"kitchen", kw:"cutting board wooden spoon cast iron"},
+  {anchor:"h-shark", title:"Carpet machine solution (Shark)", pane:"household", sub:"carpet", kw:"carpet cleaner shark shampoo vinegar"},
+  {anchor:"h-accident", title:"Dog accident routine", pane:"household", sub:"carpet", kw:"dog pee urine accident enzyme stain odor carpet"},
+  {anchor:"h-products", title:"Odor products we use (Bac-Out, Eco-88, XO)", pane:"household", sub:"carpet", kw:"bac-out eco-88 xo odor neutralizer"},
+  {anchor:"h-laundry", title:"Laundry stains & whitening", pane:"household", sub:"laundry", kw:"laundry stain whitening peroxide sun"},
+  {anchor:"h-nevermix", title:"Cleaners you should never mix", pane:"household", sub:"nevermix", kw:"never mix safety vinegar peroxide bleach ammonia"},
   {anchor:"t-spoilage", title:"Botulism & spoilage warning signs", pane:"reference", sub:"safety", kw:"botulism spoilage throw out mold bulging lid"},
   {anchor:"t-shelflife", title:"Shelf life chart", pane:"reference", sub:"shelflife", kw:"shelf life canned frozen dehydrated storage months"},
   {anchor:"t-conversions", title:"Kitchen conversions", pane:"reference", sub:"conversions", kw:"teaspoon tablespoon cup quart gallon conversion"},
@@ -2780,7 +2936,7 @@ const JUMP = {
   cellar: {pane:"preserve", sub:"cellar", label:"🥔 Root Cellar / Dry Storage"},
   dairy: {pane:"preserve", sub:"dairy", label:"🧀 Butter/Cheese"},
 };
-const GLUTEN_SWAP_NOTE = "Standard marinades/brines lean on soy sauce or Worcestershire — swap tamari (labeled GF) or coconut aminos, and a GF-labeled Worcestershire. See Reference → Dietary Notes for the full swap list.";
+const GLUTEN_SWAP_NOTE = "The marinade here is already gluten-free and sugar-free-optional (coconut aminos or salt water instead of soy sauce, Worcestershire or brown sugar). Most store-bought marinades and jerky seasonings hide wheat and sugar. See Reference → Dietary Notes for the full swap list.";
 function meatMethods({freezeNote, canNote, jerkyNote, jerkyRecipe, cureNote, jerkyTemp}){
   return [
     {jkey:"freezing", directions:freezeNote, histamine:"low",
@@ -2799,53 +2955,53 @@ const INGREDIENTS = [
   { name:"Venison (Deer)", aliases:["deer","venison","buck","doe","wild game"],
     methods: meatMethods({
       freezeNote:"Field-dress and chill fast; cut into steaks, roasts, and stew meat and freeze within a day or two of processing — venison's low fat content means it dries out and picks up freezer burn quickly otherwise.",
-      canNote:"Cut into 1-inch cubes or strips. Raw-pack or hot-pack (browned to rare) into jars with 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge or 10 lb weighted gauge (0-2,000 ft / 0-1,000 ft) — same table as the Canning tab. Strong-tasting wild game benefits from a 1-hour soak in a brine of 1 tbsp salt per quart of water before packing, and it's worth boiling home-canned wild game 10-15 minutes before tasting as extra insurance.",
+      canNote:"Cut into 1-inch cubes or strips. Raw-pack or hot-pack (browned to rare) into jars with 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft) — same table as the Canning tab. Strong-tasting wild game benefits from a 1-hour soak in a brine of 1 tbsp salt per quart of water before packing, and it's worth boiling home-canned wild game 10-15 minutes before tasting as extra insurance.",
       jerkyNote:"Slice against the grain into 1/8–1/4 inch strips, marinate 6–24 hrs refrigerated, then dry at 160°F until it bends and cracks without breaking (roughly 4–12 hrs) — this brings the meat through a safe temperature as it dries. Full chart on the Dehydrating tab.",
-      jerkyRecipe:{title:"Basic Venison Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","1/4 cup Worcestershire sauce","1 tbsp coarse black pepper","1 tsp garlic powder","1 tsp onion powder","1/2 tsp red pepper flakes (optional)"]},
+      jerkyRecipe:{title:"Basic Venison Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup coconut aminos (GF, soy-free; a little natural sugar) or, for zero sugar, 1/2 cup water + 2 tsp sea salt","1 tbsp coarse black pepper","1 tsp garlic powder","1 tsp onion powder","1/2 tsp red pepper flakes (optional)"]},
       cureNote:"Venison is lean, so it's often blended with pork or beef fat for sausage or snack sticks — mix in Cure #1 at the rate on your package, stuff into casings, and hot-smoke to 160°F internal. Whole cuts can also be cured into jerky-style cured meat."
     }) },
   { name:"Chicken (Poultry)", aliases:["chicken","hen","rooster","poultry","broiler"],
     methods:[
       {jkey:"freezing", directions:"Whole birds or cut pieces freeze well up to about a year. Chill quickly after butchering and freeze within a day for the best quality and lowest histamine.", histamine:"low", histNote:"Fresh-frozen poultry is the lowest-histamine way to keep chicken on hand."},
-      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min. Both at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — hot pack (partly cooked first) gives better liquid coverage than raw pack.", histamine:"moderate", histNote:"Canned poultry, like any canned meat, has accumulated more histamine by the time it's opened than a fresh-frozen piece."},
+      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min. Both at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft) — hot pack (partly cooked first) gives better liquid coverage than raw pack.", histamine:"moderate", histNote:"Canned poultry, like any canned meat, has accumulated more histamine by the time it's opened than a fresh-frozen piece."},
       {jkey:"dehydrating", directions:"Chicken jerky works the same way as red meat jerky — slice thin, marinate, and dry at 165°F (poultry's higher safe temperature) until firm and dry throughout.", histamine:"high", histNote:"Same as any slow-dried meat — a consistently flagged high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
     ] },
   { name:"Goat", aliases:["goat","chevon","kid","billy","doe goat"],
     methods: meatMethods({
       freezeNote:"Cuts freeze well; chill quickly after butchering and freeze within a day or two.",
-      canNote:"Same process as venison or beef: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      canNote:"Same process as venison or beef: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).",
       jerkyNote:"Trim well (goat can have a strong-flavored fat) and dry the same way as venison jerky — 160°F until it bends and cracks.",
-      jerkyRecipe:{title:"Basic Goat Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","2 tbsp brown sugar or honey","1 tbsp cumin","1 tsp garlic powder","1 tsp smoked paprika"]},
-      cureNote:"Goat takes well to a Mediterranean-style dry-cured leg, or ground into sausage with Cure #1 at the package rate."
+      jerkyRecipe:{title:"Basic Goat Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup coconut aminos (GF, soy-free; a little natural sugar) or, for zero sugar, 1/2 cup water + 2 tsp sea salt","1 tbsp cumin","1 tsp garlic powder","1 tsp smoked paprika"]},
+      cureNote:"Grind into sausage with Cure #1 at the package rate and hot-smoke to 160°F internal. Long air-dried whole legs need Cure #2, a tested recipe and a curing chamber; not a beginner project."
     }) },
   { name:"Sheep (Lamb/Mutton)", aliases:["sheep","lamb","mutton","ewe","ram"],
     methods: meatMethods({
       freezeNote:"Cuts freeze well; trim excess fat first since it can turn rancid faster than lean cuts in the freezer.",
-      canNote:"Same standard meat-cubes process: pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      canNote:"Same standard meat-cubes process: pints 75 min / quarts 90 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).",
       jerkyNote:"Trim fat thoroughly before slicing (lamb fat turns rancid and off-flavored faster than beef or venison fat) and dry at 160°F until it bends and cracks.",
-      jerkyRecipe:{title:"Basic Lamb Jerky Marinade (per 2 lbs meat)", lines:["1/3 cup soy sauce or tamari","2 tbsp lemon juice","1 tbsp dried rosemary or mint","1 tsp garlic powder"]},
-      cureNote:"Lamb cures well into a Mediterranean-style cured leg (like a mutton prosciutto) or ground sausage with merguez-style spicing."
+      jerkyRecipe:{title:"Basic Lamb Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup coconut aminos (GF, soy-free; a little natural sugar) or, for zero sugar, 1/2 cup water + 2 tsp sea salt","1 tbsp dried rosemary or mint","1 tsp garlic powder","1/2 tsp black pepper"]},
+      cureNote:"Ground into sausage with merguez-style spicing (Cure #1 at the package rate, hot-smoked to 160°F). Air-dried whole legs need Cure #2, a tested recipe and a curing chamber; not a beginner project."
     }) },
   { name:"Beef (Cattle)", aliases:["beef","cattle","cow","steer","calf","bull"],
     methods: meatMethods({
       freezeNote:"Cuts freeze well for many months; chill and freeze promptly after butchering/processing.",
-      canNote:"Classic use of the standard meat table: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      canNote:"Classic use of the standard meat table: cubes or strips, pints 75 min / quarts 90 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).",
       jerkyNote:"The classic jerky cut — slice lean cuts (round, flank) against the grain, marinate, and dry at 160°F until it bends and cracks.",
-      jerkyRecipe:{title:"Classic Beef Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup soy sauce or tamari","1/4 cup Worcestershire sauce","1 tbsp black pepper","1 tsp garlic powder","1 tsp onion powder","1 tbsp brown sugar (optional)"]},
+      jerkyRecipe:{title:"Classic Beef Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup coconut aminos (GF, soy-free; a little natural sugar) or, for zero sugar, 1/2 cup water + 2 tsp sea salt","1 tbsp black pepper","1 tsp garlic powder","1 tsp onion powder"]},
       cureNote:"Beef is the classic corned beef and pastrami cure with Cure #1, or grind for smoked sausage/snack sticks (cook to 160°F internal)."
     }) },
   { name:"Pork (Pig)", aliases:["pork","pig","hog","swine","boar"],
     methods: meatMethods({
       freezeNote:"Cuts freeze well; chill and freeze promptly, especially fattier cuts which are more prone to freezer-burn flavor changes over long storage.",
-      canNote:"Same standard meat process: pints 75 min / quarts 90 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).",
+      canNote:"Same standard meat process: pints 75 min / quarts 90 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).",
       jerkyNote:"Less traditional than beef/venison, but lean pork loin works — slice thin, marinate, and dry at 160°F until it bends and cracks.",
-      jerkyRecipe:{title:"Basic Pork Jerky Marinade (per 2 lbs meat)", lines:["1/3 cup soy sauce or tamari","2 tbsp honey","1 tbsp five-spice or smoked paprika","1 tsp garlic powder"]},
+      jerkyRecipe:{title:"Basic Pork Jerky Marinade (per 2 lbs meat)", lines:["1/2 cup coconut aminos (GF, soy-free; a little natural sugar) or, for zero sugar, 1/2 cup water + 2 tsp sea salt","1 tbsp smoked paprika","1 tsp garlic powder","1/2 tsp ground ginger"]},
       cureNote:"The classic use of curing salts — bacon (dry-cure or brine, then cold- or hot-smoke), ham, and fresh sausage. Follow a tested bacon/ham recipe for the Cure #1 rate and cure time, which run longer than a quick sausage cure."
     }) },
   { name:"Rabbit", aliases:["rabbit","bunny","hare"],
     methods:[
       {jkey:"freezing", directions:"Whole or cut-up rabbit freezes well; chill and freeze promptly after butchering.", histamine:"low", histNote:"Fresh-frozen is the lowest-histamine way to store rabbit."},
-      {jkey:"canning", directions:"Same times as chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"moderate", histNote:"Canned rabbit, like any canned meat, carries more histamine than fresh-frozen by the time it's opened."},
+      {jkey:"canning", directions:"Same times as chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"moderate", histNote:"Canned rabbit, like any canned meat, carries more histamine than fresh-frozen by the time it's opened."},
       {jkey:"dehydrating", directions:"Less traditional, but rabbit jerky works the same way as other lean meats — slice thin, marinate, dry at 160°F until it bends and cracks.", histamine:"high", histNote:"Slow-dried meat is a classic high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
     ] },
   { name:"Tomatoes", aliases:["tomato","tomatoes"],
@@ -2874,13 +3030,13 @@ const INGREDIENTS = [
     note:"⚠️ There's no tested-safe recipe for plain canned summer squash or zucchini (on its own, cubed or sliced) — the dense texture doesn't allow reliable heat penetration in a pressure canner. Freeze, dehydrate, or use it in a tested relish/pickle recipe instead of plain-canning it." },
   { name:"Green Beans", aliases:["green beans","string beans","snap beans"],
     methods:[
-      {jkey:"canning", directions:"A classic pressure-canning vegetable — pints 20 min / quarts 25 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Never water bath can green beans; they're low-acid.", histamine:"low"},
+      {jkey:"canning", directions:"A classic pressure-canning vegetable — pints 20 min / quarts 25 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Never water bath can green beans; they're low-acid.", histamine:"low"},
       {jkey:"freezing", directions:"Blanch 3 minutes, cool, and freeze — see the Freezing tab's blanching table.", histamine:"low"},
       {jkey:"fermenting", directions:"Dilly beans: ferment whole trimmed beans in a dill brine the same way as cucumber pickles.", histamine:"high", histNote:"Fermented dilly beans carry the same high-histamine flag as any ferment."},
     ] },
   { name:"Corn", aliases:["corn","sweet corn"],
     methods:[
-      {jkey:"canning", directions:"Whole kernel corn, pressure canned: pints 55 min / quarts 85 min (raw pack) at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Never water bath can corn; it's low-acid.", histamine:"low"},
+      {jkey:"canning", directions:"Whole kernel corn, pressure canned: pints 55 min / quarts 85 min (raw pack) at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Never water bath can corn; it's low-acid.", histamine:"low"},
       {jkey:"freezing", directions:"Blanch corn on the cob 7-11 minutes depending on size, cool, then cut kernels if desired and freeze.", histamine:"low"},
       {jkey:"dehydrating", directions:"Blanch, cut kernels, and dry at 125°F until brittle (8-14 hrs) for dried corn to rehydrate later.", histamine:"low"},
     ] },
@@ -2890,10 +3046,10 @@ const INGREDIENTS = [
       {jkey:"dehydrating", directions:"Slice thin and dry at 125°F until brittle (6-12 hrs), then grind into onion or garlic powder.", histamine:"low"},
       {jkey:"fermenting", directions:"Fermented honey garlic or pickled onions — submerge in brine or raw honey and let ferment at room temperature.", histamine:"high", histNote:"Fermented onion/garlic preparations carry the same high-histamine flag as any ferment."},
     ],
-    note:"⚠️ Never store garlic (or herbs) in oil at room temperature — garlic-in-oil is a well-known botulism risk since it's a low-acid food sitting in an oxygen-free environment at unsafe temperatures. Refrigerate garlic-in-oil and use within about a week, or acidify it properly first." },
+    note:"⚠️ Never store garlic (or herbs) in oil at room temperature — garlic-in-oil is a well-known botulism risk since it's a low-acid food sitting in an oxygen-free environment at unsafe temperatures. Refrigerate garlic-in-oil and use within 4 days, or freeze it." },
   { name:"Carrots", aliases:["carrot","carrots"],
     methods:[
-      {jkey:"canning", directions:"Pressure can sliced or whole small carrots: pints 25 min / quarts 30 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Pressure can sliced or whole small carrots: pints 25 min / quarts 30 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"freezing", directions:"Blanch sliced carrots 2 minutes, cool, and freeze.", histamine:"low"},
       {jkey:"cellar", directions:"Pack in slightly damp sand in a cold (32-40°F), moist root cellar for 4-6 months.", histamine:"low"},
       {jkey:"fermenting", directions:"Fermented carrot sticks in a simple salt brine, same method as other lacto-ferments.", histamine:"high", histNote:"Fermented carrots carry the same high-histamine flag as any ferment."},
@@ -2939,32 +3095,32 @@ const INGREDIENTS = [
   { name:"Turkey", aliases:["turkey","tom turkey","hen turkey"],
     methods:[
       {jkey:"freezing", directions:"Whole birds or parts freeze well up to a year; chill fast after butchering and freeze within a day for best quality.", histamine:"low", histNote:"Fresh-frozen is the lowest-histamine way to keep turkey on hand."},
-      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min, at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — hot pack gives better liquid coverage.", histamine:"moderate", histNote:"Canned poultry carries more histamine than fresh-frozen by the time it's opened."},
+      {jkey:"canning", directions:"Without bones: pints 75 min / quarts 90 min. With bones: pints 65 min / quarts 75 min, at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft) — hot pack gives better liquid coverage.", histamine:"moderate", histNote:"Canned poultry carries more histamine than fresh-frozen by the time it's opened."},
       {jkey:"dehydrating", directions:"Turkey jerky works like any lean poultry jerky — slice thin, marinate, dry at 165°F until firm throughout.", histamine:"high", histNote:"Slow-dried meat is a classic high-histamine food.", gluten:true, glutenNote:GLUTEN_SWAP_NOTE},
       {jkey:"curing", directions:"Turkey breast cures and smokes well (think deli-style smoked turkey) — brine with Cure #1 at the package rate, then hot-smoke to 165°F internal.", histamine:"high", histNote:"Cured and smoked meat is inherently high-histamine.", gluten:true, glutenNote:"Brines often include soy sauce or other hidden-gluten ingredients — see Reference → Dietary Notes."},
     ] },
   { name:"Duck", aliases:["duck","duckling","drake"],
     methods:[
       {jkey:"freezing", directions:"Whole or parted duck freezes well; render and save the fat separately (it keeps a long time refrigerated or frozen and is prized for cooking).", histamine:"low"},
-      {jkey:"canning", directions:"Same poultry table as chicken/turkey: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Skim the extra fat before canning.", histamine:"moderate"},
-      {jkey:"curing", directions:"Duck breast is the classic candidate for a simple dry-cured, air-dried \"duck prosciutto\" (salt-cure 24 hrs, rinse, air-dry 1-3 weeks) or smoked whole.", histamine:"high", histNote:"Cured/air-dried duck is high-histamine, same as any cured meat.", gluten:false},
+      {jkey:"canning", directions:"Same poultry table as chicken/turkey: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Skim the extra fat before canning.", histamine:"moderate"},
+      {jkey:"curing", directions:"Hot-smoke whole or halved duck to 165°F internal, then refrigerate and eat within a few days or freeze. Skip the air-dried \"duck prosciutto\" recipes you see online: they're not a tested home method.", histamine:"high", histNote:"Smoked duck is high-histamine, same as any smoked meat.", gluten:false},
     ] },
   { name:"Goose", aliases:["goose","gander","geese"],
     methods:[
       {jkey:"freezing", directions:"Whole or parted goose freezes well; render the abundant fat separately — goose fat keeps for months refrigerated and is excellent for cooking.", histamine:"low"},
-      {jkey:"canning", directions:"Same poultry table as duck/chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Skim heavily before canning — goose renders a lot of fat.", histamine:"moderate"},
-      {jkey:"curing", directions:"Goose breast cures well the same way as duck breast (salt-cure and air-dry), or smoke whole.", histamine:"high", histNote:"Cured meat is inherently high-histamine.", gluten:false},
+      {jkey:"canning", directions:"Same poultry table as duck/chicken: without bones pints 75 min / quarts 90 min; with bones pints 65 min / quarts 75 min, 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Skim heavily before canning — goose renders a lot of fat.", histamine:"moderate"},
+      {jkey:"curing", directions:"Hot-smoke goose breast or a whole bird to 165°F internal, then refrigerate and eat within a few days or freeze. Air-dried goose \"ham\" isn't a tested home method.", histamine:"high", histNote:"Smoked meat is inherently high-histamine.", gluten:false},
     ] },
   { name:"Quail", aliases:["quail"],
     methods:[
       {jkey:"freezing", directions:"Whole small birds freeze well; because they're so small, freeze in the exact portion size you'll cook (often 1-2 birds per person).", histamine:"low"},
-      {jkey:"canning", directions:"Same bone-in poultry time as chicken with bones: pints 65 min / quarts 75 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — pint jars are the practical choice given their small size.", histamine:"moderate"},
+      {jkey:"canning", directions:"Same bone-in poultry time as chicken with bones: pints 65 min / quarts 75 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft) — pint jars are the practical choice given their small size.", histamine:"moderate"},
       {jkey:"curing", directions:"Whole quail smokes well (brief brine, then hot-smoke to 165°F) — a nice way to use birds beyond fresh roasting.", histamine:"high", histNote:"Smoked meat is inherently high-histamine.", gluten:false},
     ] },
   { name:"Fish", aliases:["fish","catfish","bass","crappie","perch","trout","tilapia"],
     methods:[
       {jkey:"freezing", directions:"Gut and ice fish within 2 hours of catching, then freeze whole or filleted as soon as possible — vacuum-sealing or a water-glaze (dip in water, freeze, repeat) prevents freezer burn on lean fish.", histamine:"low", histNote:"Fast icing and fast freezing are the whole game with fish — this is the one ingredient where delay matters most."},
-      {jkey:"canning", directions:"Raw-pack cleaned fish (headed, gutted, cut into 3½-inch lengths, skin-side to the glass) into pint jars with 1-inch headspace — no added liquid, salt is optional (1 tsp/pint). Process 100 minutes at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pint jars only — quarts aren't a tested size for fish.", histamine:"moderate"},
+      {jkey:"canning", directions:"Raw-pack cleaned fish (headed, gutted, cut into 3½-inch lengths, skin-side to the glass) into pint jars with 1-inch headspace — no added liquid, salt is optional (1 tsp/pint). Process 100 minutes at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Pint jars only — quarts aren't a tested size for fish.", histamine:"moderate"},
       {jkey:"dehydrating", directions:"Fish jerky: brine or marinate, then dry at 145°F until firm with no moisture (6-12 hrs) — see the Dehydrating tab's chart.", histamine:"high", histNote:"Fish is one of the most notorious high-histamine foods, especially if it wasn't iced fast right after catching — histamine can form in fish flesh within hours at warm temperatures, well before any preservation method comes into play.", gluten:true, glutenNote:"Marinades often include soy sauce — swap tamari or coconut aminos."},
       {jkey:"curing", directions:"Smoking fish (hot-smoke to 145°F internal) is traditional, but smoked fish is still perishable — refrigerate and eat within a few days, or freeze, rather than treating it as shelf-stable.", histamine:"high", histNote:"Smoked fish is especially high-histamine — a good one to keep off the low-histamine plate entirely.", gluten:false},
     ],
@@ -2978,8 +3134,8 @@ const INGREDIENTS = [
   { name:"Sausage", aliases:["sausage","snack sticks","bratwurst","brats","breakfast sausage"],
     methods:[
       {jkey:"freezing", directions:"Raw patties or links freeze well for months — separate with parchment before freezing so you can pull out just what you need. Cooked sausage also freezes well.", histamine:"low", histNote:"If sausage is on Riley's plate at all, freshly made and promptly frozen is the lowest-histamine way to keep it."},
-      {jkey:"canning", directions:"Only plain fresh (uncured) sausage — no cheese pieces or cured/specialty varieties. Lightly brown patties or 1-4 inch pieces first (raw pack isn't allowed), drain the fat, pack with added liquid (broth, water, or tomato juice) and 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"moderate", histNote:"Canned sausage carries the same moderate flag as any canned meat."},
-      {jkey:"curing", directions:"The classic use — mix ground meat (often part pork fat for moisture) with Cure #1 at your package's rate plus your spice blend, stuff into casings, and hot-smoke to 160°F internal for links, or dry-cure for weeks with Cure #2 for a shelf-stable snack stick.", recipe:{title:"Basic Breakfast Sausage Spice Blend (per 5 lbs ground pork)", lines:["3 tbsp kosher salt","1 tbsp black pepper","1 tbsp rubbed sage","2 tsp brown sugar","1 tsp red pepper flakes","1/2 tsp nutmeg","No Cure #1 needed — this is a fresh, cook-and-eat sausage, not a cured one"]},
+      {jkey:"canning", directions:"Only plain fresh (uncured) sausage — no cheese pieces or cured/specialty varieties. Lightly brown patties or 1-4 inch pieces first (raw pack isn't allowed), drain the fat, pack with added liquid (broth, water, or tomato juice) and 1-inch headspace. Pressure can pints 75 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"moderate", histNote:"Canned sausage carries the same moderate flag as any canned meat."},
+      {jkey:"curing", directions:"The classic use — mix ground meat (often part pork fat for moisture) with Cure #1 at your package's rate plus your spice blend, stuff into casings, and hot-smoke to 160°F internal for links, or dry-cure for weeks with Cure #2 for a shelf-stable snack stick.", recipe:{title:"Basic Breakfast Sausage Spice Blend (per 5 lbs ground pork)", lines:["3 tbsp kosher salt","1 tbsp black pepper","1 tbsp rubbed sage","1 tsp red pepper flakes","1/2 tsp nutmeg","No Cure #1 needed — this is a fresh, cook-and-eat sausage, not a cured one"]},
         histamine:"high", histNote:"Cured/smoked sausage and snack sticks are inherently high-histamine.", gluten:true, glutenNote:"Some casings and commercial spice blends carry hidden gluten (fillers, anti-caking wheat starch) — check labels, or mix your own blend from single-ingredient spices like the recipe here."},
       {jkey:"dehydrating", directions:"Not a great candidate for a standard dehydrator — sausage's higher fat content dries unevenly and turns rancid faster than lean jerky cuts. Freezing or the canning/curing methods above hold up much better.", histamine:"high", gluten:false},
     ] },
@@ -2988,20 +3144,20 @@ const INGREDIENTS = [
   { name:"Potatoes", aliases:["potato","potatoes","spuds"],
     methods:[
       {jkey:"cellar", directions:"The classic root cellar crop — cold, moist, and dark (32-40°F, 85-95% humidity) for 4-6 months. Keep away from light, which turns skins green.", histamine:"low"},
-      {jkey:"canning", directions:"Peel, cube, and pressure can (never water bath — potatoes are low-acid): pints 35 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Peel, cube, and pressure can (never water bath — potatoes are low-acid): pints 35 min / quarts 40 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"freezing", directions:"Raw potatoes freeze poorly (grainy texture), but blanched/parboiled cubes, mashed potatoes, or shredded hash browns (blanched first) all freeze well.", histamine:"low"},
       {jkey:"dehydrating", directions:"Blanch, slice, and dry at 125°F until brittle for dried potato slices or hash browns to rehydrate later.", histamine:"low"},
     ] },
   { name:"Sweet Potatoes", aliases:["sweet potato","sweet potatoes","yams"],
     methods:[
       {jkey:"cellar", directions:"Cure 1-2 weeks in a warm, humid spot right after harvest, then store cool and dry (55-60°F) for 4-6 months — don't refrigerate raw sweet potatoes, cold turns the centers hard.", histamine:"low"},
-      {jkey:"canning", directions:"Peel, cube, and pressure can: pints 65 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Peel, cube, and pressure can: pints 65 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"freezing", directions:"Best cooked first — bake or boil, mash or cube, then freeze; raw sweet potato doesn't freeze as well.", histamine:"low"},
       {jkey:"dehydrating", directions:"Blanch, slice thin, and dry at 125°F until leathery for sweet potato chips.", histamine:"low"},
     ] },
   { name:"Beets", aliases:["beet","beets","beetroot"],
     methods:[
-      {jkey:"canning", directions:"Cook until skins slip off, cube or slice, then pressure can: pints 30 min / quarts 35 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pickled beets (with vinegar) can go in a water bath instead.", histamine:"low"},
+      {jkey:"canning", directions:"Cook until skins slip off, cube or slice, then pressure can: pints 30 min / quarts 35 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Pickled beets (with vinegar) can go in a water bath instead.", histamine:"low"},
       {jkey:"freezing", directions:"Cook until tender, cool, peel, and slice or cube before freezing — raw beets don't freeze well.", histamine:"low"},
       {jkey:"cellar", directions:"Trim tops, pack in damp sand, and store cold and moist (32-40°F) for 4-6 months.", histamine:"low"},
       {jkey:"fermenting", directions:"Fermented pickled beets or beet kvass, same brine method as other lacto-ferments.", histamine:"high", histNote:"Fermented beets carry the same high-histamine flag as any ferment."},
@@ -3015,30 +3171,30 @@ const INGREDIENTS = [
   { name:"Broccoli & Cauliflower", aliases:["broccoli","cauliflower"],
     methods:[
       {jkey:"freezing", directions:"By far the best method for these two — there's no tested recipe for plain-canning either one. Broccoli: steam blanch 3-3½ min or water blanch 2 min. Cauliflower: steam blanch 4-5 min or water blanch 3-4 min. Cool fully and freeze.", histamine:"low", histNote:"The recommended low-histamine route for both — fresh or freezer, not canned or long-stored."},
-      {jkey:"fermenting", directions:"Pickled cauliflower (with vinegar) is a safe water-bath option since the added acid makes it shelf-stable — plain cauliflower or broccoli cannot be safely canned without it.", histamine:"moderate", histNote:"Vinegar-forward pickles carry the moderate histamine flag common to that category."},
+      {jkey:"canningwb", directions:"Pickled cauliflower (with vinegar) is a safe water-bath option since the added acid makes it shelf-stable — plain cauliflower or broccoli cannot be safely canned without it.", histamine:"moderate", histNote:"Vinegar-forward pickles carry the moderate histamine flag common to that category."},
     ],
     note:"⚠️ There's no scientifically tested recipe for plain-canning broccoli or cauliflower — pressure canning turns them unpalatably soft anyway. Freeze them instead (directions below); only pickled/acidified cauliflower is a safe canning option." },
   { name:"Asparagus", aliases:["asparagus"],
     methods:[
-      {jkey:"canning", directions:"Pressure can spears or pieces: pints 30 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft), for hot pack or raw pack alike.", histamine:"low"},
+      {jkey:"canning", directions:"Pressure can spears or pieces: pints 30 min / quarts 40 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft), for hot pack or raw pack alike.", histamine:"low"},
       {jkey:"freezing", directions:"Blanch 2-4 minutes depending on stalk thickness, cool, and freeze upright or laid flat.", histamine:"low"},
       {jkey:"dehydrating", directions:"Blanch and dry at 125°F until brittle — less common, but works for soup additions.", histamine:"low"},
     ] },
   { name:"Peas (English/Shelling)", aliases:["peas","english peas","shelling peas","sweet peas"],
     methods:[
       {jkey:"freezing", directions:"Shell, blanch 1½-2 minutes, cool, and freeze — the most popular way to preserve garden peas by far. See the Freezing tab's blanching table.", histamine:"low"},
-      {jkey:"canning", directions:"Shell and pressure can: pints 40 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft) — same time for both jar sizes.", histamine:"low"},
+      {jkey:"canning", directions:"Shell and pressure can: pints 40 min / quarts 40 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft) — same time for both jar sizes.", histamine:"low"},
       {jkey:"dehydrating", directions:"Blanch and dry at 125°F until hard, similar to how split peas are naturally dried.", histamine:"low"},
     ] },
   { name:"Okra", aliases:["okra"],
     methods:[
       {jkey:"freezing", directions:"Blanch whole pods 3-4 minutes (this keeps them from getting overly slimy later), cool, and freeze whole or sliced.", histamine:"low"},
-      {jkey:"canning", directions:"Plain okra, pressure canned: pints 25 min / quarts 40 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Pickled okra (vinegar brine) is a classic water-bath option instead.", histamine:"low"},
+      {jkey:"canning", directions:"Plain okra, pressure canned: pints 25 min / quarts 40 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Pickled okra (vinegar brine) is a classic water-bath option instead.", histamine:"low"},
       {jkey:"dehydrating", directions:"Slice and dry at 125°F until brittle for dried okra chips, or grind fully dried pods into a soup/gumbo thickener.", histamine:"low"},
     ] },
   { name:"Winter Squash & Pumpkin", aliases:["winter squash","pumpkin","butternut","acorn squash"],
     methods:[
-      {jkey:"canning", directions:"Cube into 1-inch pieces — never mash or purée before canning; the dense texture can prevent heat from reaching the center safely. Pressure can pints 55 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft). Drain and mash after opening if you want it smooth for pie.", histamine:"low"},
+      {jkey:"canning", directions:"Cube into 1-inch pieces — never mash or purée before canning; the dense texture can prevent heat from reaching the center safely. Pressure can pints 55 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft). Drain and mash after opening if you want it smooth for pie.", histamine:"low"},
       {jkey:"freezing", directions:"Cook, mash, cool, and freeze — this is how to safely freeze it smooth (unlike canning, mashed is fine for the freezer).", histamine:"low"},
       {jkey:"cellar", directions:"Cure 1-2 weeks in a warm spot, then store cool and dry (50-60°F) for 3-6 months.", histamine:"low"},
       {jkey:"dehydrating", directions:"Slice or cube thin and dry at 125°F until leathery to brittle.", histamine:"low"},
@@ -3051,7 +3207,7 @@ const INGREDIENTS = [
     ] },
   { name:"Turnips", aliases:["turnip","turnips"],
     methods:[
-      {jkey:"canning", directions:"Peel, cube, and pressure can like carrots: pints 30 min / quarts 35 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Peel, cube, and pressure can like carrots: pints 30 min / quarts 35 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"freezing", directions:"Peel, cube, blanch 2-3 minutes, cool, and freeze.", histamine:"low"},
       {jkey:"cellar", directions:"Store cold and moist (32-40°F) in damp sand, same as carrots and beets, for 4-6 months.", histamine:"low"},
       {jkey:"fermenting", directions:"Fermented turnip pickles (a South Asian and Middle Eastern staple) use the same brine method as other lacto-ferments.", histamine:"high", histNote:"Fermented turnips carry the high-histamine flag common to any ferment."},
@@ -3059,13 +3215,13 @@ const INGREDIENTS = [
   { name:"Dry Beans (Pinto, Black, etc.)", aliases:["dry beans","pinto beans","black beans","kidney beans","dried beans"],
     methods:[
       {jkey:"cellar", directions:"Once fully dried on the plant (or oven/dehydrator-finished), store in airtight containers in a cool, dry pantry — no refrigeration needed, and they keep a year or more.", histamine:"low"},
-      {jkey:"canning", directions:"Soak dry beans 12-18 hrs (or quick-soak: boil 2 min, sit 1 hr), drain, cover with fresh water, boil 30 minutes, then pack with the cooking liquid and pressure can: pints 75 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Soak dry beans 12-18 hrs (or quick-soak: boil 2 min, sit 1 hr), drain, cover with fresh water, boil 30 minutes, then pack with the cooking liquid and pressure can: pints 75 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"freezing", directions:"Cooked beans freeze very well — portion and freeze in their cooking liquid for quick future meals.", histamine:"low"},
     ] },
   { name:"Leafy Greens (Spinach, Chard, Kale)", aliases:["spinach","chard","kale","swiss chard","leafy greens","greens"],
     methods:[
       {jkey:"freezing", directions:"Blanch 2 minutes, cool, squeeze out excess water, and freeze in portions — the most popular way to preserve garden greens.", histamine:"low"},
-      {jkey:"canning", directions:"Steam or wilt 3-5 minutes, pack loosely, and pressure can hot-pack only: pints 70 min / quarts 90 min at 11 lb dial gauge (0-2,000 ft) or 10 lb weighted gauge (0-1,000 ft).", histamine:"low"},
+      {jkey:"canning", directions:"Steam or wilt 3-5 minutes, pack loosely, and pressure can hot-pack only: pints 70 min / quarts 90 min at 11 lb dial gauge or 15 lb weighted gauge (your ~1,600 ft).", histamine:"low"},
       {jkey:"dehydrating", directions:"Kale in particular dries well into crisp \"chips\" at 125°F (season before or after drying); spinach and chard can be dried and crumbled into soup seasoning too.", histamine:"low"},
     ] },
   { name:"Eggplant", aliases:["eggplant","aubergine"],
@@ -3333,6 +3489,7 @@ function renderIngredientBlock(ing){
       recipeHtml = '<div class="ing-recipe"><strong>'+activeMethod.recipe.title+'</strong><ul>'+
         activeMethod.recipe.lines.map(l=>'<li>'+l+'</li>').join('')+'</ul></div>';
     }
+    if(activeMethod.jkey==='canning') recipeHtml = '<div class="ing-note-callout">⚠️ <strong>Your altitude (~1,600 ft):</strong> dial gauge 11 lb, weighted gauge <strong>15 lb</strong>. A weighted gauge at 10 lb under-processes here. Times stay as listed.</div>' + recipeHtml;
     const eff = effectiveHist(activeMethod.histamine, ing.name);
     let flagsHtml = '<div class="ing-flags">'+histTag(eff.level);
     if(activeMethod.gluten) flagsHtml += ' <span class="tag gluten">🌾 gluten swap</span>';
@@ -3423,7 +3580,7 @@ searchResults.addEventListener('click', (e)=>{
   const r = e.target.closest('.result');
   if(!r || !r.dataset.pane) return;
   showPane(r.dataset.pane);
-  const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', reference:'referenceTabs'};
+  const navMap = {preserve:'preserveTabs', garden:'gardenTabs', apothecary:'apothecaryTabs', livestock:'livestockTabs', household:'householdTabs', reference:'referenceTabs'};
   setTimeout(()=>{
     const nav = document.getElementById(navMap[r.dataset.pane]);
     if(nav){
