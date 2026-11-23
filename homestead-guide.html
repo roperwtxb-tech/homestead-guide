@@ -2007,8 +2007,10 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 <section class="pane" id="pane-livestock">
   <h2 class="section-title">Livestock &amp; Poultry</h2>
   <nav class="subtabs" id="livestockTabs">
-    <button data-sub="poultry" class="active">Poultry</button>
-    <button data-sub="goats">Goats</button>
+    <button data-sub="goats" class="active">Goats</button>
+    <button data-sub="dogs">Dogs</button>
+    <button data-sub="horses">Horses</button>
+    <button data-sub="poultry">Poultry</button>
     <button data-sub="sheep">Sheep</button>
     <button data-sub="cattle">Cattle</button>
     <button data-sub="pigs">Pigs</button>
@@ -2234,6 +2236,21 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
   </div>
 
   <div class="subpane" id="reference-dietary">
+    <div class="callout searchable" id="t-riley" data-keywords="riley rules priority gluten histamine sugar gaps eggs goat milk raw milk leftovers hard no">
+      <strong>⭐ Riley's rules (these override the general ratings below).</strong> When rules conflict:
+      <strong>1. gluten-free</strong> (a must) → <strong>2. low histamine</strong> (very close behind) →
+      <strong>3. low sugar</strong> → <strong>4. GAPS</strong>.
+      <ul style="margin:6px 0 0;">
+        <li><strong>Hard no:</strong> any gluten, high sugar, strawberries, bananas, citrus, <strong>leftovers</strong>,
+        fermented/aged/cured/smoked/canned foods, processed store milk, and any high-histamine food she hasn't been
+        introduced to yet.</li>
+        <li><strong>Okay:</strong> eggs cooked <em>into</em> food (baked goods, binders), but not egg dishes like omelets or
+        quiche. Raw milk and goat milk.</li>
+        <li><strong>The rest of the family</strong> can use everything in Preserving. For Riley, the route is <strong>fresh, or
+        frozen right away</strong>; most canned, dried, cured and fermented food is not for her.</li>
+      </ul>
+      <span class="muted-small">The Roper Diet Guide app has her full food list and is the master copy.</span>
+    </div>
     <div class="callout searchable" id="t-dietary" data-keywords="dietary flags legend gluten free low histamine key">
       <strong>How the flags work:</strong> histamine is flagged two ways. Each <em>food</em> in the search results
       shows its own rating from the SIGHI list (below), and each <em>preserving method</em> shows how much that
@@ -2257,7 +2274,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
         days in the fridge.</li>
         <li><strong>Refrigerated leftovers still climb.</strong> High-protein leftovers (meat, fish, poultry, bone
         broth) measurably gain histamine over 24–48 hours in the fridge, even though they're perfectly food-safe.
-        For a low-histamine eater, that's the practical reason to serve/freeze leftovers within a day rather than
+        For Riley, fridge leftovers are a hard no: freeze within an hour or two instead. For a low-histamine eater generally, that's the practical reason to serve/freeze leftovers within a day rather than
         eating them all week.</li>
         <li><strong>Fermented, cured, aged, and smoked foods are inherently high-histamine</strong> — the bacteria
         doing the preserving work is the same bacteria producing histamine as a byproduct. This is true no matter
@@ -2714,13 +2731,32 @@ function filterCards(containerId, query){ renderPests(query); }
 
 /* ---------------- Livestock species ---------------- */
 const SPECIES = {
+  dogs: {
+    title: "Dogs (livestock guardians & farm dogs)",
+    housing: "Guardian dogs (Great Pyrenees, Anatolian, Akbash) live with the herd: shade, fresh water that can't be tipped, and a dry, wind-blocked spot to rest. Don't shave their double coats for summer; the coat insulates them from heat. Brush out the loose undercoat instead.",
+    feed: "Quality food sized for the dog (large-breed formula for guardians), fed where the goats can't steal it, like a raised or fenced-off feeding station. Keep goat feed and minerals away from the dogs, too.",
+    health: "Texas basics: heartworm prevention every month, year-round; flea and tick control; and rabies vaccination, which Texas law requires for every dog over 4 months. Check paws, ears and hot spots in summer. Guardians often eat afterbirth at kidding; that's normal, but watch for upset stomachs.",
+    firstaid: "Kit: blood-stop powder, wound wash, vet wrap, tweezers for ticks and burrs, saline eye wash. <strong>Never use livestock dewormers on dogs</strong>, especially ivermectin: herding breeds (German shepherds included) can carry a gene (MDR1) that makes it deadly. Normal temperature 101–102.5°F.",
+    breeding: "Gestation about 63 days. Guardian pups are best raised with the stock from about 8–12 weeks, supervised, so they bond with the goats and learn not to play rough.",
+    extra: "<div class='callout histamine searchable' id='l-monensin'><strong>⚠️ Medicated goat feed can kill dogs and horses.</strong> Goat feeds and minerals with monensin (Rumensin) or lasalocid (Bovatec) for coccidiosis are safe for goats but can be fatal to dogs and horses. Check every feed tag and store it where they can't get to it.</div><div class='card searchable' id='l-dog-toxins' data-keywords='dog toxic xylitol grapes chocolate onions ivermectin'><h3>🚫 Toxic to dogs</h3><p>Xylitol (in some peanut butters and gum), grapes and raisins, chocolate, onions and garlic in quantity, cooked bones, and livestock medications. Tea tree and many other essential oils too, so keep the cleaning and apothecary oils out of reach.</p></div>"
+  },
+  horses: {
+    title: "Horses",
+    housing: "Run-in shed or shade and a windbreak, safe fencing (no barbed wire), and a lot of clean water: 10–15 gallons a day each, more in Texas summer. Keep feed rooms latched; a horse that gets into the grain is an emergency.",
+    feed: "Forage first: about 1.5–2% of body weight a day in hay or pasture (15–20 lb for a 1,000 lb Quarter Horse). Add grain only if work or condition needs it. Feed off the ground in sandy spots to avoid sand colic, and change feeds slowly over 7–10 days.",
+    health: "Farrier every 6–8 weeks, teeth checked and floated yearly, deworm by fecal egg count rather than a fixed calendar. Core vaccines: tetanus, Eastern/Western encephalitis, West Nile and rabies, plus whatever your vet adds. Texas requires a negative Coggins (EIA) test for changes of ownership and most events, so keep current papers.",
+    firstaid: "Colic signs: pawing, looking at the belly, rolling, no manure, sweating. Pull feed, walk if they're safe to walk, and call the vet; don't give anything by mouth without them. Normal: temperature 99–101°F, heart rate 28–44, breathing 10–24 a minute.",
+    breeding: "Gestation about 340 days (11 months).",
+    extra: "<div class='callout histamine'><strong>⚠️ Keep horses away from goat feed and minerals.</strong> Medicated goat feeds with monensin (Rumensin) are deadly to horses even in small amounts.</div>"
+  },
   poultry: {
     title: "Poultry (chickens, ducks, geese, turkeys)",
     housing: "2-4 sq ft/bird inside the coop, 8-10 sq ft/bird in the run; 1 nest box per 4-5 hens; roost space ~8-10 inches/bird.",
     feed: "Chick starter (18-20% protein) to 8 wks, grower feed to point-of-lay, then 16% layer feed with free-choice oyster shell for calcium. Waterfowl need niacin-supplemented feed or brewer's yeast added.",
     health: "Watch for lethargy, pale comb, discharge, or change in droppings. Common issues: bumblefoot (swollen foot pad), mites/lice (check vent feathers), egg-bound hens (straining, no egg produced).",
     firstaid: "Isolate sick birds immediately. Keep a basic kit: Vetericyn or iodine for wounds, electrolyte powder, blu-kote spray to deter pecking at wounds, epsom salts for a foot soak on bumblefoot.",
-    breeding: "See Breeding & Incubation tab for incubation days by species."
+    breeding: "See Breeding & Incubation tab for incubation days by species.",
+    extra: "<div class='callout histamine searchable' id='l-blackhead'><strong>⚠️ Turkeys and chickens:</strong> chickens can carry blackhead disease (histomoniasis) without getting sick, and it's often fatal to turkeys. Keep turkeys off ground chickens have used when you can, keep the flocks' feed and water separate, and keep earthworm-heavy damp spots dry. Guineas are hardy and great tick eaters, but loud.</div>"
   },
   goats: {
     title: "Goats",
@@ -2729,7 +2765,7 @@ const SPECIES = {
     health: "Check body condition, coat quality, and manure consistency regularly. Common issues: internal parasites (check FAMACHA eyelid score), hoof overgrowth (trim every 6-8 weeks), bloat.",
     firstaid: "Kit basics: thermometer (normal temp ~101.5-103.5°F), Blu-Kote, hoof trimmers, CD&T vaccine on schedule, molasses/electrolytes for a sick or off-feed goat.",
     breeding: "Gestation ~150 days (about 5 months). Watch for signs of labor: restlessness, pawing, separating from the herd, discharge. See Breeding tab for the full table.",
-    extra: "<div class='callout tip searchable' id='l-flyspray'><strong>Natural fly spray:</strong> 2 cups apple cider vinegar, 1 cup water, 10–15 drops each of citronella, lavender and eucalyptus essential oil. Shake before each use; mist body and legs, never the face or eyes, and not on udders right before milking. Test a small spot and reapply after rain. No tea tree oil if the dogs are around.</div>"
+    extra: "       <div class='card searchable' id='l-goat-milk' data-keywords='milking nigerian dwarf goat milk chill histamine raw milk handling'>         <h3>🥛 Milking (Nigerian Dwarfs)</h3>         <p>A Nigerian Dwarf doe in her prime gives roughly 1–2 quarts a day, high in butterfat. Milk on a steady schedule (12 hours apart, or once a day after kids are 2+ weeks old if you share with them).</p>         <ul>           <li><strong>Clean:</strong> brush the belly, wash and dry the udder, strip the first squirts into a strip cup and check for clots or stringy milk (mastitis sign).</li>           <li><strong>Chill fast:</strong> strain into a clean jar and get it under 40°F within an hour (jar in ice water, then the fridge). Fast chilling is what keeps raw milk sweet, and it's what keeps histamine low for Riley.</li>           <li><strong>Teat dip</strong> after milking and keep the doe standing (feed her) for 20–30 minutes while the teat ends close.</li>           <li>Use fresh milk within a few days, or freeze it right away.</li>         </ul>       </div>       <div class='card searchable' id='l-goat-kidding' data-keywords='kidding kit labor colostrum kids disbudding wether nigerian dwarf'>         <h3>🍼 Kidding</h3>         <ul>           <li><strong>Kit:</strong> towels, gloves and lube, iodine (7%) for navels, bulb syringe, heat lamp or kid coat, colostrum (frozen from your own does is best), bottle and Pritchard nipple, thermometer, vet's after-hours number.</li>           <li><strong>Signs:</strong> ligaments around the tail head go soft, udder fills tight, discharge, pawing and nesting, talking to her belly.</li>           <li><strong>Call the vet:</strong> active pushing 30+ minutes with no progress, a single leg or a head with no legs presenting, a bag that breaks with no kid within an hour, or a weak doe.</li>           <li><strong>Colostrum</strong> within the first few hours is non-negotiable. A kid that can't stand and suck by about an hour needs help.</li>           <li><strong>Disbudding</strong> (if you do it): Nigerian Dwarf bucklings around 3–7 days, doelings a few days later.</li>           <li><strong>Wethers:</strong> wait until at least 8 weeks (later is better) to castrate, so the urethra can grow; see urinary stones below.</li>         </ul>         <p class=\"muted-small\">Log births in the Roped In Ranch app's Record Kidding button.</p>       </div>       <div class='card searchable' id='l-goat-health' data-keywords='barber pole famacha fecal cocci coccidiosis cdt vaccine copper urinary calculi stones wether bloat texas'>         <h3>🩺 Health calendar for a Texas goat herd</h3>         <ul>           <li><strong>Barber pole worm</strong> is the big killer in warm, wet Texas months. Check FAMACHA eyelid color every 2–4 weeks in summer; do a fecal egg count before you deworm, and deworm only the goats that need it, so the drugs keep working.</li>           <li><strong>Coccidiosis</strong> hits kids around 3–8 weeks old (scours, rough coat, slow growth). Keep pens dry and feeders off the ground; ask your vet about prevention for each kid crop.</li>           <li><strong>CD&amp;T vaccine:</strong> kids at about 4–6 weeks with a booster 3–4 weeks later; does once a year about 4 weeks before kidding so colostrum carries protection.</li>           <li><strong>Copper:</strong> goats need far more than sheep. Pale or fishtail tail tips and faded coats can mean low copper; bolusing is common in Texas, but get your vet's go-ahead first.</li>           <li><strong>Urinary stones (wethers and bucks):</strong> keep grain low, hay high, water fresh and appealing (warm in winter), and keep loose minerals with a 2:1 calcium-to-phosphorus ratio. A wether straining to pee is an emergency.</li>           <li><strong>Hooves</strong> every 6–8 weeks; more often on soft ground.</li>         </ul>         <p class=\"muted-small\">Normal: temperature 101.5–103.5°F, heart rate 70–90, breathing 12–20 a minute, cud chewing.</p>       </div><div class='callout tip searchable' id='l-flyspray'><strong>Natural fly spray:</strong> 2 cups apple cider vinegar, 1 cup water, 10–15 drops each of citronella, lavender and eucalyptus essential oil. Shake before each use; mist body and legs, never the face or eyes, and not on udders right before milking. Test a small spot and reapply after rain. No tea tree oil if the dogs are around.</div>"
   },
   sheep: {
     title: "Sheep",
@@ -2775,6 +2811,8 @@ function renderSpecies(sub){
       <tr><td>Cattle</td><td>~283 days</td><td>1 calf</td></tr>
       <tr><td>Pig</td><td>~114 days</td><td>8-12 piglets</td></tr>
       <tr><td>Rabbit</td><td>~31 days</td><td>4-12 kits</td></tr>
+      <tr><td>Horse</td><td>~340 days</td><td>1 foal</td></tr>
+      <tr><td>Dog</td><td>~63 days</td><td>Varies by breed; guardians often 6-10</td></tr>
     </table>
     <table><caption>Poultry incubation by species</caption>
       <tr><th>Species</th><th>Incubation</th><th>Ideal temp / humidity</th></tr>
@@ -2790,6 +2828,13 @@ function renderSpecies(sub){
     container.innerHTML = `
     <div class="card"><h3>General livestock first-aid kit</h3>
     <p>Across species, a solid base kit covers: a livestock-rated thermometer, blood-stop powder, iodine or chlorhexidine wound wash, vet wrap, a good pair of scissors/hoof trimmers, electrolyte powder, a syringe (no needle) for oral fluids, and a card with your vet's after-hours number taped inside the barn door.</p>
+    <table><caption>Normal vital signs</caption>
+      <tr><th>Animal</th><th>Temperature</th><th>Heart rate</th><th>Breaths/min</th></tr>
+      <tr><td>Goat</td><td>101.5–103.5°F</td><td>70–90</td><td>12–20</td></tr>
+      <tr><td>Horse</td><td>99–101°F</td><td>28–44</td><td>10–24</td></tr>
+      <tr><td>Dog</td><td>101–102.5°F</td><td>60–140 (bigger dogs slower)</td><td>10–35</td></tr>
+      <tr><td>Chicken</td><td>105–107°F</td><td>—</td><td>—</td></tr>
+    </table>
     <p><strong>Call the vet, don't wait, for:</strong> heavy bleeding, an animal down and unable to rise, difficult/prolonged labor, bloat with visible distension, or any sudden collapse. Homestead first aid is for minor wounds and monitoring — not a substitute for veterinary care on anything serious.</p></div>
     `;
   } else {
@@ -2815,7 +2860,7 @@ document.getElementById('livestockTabs').querySelectorAll('button').forEach(btn=
     renderSpecies(btn.dataset.sub);
   });
 });
-renderSpecies('poultry');
+renderSpecies('goats');
 
 /* ---------------- Global search ---------------- */
 const searchInput = document.getElementById('globalSearch');
@@ -2904,6 +2949,14 @@ const SEARCH_INDEX = [
   {anchor:"a-bed-other", title:"Elderberry, aloe, ginger & holy basil", pane:"apothecary", sub:"bed", kw:"elderberry aloe ginger tulsi holy basil"},
   {anchor:"a-udder", title:"Udder & hand balm (calendula)", pane:"apothecary", sub:"making", kw:"udder balm hand balm calendula goat milking chapped"},
   {title:"Goat fly spray (natural)", pane:"livestock", sub:"goats", kw:"fly spray flies goats vinegar citronella essential oil"},
+  {title:"Milking Nigerian Dwarf goats", pane:"livestock", sub:"goats", kw:"milking goat milk chill strain teat dip nigerian dwarf raw milk"},
+  {title:"Kidding kit, colostrum & disbudding", pane:"livestock", sub:"goats", kw:"kidding labor kit colostrum disbudding wether castrate"},
+  {title:"Goat health: barber pole, cocci, CD&T, copper, urinary stones", pane:"livestock", sub:"goats", kw:"barber pole famacha fecal cocci coccidiosis cdt vaccine copper urinary calculi stones"},
+  {title:"Livestock guardian dogs & farm dogs", pane:"livestock", sub:"dogs", kw:"dog dogs guardian lgd great pyrenees anatolian akbash german shepherd heartworm rabies ivermectin"},
+  {title:"Medicated goat feed is toxic to dogs & horses", pane:"livestock", sub:"dogs", kw:"monensin rumensin medicated feed toxic dogs horses bovatec lasalocid"},
+  {title:"Horses: feed, hooves, colic, Coggins", pane:"livestock", sub:"horses", kw:"horse horses quarter horse colic coggins farrier hay"},
+  {title:"Turkeys & chickens: blackhead disease", pane:"livestock", sub:"poultry", kw:"turkey turkeys blackhead chickens guineas"},
+  {anchor:"t-riley", title:"Riley's rules (priority order)", pane:"reference", sub:"dietary", kw:"riley rules priority eggs goat milk raw milk leftovers hard no"},
   {anchor:"h-wood", title:"Wood cleaner (finished furniture)", pane:"household", sub:"furniture", kw:"wood cleaner furniture castile dust natural cleaner"},
   {anchor:"h-polish", title:"Wood polish (beeswax)", pane:"household", sub:"furniture", kw:"wood polish beeswax jojoba"},
   {anchor:"h-leather", title:"Leather cleaner & conditioner (saddles, boots)", pane:"household", sub:"furniture", kw:"leather saddle tack boots conditioner cleaner"},
@@ -3395,9 +3448,9 @@ const FOOD_HIST = {
   "Goose": {level:"unrated", note:"Not on the SIGHI list. Treat it like other fresh poultry: freshness is what matters."},
   "Quail": {level:"low", note:"Fresh quail and quail eggs are rated 0 (well tolerated)."+FRESH},
   "Fish": {level:"low", note:"Rated 0 only when freshly caught or frozen right away; it depends heavily on freshness and species. Tuna and any smoked fish are rated 3 (very poorly tolerated)."},
-  "Eggs": {level:"high", note:"Whole eggs and egg whites are rated 2 (usually avoided), even cooked. The yolk alone is rated 0."},
+  "Eggs": {level:"moderate", note:"SIGHI rates whole eggs 2, the yolk alone 0. For Riley: eggs cooked into food (baked goods, binders) are fine; egg dishes like omelets and quiche are out."},
   "Sausage": {level:"high", note:"SIGHI rates sausages of all kinds 3 (very poorly tolerated). Fresh homemade sausage, frozen right away, isn't rated separately; ask Riley's provider before including it."},
-  "Milk & Dairy": {level:"varies", byTerm:{"butter":"low","milk":"low","ricotta":"low","aged":"high","cheddar":"high"}, note:"Milk, sweet-cream butter and fresh cheeses (ricotta, cream cheese) are rated 0. Cultured butter is rated 1, and aged or hard cheeses are rated 3."},
+  "Milk & Dairy": {level:"varies", byTerm:{"butter":"low","milk":"low","ricotta":"low","aged":"high","cheddar":"high"}, note:"For Riley: raw cow milk and goat milk are fine; processed store milk is not. Milk, sweet-cream butter and fresh cheeses (ricotta, cream cheese) are rated 0. Cultured butter is rated 1, and aged or hard cheeses are rated 3."},
   "Tomatoes": {level:"high", note:"Tomatoes are rated 2 (usually avoided). Freezing keeps histamine from rising, but it can't remove what the tomato already has."},
   "Cucumbers": {level:"low", note:"Fresh cucumbers are rated 0 (well tolerated); pickles are rated 2."},
   "Peppers": {level:"varies", byTerm:{"jalapeno":"high","chili":"high","hot":"high","serrano":"high","bell":"low"}, note:"Sweet bell peppers are rated 0 (well tolerated). Hot chili peppers are rated 2, since the heat is irritating."},
