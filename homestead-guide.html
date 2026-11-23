@@ -2249,7 +2249,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
         <li><strong>The rest of the family</strong> can use everything in Preserving. For Riley, the route is <strong>fresh, or
         frozen right away</strong>; most canned, dried, cured and fermented food is not for her.</li>
       </ul>
-      <span class="muted-small">The Roper Diet Guide app has her full food list and is the master copy.</span>
+      <span class="muted-small">The <a href="https://roperwtxb-tech.github.io/roper-diet-guide/" target="_blank" rel="noopener">Roper Diet Guide</a> has her full food list and is the master copy.</span>
     </div>
     <div class="callout searchable" id="t-dietary" data-keywords="dietary flags legend gluten free low histamine key">
       <strong>How the flags work:</strong> histamine is flagged two ways. Each <em>food</em> in the search results
@@ -2348,6 +2348,7 @@ a.jumplink{color: var(--green-dark); font-weight:bold; cursor:pointer;}
 </main>
 
 <footer>
+  <div style="margin-bottom:8px;">Our apps: <a href="https://roperwtxb-tech.github.io/roped-in-ranch/roped-in-ranch.html" target="_blank" rel="noopener">Ranch</a> · <strong>Field Guide</strong> · <a href="https://roperwtxb-tech.github.io/roper-diet-guide/" target="_blank" rel="noopener">Diet Guide</a></div>
   Built as a companion to the Roped In Ranch app · Times, temperatures, and ratios are general guidance drawn from
   USDA, NCHFP, and university extension sources — always follow the specific instructions on your equipment and
   ingredients, and consult a vet for animal health concerns.
@@ -3812,6 +3813,14 @@ function goApothecary(sub, anchor){
     '<li style="margin-bottom:6px;"><strong><em>'+b.title+'</em></strong>, '+b.by+' '+statusTag[b.status]+(b.why ? '<br><span class="muted-small">'+b.why+'</span>' : '')+'</li>').join('')+'</ul>';
   /* Roped In & Ready links here as ...homestead-guide.html#bookshelf */
   if(location.hash==='#bookshelf'){ goApothecary('bookshelf','a-lookup'); setTimeout(()=>input.focus(),300); }
+  /* Deep links from the other family apps: homestead-guide.html#pane/sub/anchor */
+  const deepLink = ()=>{
+    if(!/^#[a-z]+\/[a-z]+/.test(location.hash)) return;
+    const [pane, sub, anchor] = location.hash.slice(1).split('/');
+    setTimeout(()=>{ goTo(pane, sub); if(anchor) scrollToAnchor(anchor); }, 100);
+  };
+  deepLink();
+  window.addEventListener('hashchange', deepLink);
 })();
 /* Offline support: keeps a copy of the guide on the phone (see sw.js). */
 if ('serviceWorker' in navigator) window.addEventListener('load', ()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
